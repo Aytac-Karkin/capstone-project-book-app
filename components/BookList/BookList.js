@@ -1,4 +1,8 @@
+import books from "../../lib/books.json";
+import BookCard from "../BookCard/BookCard";
+
 export default function BookList() {
+  console.log(books);
   return (
     <>
       <ul>
