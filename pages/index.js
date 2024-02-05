@@ -1,11 +1,10 @@
 import BookList from "@/components/BookList/BookList";
+import Header from "@/components/Header/Header";
 
 export default function HomePage() {
   return (
     <>
-      <header>
-        <h1>Shelfie</h1>
-      </header>
+      <Header />
       <BookList />
     </>
   );
