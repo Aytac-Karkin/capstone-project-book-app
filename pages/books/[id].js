@@ -7,19 +7,24 @@ import styled from "styled-components";
 const StyledImage = styled(Image)`
   border-radius: 8px;
   position: relative;
-  top: -30px;
-  left: 50%;
-  transform: translate(-50%, 0);
+  top: -20px;
 `;
-
 const StyledBookDetail = styled.article`
   border: 2px solid black;
   border-radius: 8px;
   width: 90%;
-  margin: auto;
-  margin-top: 2rem;
+  margin: 2rem auto;
+  text-align: center;
 `;
-
+const StyledSection = styled.section`
+  display: flex;
+  justify-content: space-around;
+  font-style: italic;
+`;
+const StyledDescription = styled.p`
+  text-align: justify;
+  padding: 15px;
+`;
 export default function BookDetailsPage() {
   const router = useRouter();
   const { id } = router.query;
@@ -37,12 +42,12 @@ export default function BookDetailsPage() {
         />
         <h2>{currentBook.title}</h2>
         <p>{currentBook.author}</p>
-        <section>
+        <StyledSection>
           <span>{currentBook.genre}</span>
           <span>{currentBook.publishYear}</span>
           <span>{currentBook.pages} Pages</span>
-        </section>
-        <p>{currentBook.description}</p>
+        </StyledSection>
+        <StyledDescription>{currentBook.description}</StyledDescription>
       </StyledBookDetail>
     </>
   );
