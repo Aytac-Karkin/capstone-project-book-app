@@ -2,6 +2,23 @@ import { useRouter } from "next/router";
 import books from "../../lib/books.json";
 import Header from "@/components/Header/Header";
 import Image from "next/image";
+import styled from "styled-components";
+
+const StyledImage = styled(Image)`
+  border-radius: 8px;
+  position: relative;
+  top: -30px;
+  left: 50%;
+  transform: translate(-50%, 0);
+`;
+
+const StyledBookDetail = styled.article`
+  border: 2px solid black;
+  border-radius: 8px;
+  width: 90%;
+  margin: auto;
+  margin-top: 2rem;
+`;
 
 export default function BookDetailsPage() {
   const router = useRouter();
@@ -11,8 +28,8 @@ export default function BookDetailsPage() {
   return (
     <>
       <Header />
-      <article>
-        <Image
+      <StyledBookDetail>
+        <StyledImage
           src={currentBook.cover}
           height={224}
           width={150}
@@ -26,7 +43,7 @@ export default function BookDetailsPage() {
           <span>{currentBook.pages} Pages</span>
         </section>
         <p>{currentBook.description}</p>
-      </article>
+      </StyledBookDetail>
     </>
   );
 }
