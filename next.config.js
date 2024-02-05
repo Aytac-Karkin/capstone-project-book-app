@@ -4,6 +4,9 @@ const nextConfig = {
     styledComponents: true,
   },
   reactStrictMode: true,
+  images: {
+    domains: ["covers.openlibrary.org"],
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
