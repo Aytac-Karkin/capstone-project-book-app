@@ -18,6 +18,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
 `;
+
 export default function BookList() {
   return (
     <StyledList>

@@ -8,6 +8,7 @@ const StyledImage = styled(Image)`
   border-radius: 8px;
   position: relative;
   top: -20px;
+  box-shadow: 0 6px 20px 5px rgba(0, 0, 0, 0.19);
 `;
 const StyledBookDetail = styled.article`
   border: 2px solid black;
