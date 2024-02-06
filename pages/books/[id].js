@@ -30,6 +30,9 @@ export default function BookDetailsPage() {
   const router = useRouter();
   const { id } = router.query;
   const currentBook = books.find((book) => book.id === id);
+  if (!currentBook) {
+    return;
+  }
 
   return (
     <>
