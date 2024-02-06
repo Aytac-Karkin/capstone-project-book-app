@@ -27,7 +27,11 @@ export default function Header() {
   return (
     <StyledHeader>
       {router.pathname !== "/" && (
-        <StyledBackButton onClick={() => router.back()}>⬅️</StyledBackButton>
+        <StyledBackButton onClick={() => router.back()}>
+          <span role="image" aria-label="go back to previous site button">
+            ⬅️
+          </span>
+        </StyledBackButton>
       )}
       <StyledHeadline>Shelfie</StyledHeadline>
     </StyledHeader>
