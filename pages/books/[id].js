@@ -26,14 +26,17 @@ const StyledDescription = styled.p`
   text-align: justify;
   padding: 15px;
 `;
-export default function BookDetailsPage({ HandleToggleBookmark, books }) {
+export default function BookDetailsPage({
+  HandleToggleBookmark,
+  books,
+  booksInfo,
+}) {
   const router = useRouter();
   const { id } = router.query;
   const currentBook = books.find((book) => book.id === id);
   if (!currentBook) {
     return;
   }
-  console.log("books:", books);
   return (
     <>
       <Header />
@@ -44,7 +47,14 @@ export default function BookDetailsPage({ HandleToggleBookmark, books }) {
           width={150}
           alt={`Cover Image of ${currentBook.title}`}
         />
-        <Button onToggle={HandleToggleBookmark} id={currentBook.id} />
+        <Button
+          onToggle={HandleToggleBookmark}
+          id={currentBook.id}
+          isBookmarked={
+            booksInfo.find((bookInfo) => bookInfo.id === currentBook.id)
+              ?.isBookmarked
+          }
+        />
         <h2>{currentBook.title}</h2>
         <p>{currentBook.author}</p>
         <StyledSection>

@@ -19,7 +19,7 @@ const StyledLink = styled(Link)`
   color: black;
 `;
 
-export default function BookList() {
+export default function BookList({ books }) {
   return (
     <StyledList>
       {books.map((book) => (
