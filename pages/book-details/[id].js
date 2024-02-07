@@ -3,6 +3,7 @@ import Header from "@/components/Header/Header";
 import Image from "next/image";
 import styled from "styled-components";
 import Button from "@/components/Button/Button";
+import Navigation from "@/components/Navigation/Navigation";
 
 const StyledImage = styled(Image)`
   border-radius: 8px;
@@ -64,6 +65,7 @@ export default function BookDetailsPage({
         </StyledSection>
         <StyledDescription>{currentBook.description}</StyledDescription>
       </StyledBookDetail>
+      <Navigation />
     </>
   );
 }

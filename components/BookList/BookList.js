@@ -24,7 +24,7 @@ export default function BookList({ books }) {
     <StyledList>
       {books.map((book) => (
         <li key={book.id}>
-          <StyledLink href={`/books/${book.id}`}>
+          <StyledLink href={`/book-details/${book.id}`}>
             <BookCard
               title={book.title}
               author={book.author}
