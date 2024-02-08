@@ -47,33 +47,3 @@ export default function Navigation() {
     </nav>
   );
 }
-
-// const router = useRouter();
-
-//   return (
-//     <nav>
-//       <List role="list">
-//         <li>
-//           <NavLink href="/" $isActive={router.pathname === "/"}>
-//             Spotlight
-//           </NavLink>
-//         </li>
-//         <li>
-//           <NavLink
-//             href="/art-pieces"
-//             $isActive={router.pathname === "/art-pieces"}
-//           >
-//             Art Pieces
-//           </NavLink>
-//         </li>
-//         <li>
-//           <NavLink
-//             href="/favorites"
-//             $isActive={router.pathname === "/favorites"}
-//           >
-//             Favorites
-//           </NavLink>
-//         </li>
-//       </List>
-//     </nav>
-//   );
