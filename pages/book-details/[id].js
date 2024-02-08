@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import Header from "@/components/Header/Header";
 import Image from "next/image";
 import styled from "styled-components";
-import Button from "@/components/Button/Button";
+import Button from "@/components/Button/MyLibraryButton";
 import Navigation from "@/components/Navigation/Navigation";
 
 const StyledImage = styled(Image)`

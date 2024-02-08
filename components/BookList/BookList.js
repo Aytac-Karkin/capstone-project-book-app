@@ -1,4 +1,3 @@
-import books from "../../lib/books.json";
 import BookCard from "../BookCard/BookCard";
 import styled from "styled-components";
 import Link from "next/link";
