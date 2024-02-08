@@ -14,6 +14,12 @@ export default function MyLibraryPage({ books, booksInfo }) {
     )
   );
 
+  const alreadyReadBooks = books.filter((book) =>
+    booksInfo.find(
+      (bookInfo) => bookInfo.id === book.id && bookInfo.isAlreadyRead
+    )
+  );
+
   return (
     <>
       <Header />

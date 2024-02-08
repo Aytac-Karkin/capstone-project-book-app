@@ -22,6 +22,21 @@ export default function App({ Component, pageProps }) {
     }
   }
 
+  function HandleToggleAlreadyRead(id) {
+    const currentBook = booksInfo.find((book) => book.id === id);
+    if (currentBook) {
+      setBooksInfo(
+        booksInfo.map((bookInfo) =>
+          bookInfo.id === id
+            ? { id, isAlreadyRead: !bookInfo.isAlreadyRead }
+            : bookInfo
+        )
+      );
+    } else {
+      setBooksInfo([...booksInfo, { id, isAlreadyRead: true }]);
+    }
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -29,6 +44,7 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         books={books}
         HandleToggleBookmark={HandleToggleBookmark}
+        HandleToggleAlreadyRead={HandleToggleAlreadyRead}
         booksInfo={booksInfo}
       />
     </>

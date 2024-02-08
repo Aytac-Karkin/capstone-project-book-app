@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledButton = styled.button`
   background-color: ${(props) =>
-    props.$isBookmarked ? "darkseagreen" : "grey"};
+    props.$isAlreadyRead ? "darkseagreen" : "grey"};
   /* position: absolute;
   top: 8rem;
   right: 4rem; */
@@ -10,17 +10,21 @@ const StyledButton = styled.button`
   border-radius: 5px;
 `;
 
-export default function MyLibraryButton({ onToggle, id, isBookmarked }) {
+export default function AlreadyReadButton({ onToggle, id, isAlreadyRead }) {
   return (
     <StyledButton
       type="button"
       onClick={() => {
         onToggle(id);
       }}
-      $isBookmarked={isBookmarked}
-      aria-label={isBookmarked ? "remove from my-library" : "add to my-library"}
+      $isAlreadyRead={isAlreadyRead}
+      aria-label={
+        isAlreadyRead
+          ? "remove from list of books I have already read"
+          : "add to list of books I have already read"
+      }
     >
-      ⌂
+      ✔️
     </StyledButton>
   );
 }

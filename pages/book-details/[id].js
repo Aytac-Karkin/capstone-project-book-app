@@ -2,8 +2,9 @@ import { useRouter } from "next/router";
 import Header from "@/components/Header/Header";
 import Image from "next/image";
 import styled from "styled-components";
-import Button from "@/components/Button/MyLibraryButton";
 import Navigation from "@/components/Navigation/Navigation";
+import MyLibraryButton from "@/components/Button/MyLibraryButton";
+import AlreadyReadButton from "@/components/Button/AlreadyReadButton";
 
 const StyledImage = styled(Image)`
   border-radius: 8px;
@@ -15,6 +16,7 @@ const StyledBookDetail = styled.article`
   border: 2px solid black;
   border-radius: 8px;
   width: 90%;
+  max-width: 600px;
   margin: 2rem auto;
   text-align: center;
 `;
@@ -27,8 +29,18 @@ const StyledDescription = styled.p`
   text-align: justify;
   padding: 15px;
 `;
+
+const StyledButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 20%;
+  right: 20%;
+  gap: 1rem;
+`;
 export default function BookDetailsPage({
   HandleToggleBookmark,
+  HandleToggleAlreadyRead,
   books,
   booksInfo,
 }) {
@@ -48,14 +60,24 @@ export default function BookDetailsPage({
           width={150}
           alt={`Cover Image of ${currentBook.title}`}
         />
-        <Button
-          onToggle={HandleToggleBookmark}
-          id={currentBook.id}
-          isBookmarked={
-            booksInfo.find((bookInfo) => bookInfo.id === currentBook.id)
-              ?.isBookmarked
-          }
-        />
+        <StyledButtonWrapper>
+          <MyLibraryButton
+            onToggle={HandleToggleBookmark}
+            id={currentBook.id}
+            isBookmarked={
+              booksInfo.find((bookInfo) => bookInfo.id === currentBook.id)
+                ?.isBookmarked
+            }
+          />
+          <AlreadyReadButton
+            onToggle={HandleToggleAlreadyRead}
+            id={currentBook.id}
+            isAlreadyRead={
+              booksInfo.find((bookInfo) => bookInfo.id === currentBook.id)
+                ?.isAlreadyRead
+            }
+          />
+        </StyledButtonWrapper>
         <h2>{currentBook.title}</h2>
         <p>{currentBook.author}</p>
         <StyledSection>
