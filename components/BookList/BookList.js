@@ -1,4 +1,3 @@
-import books from "../../lib/books.json";
 import BookCard from "../BookCard/BookCard";
 import styled from "styled-components";
 import Link from "next/link";
@@ -19,12 +18,12 @@ const StyledLink = styled(Link)`
   color: black;
 `;
 
-export default function BookList() {
+export default function BookList({ books }) {
   return (
     <StyledList>
       {books.map((book) => (
         <li key={book.id}>
-          <StyledLink href={`/books/${book.id}`}>
+          <StyledLink href={`/book-details/${book.id}`}>
             <BookCard
               title={book.title}
               author={book.author}

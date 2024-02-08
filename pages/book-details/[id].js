@@ -1,8 +1,9 @@
 import { useRouter } from "next/router";
-import books from "../../lib/books.json";
 import Header from "@/components/Header/Header";
 import Image from "next/image";
 import styled from "styled-components";
+import Button from "@/components/Button/MyLibraryButton";
+import Navigation from "@/components/Navigation/Navigation";
 
 const StyledImage = styled(Image)`
   border-radius: 8px;
@@ -26,14 +27,17 @@ const StyledDescription = styled.p`
   text-align: justify;
   padding: 15px;
 `;
-export default function BookDetailsPage() {
+export default function BookDetailsPage({
+  HandleToggleBookmark,
+  books,
+  booksInfo,
+}) {
   const router = useRouter();
   const { id } = router.query;
   const currentBook = books.find((book) => book.id === id);
   if (!currentBook) {
     return;
   }
-
   return (
     <>
       <Header />
@@ -44,6 +48,14 @@ export default function BookDetailsPage() {
           width={150}
           alt={`Cover Image of ${currentBook.title}`}
         />
+        <Button
+          onToggle={HandleToggleBookmark}
+          id={currentBook.id}
+          isBookmarked={
+            booksInfo.find((bookInfo) => bookInfo.id === currentBook.id)
+              ?.isBookmarked
+          }
+        />
         <h2>{currentBook.title}</h2>
         <p>{currentBook.author}</p>
         <StyledSection>
@@ -53,6 +65,7 @@ export default function BookDetailsPage() {
         </StyledSection>
         <StyledDescription>{currentBook.description}</StyledDescription>
       </StyledBookDetail>
+      <Navigation />
     </>
   );
 }
