@@ -7,7 +7,7 @@ export default function App({ Component, pageProps }) {
     defaultValue: [],
   });
 
-  function HandleToggleBookmark(id) {
+  function handleToggleBookmark(id) {
     const currentBook = booksInfo.find((book) => book.id === id);
     if (currentBook) {
       setBooksInfo(
@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }) {
     }
   }
 
-  function HandleToggleAlreadyRead(id) {
+  function handleToggleAlreadyRead(id) {
     const currentBook = booksInfo.find((book) => book.id === id);
     if (currentBook) {
       setBooksInfo(
@@ -43,8 +43,8 @@ export default function App({ Component, pageProps }) {
       <Component
         {...pageProps}
         books={books}
-        HandleToggleBookmark={HandleToggleBookmark}
-        HandleToggleAlreadyRead={HandleToggleAlreadyRead}
+        handleToggleBookmark={handleToggleBookmark}
+        handleToggleAlreadyRead={handleToggleAlreadyRead}
         booksInfo={booksInfo}
       />
     </>

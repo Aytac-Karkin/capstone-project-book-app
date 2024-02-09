@@ -44,8 +44,8 @@ const StyledDetailedPage = styled.div`
   position: relative;
 `;
 export default function BookDetailsPage({
-  HandleToggleBookmark,
-  HandleToggleAlreadyRead,
+  handleToggleBookmark,
+  handleToggleAlreadyRead,
   books,
   booksInfo,
 }) {
@@ -68,7 +68,7 @@ export default function BookDetailsPage({
           />
           <StyledButtonWrapper>
             <MyLibraryButton
-              onToggle={HandleToggleBookmark}
+              onToggle={handleToggleBookmark}
               id={currentBook.id}
               isBookmarked={
                 booksInfo.find((bookInfo) => bookInfo.id === currentBook.id)
@@ -76,7 +76,7 @@ export default function BookDetailsPage({
               }
             />
             <AlreadyReadButton
-              onToggle={HandleToggleAlreadyRead}
+              onToggle={handleToggleAlreadyRead}
               id={currentBook.id}
               isAlreadyRead={
                 booksInfo.find((bookInfo) => bookInfo.id === currentBook.id)

@@ -21,7 +21,7 @@ const StyledLink = styled(Link)`
 export default function BookList({ books }) {
   return (
     <StyledList>
-      {books.map((book) => (
+      {books?.map((book) => (
         <li key={book.id}>
           <StyledLink href={`/book-details/${book.id}`}>
             <BookCard
