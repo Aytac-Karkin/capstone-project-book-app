@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledButton = styled.button`
   background-color: ${(props) =>
-    props.$isAlreadyRead ? "darkseagreen" : "grey"};
+    props.$isAlreadyRead ? "darkseagreen" : "seashell"};
   /* position: absolute;
   top: 8rem;
   right: 4rem; */

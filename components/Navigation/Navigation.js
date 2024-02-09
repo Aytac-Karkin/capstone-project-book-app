@@ -17,17 +17,18 @@ const StyledList = styled.ul`
   padding-left: 0;
   border-top: 2px solid black;
   font-size: 1.2rem;
-  margin: 0;
+  margin: 0 auto;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: white;
+  // background-color:
+  max-width: 600px;
 `;
 
 const StyledListElement = styled.li`
   background-color: ${({ $isActive }) =>
-    $isActive ? "darkseagreen" : "white"};
+    $isActive ? "darkseagreen" : "seashell"};
   width: 50%;
   padding: 7px 0px;
 `;

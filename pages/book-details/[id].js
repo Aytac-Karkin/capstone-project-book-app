@@ -15,8 +15,6 @@ const StyledImage = styled(Image)`
 const StyledBookDetail = styled.article`
   border: 2px solid black;
   border-radius: 8px;
-  width: 90%;
-  max-width: 600px;
   margin: 2rem auto;
   text-align: center;
 `;
@@ -34,9 +32,16 @@ const StyledButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 20%;
+  top: 18%;
   right: 20%;
   gap: 1rem;
+`;
+
+const StyledDetailedPage = styled.div`
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+  position: relative;
 `;
 export default function BookDetailsPage({
   HandleToggleBookmark,
@@ -52,42 +57,44 @@ export default function BookDetailsPage({
   }
   return (
     <>
-      <Header />
-      <StyledBookDetail>
-        <StyledImage
-          src={currentBook.cover}
-          height={224}
-          width={150}
-          alt={`Cover Image of ${currentBook.title}`}
-        />
-        <StyledButtonWrapper>
-          <MyLibraryButton
-            onToggle={HandleToggleBookmark}
-            id={currentBook.id}
-            isBookmarked={
-              booksInfo.find((bookInfo) => bookInfo.id === currentBook.id)
-                ?.isBookmarked
-            }
+      <StyledDetailedPage>
+        <Header />
+        <StyledBookDetail>
+          <StyledImage
+            src={currentBook.cover}
+            height={224}
+            width={150}
+            alt={`Cover Image of ${currentBook.title}`}
           />
-          <AlreadyReadButton
-            onToggle={HandleToggleAlreadyRead}
-            id={currentBook.id}
-            isAlreadyRead={
-              booksInfo.find((bookInfo) => bookInfo.id === currentBook.id)
-                ?.isAlreadyRead
-            }
-          />
-        </StyledButtonWrapper>
-        <h2>{currentBook.title}</h2>
-        <p>{currentBook.author}</p>
-        <StyledSection>
-          <span>{currentBook.genre}</span>
-          <span>{currentBook.publishYear}</span>
-          <span>{currentBook.pages} Pages</span>
-        </StyledSection>
-        <StyledDescription>{currentBook.description}</StyledDescription>
-      </StyledBookDetail>
-      <Navigation />
+          <StyledButtonWrapper>
+            <MyLibraryButton
+              onToggle={HandleToggleBookmark}
+              id={currentBook.id}
+              isBookmarked={
+                booksInfo.find((bookInfo) => bookInfo.id === currentBook.id)
+                  ?.isBookmarked
+              }
+            />
+            <AlreadyReadButton
+              onToggle={HandleToggleAlreadyRead}
+              id={currentBook.id}
+              isAlreadyRead={
+                booksInfo.find((bookInfo) => bookInfo.id === currentBook.id)
+                  ?.isAlreadyRead
+              }
+            />
+          </StyledButtonWrapper>
+          <h2>{currentBook.title}</h2>
+          <p>{currentBook.author}</p>
+          <StyledSection>
+            <span>{currentBook.genre}</span>
+            <span>{currentBook.publishYear}</span>
+            <span>{currentBook.pages} Pages</span>
+          </StyledSection>
+          <StyledDescription>{currentBook.description}</StyledDescription>
+        </StyledBookDetail>
+        <Navigation />
+      </StyledDetailedPage>
     </>
   );
 }

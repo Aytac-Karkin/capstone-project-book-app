@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledButton = styled.button`
   background-color: ${(props) =>
-    props.$isBookmarked ? "darkseagreen" : "grey"};
+    props.$isBookmarked ? "darkseagreen" : "seashell"};
   /* position: absolute;
   top: 8rem;
   right: 4rem; */
@@ -20,7 +20,7 @@ export default function MyLibraryButton({ onToggle, id, isBookmarked }) {
       $isBookmarked={isBookmarked}
       aria-label={isBookmarked ? "remove from my-library" : "add to my-library"}
     >
-      ⌂
+      ☆
     </StyledButton>
   );
 }

@@ -7,6 +7,16 @@ const StyledHeadline = styled.h2`
   text-align: center;
 `;
 
+const StyledLibraryPage = styled.div`
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+`;
+
+const StyledParagraph = styled.p`
+  text-align: center;
+`;
+
 export default function MyLibraryPage({ books, booksInfo }) {
   const myLibraryBooks = books.filter((book) =>
     booksInfo.find(
@@ -22,14 +32,16 @@ export default function MyLibraryPage({ books, booksInfo }) {
 
   return (
     <>
-      <Header />
-      <StyledHeadline>My Library</StyledHeadline>
-      {myLibraryBooks.length > 0 ? (
-        <BookList books={myLibraryBooks} />
-      ) : (
-        <p>You have not added any books yet.</p>
-      )}
-      <Navigation />
+      <StyledLibraryPage>
+        <Header />
+        <StyledHeadline>My Library</StyledHeadline>
+        {myLibraryBooks.length > 0 ? (
+          <BookList books={myLibraryBooks} />
+        ) : (
+          <StyledParagraph>You have not added any books yet.</StyledParagraph>
+        )}
+        <Navigation />
+      </StyledLibraryPage>
     </>
   );
 }
