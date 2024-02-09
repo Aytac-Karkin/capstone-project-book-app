@@ -63,15 +63,15 @@ export default function MyLibraryPage({ books, booksInfo }) {
         >
           ✔︎
         </button>
+        {filteredBooks?.length > 0 ? (
+          <BookList books={filteredBooks} />
+        ) : (
+          <StyledParagraph>You have not added any books yet.</StyledParagraph>
+        )}
+
         <BookList books={filteredBooks} />
         <Navigation />
       </StyledLibraryPage>
     </>
   );
 }
-
-// {myLibraryBooks?.length > 0 ? (
-//   <BookList books={myLibraryBooks} />
-// ) : (
-//   <StyledParagraph>You have not added any books yet.</StyledParagraph>
-// )}

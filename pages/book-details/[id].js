@@ -32,8 +32,8 @@ const StyledButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 18%;
-  right: 20%;
+  top: 150px;
+  right: 12%;
   gap: 1rem;
 `;
 

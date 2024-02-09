@@ -9,7 +9,7 @@ const StyledList = styled.ul`
   gap: 1rem;
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
+  width: 95%;
   max-width: 600px;
 `;
 
@@ -18,7 +18,7 @@ const StyledLink = styled(Link)`
   color: black;
 `;
 
-export default function BookList({ books }) {
+export default function BookList({ books, booksInfo }) {
   return (
     <StyledList>
       {books?.map((book) => (
@@ -29,6 +29,8 @@ export default function BookList({ books }) {
               author={book.author}
               genre={book.genre}
               cover={book.cover}
+              // booksInfo={booksInfo}
+              // bookId={book.id}
             />
           </StyledLink>
         </li>
