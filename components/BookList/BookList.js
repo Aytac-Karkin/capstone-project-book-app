@@ -29,8 +29,8 @@ export default function BookList({ books, booksInfo }) {
               author={book.author}
               genre={book.genre}
               cover={book.cover}
-              // booksInfo={booksInfo}
-              // bookId={book.id}
+              booksInfo={booksInfo}
+              bookId={book.id}
             />
           </StyledLink>
         </li>

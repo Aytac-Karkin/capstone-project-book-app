@@ -4,6 +4,7 @@ import styled from "styled-components";
 const StyledBook = styled.article`
   list-style: none;
   display: flex;
+  justify-content: space-around;
   border: 2px solid black;
   border-radius: 8px;
   margin-left: -30px;
@@ -15,6 +16,7 @@ const StyledBook = styled.article`
 const StyledInfos = styled.ul`
   list-style: none;
   margin-left: -20px;
+  flex-grow: 1.5;
   .genre {
     font-style: italic;
     padding-top: 5px;
@@ -25,6 +27,18 @@ const StyledImage = styled(Image)`
   margin: auto 2px;
 `;
 
+const StyledButton = styled.button`
+  background-color: ${({ $isActive }) =>
+    $isActive ? "darkseagreen" : "seashell"};
+  border-radius: 4px;
+`;
+
+const StyledButtonWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
 export default function BookCard({
   title,
   author,
@@ -33,10 +47,15 @@ export default function BookCard({
   booksInfo,
   bookId,
 }) {
-  // const currentBookInfo = booksInfo?.find((bookInfo) => {
-  //   return bookInfo.id === bookId;
-  // });
-  // console.log("currentBookInfo", currentBookInfo);
+  const currentBookInfo = booksInfo?.find((bookInfo) => {
+    return bookInfo.id === bookId;
+  });
+
+  const currentBookIsAlreadyRead = currentBookInfo?.isAlreadyRead;
+  const currentBookIsBookmarked = currentBookInfo?.isBookmarked;
+
+  console.log("currentBookInfo", currentBookInfo);
+
   return (
     <StyledBook>
       <StyledImage src={cover} alt={title} width={100} height={149} />
@@ -47,7 +66,10 @@ export default function BookCard({
         <li>{author}</li>
         <li className="genre">{genre}</li>
       </StyledInfos>
-      {/* {currentBookInfo?.isAlreadyRead && <button>✔️</button>} */}
+      <StyledButtonWrapper>
+        <StyledButton $isActive={currentBookIsBookmarked}>☆</StyledButton>
+        <StyledButton $isActive={currentBookIsAlreadyRead}>✔️</StyledButton>
+      </StyledButtonWrapper>
     </StyledBook>
   );
 }
