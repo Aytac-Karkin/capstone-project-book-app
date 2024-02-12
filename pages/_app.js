@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }) {
       setBooksInfo(
         booksInfo.map((bookInfo) =>
           bookInfo.id === id
-            ? { id, isBookmarked: !bookInfo.isBookmarked }
+            ? { ...bookInfo, isBookmarked: !bookInfo.isBookmarked }
             : bookInfo
         )
       );
@@ -30,7 +30,7 @@ export default function App({ Component, pageProps }) {
       setBooksInfo(
         booksInfo.map((bookInfo) =>
           bookInfo.id === id
-            ? { id, isAlreadyRead: !bookInfo.isAlreadyRead }
+            ? { ...bookInfo, isAlreadyRead: !bookInfo.isAlreadyRead }
             : bookInfo
         )
       );
