@@ -22,7 +22,6 @@ const StyledList = styled.ul`
   bottom: 0;
   left: 0;
   right: 0;
-  // background-color:
   max-width: 600px;
 `;
 

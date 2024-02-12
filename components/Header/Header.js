@@ -11,9 +11,6 @@ const StyledHeadline = styled.h1`
 `;
 
 const StyledBackButton = styled.button`
-  /* position: absolute;
-  top: 6%;
-  left: 5%; */
   background-color: white;
   border: none;
   font-size: 1.5rem;
