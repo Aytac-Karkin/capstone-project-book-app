@@ -36,7 +36,6 @@ export default function MyLibraryPage({
   handleToggleAlreadyRead,
 }) {
   const [filter, setFilter] = useState("saved-books");
-  console.log("filter:", filter);
   function handleFilter(newFilter) {
     setFilter(newFilter);
   }
