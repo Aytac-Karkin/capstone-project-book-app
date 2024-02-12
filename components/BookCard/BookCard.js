@@ -46,6 +46,8 @@ export default function BookCard({
   cover,
   booksInfo,
   bookId,
+  handleToggleBookmark,
+  handleToggleAlreadyRead,
 }) {
   const currentBookInfo = booksInfo?.find((bookInfo) => {
     return bookInfo.id === bookId;
@@ -53,8 +55,6 @@ export default function BookCard({
 
   const currentBookIsAlreadyRead = currentBookInfo?.isAlreadyRead;
   const currentBookIsBookmarked = currentBookInfo?.isBookmarked;
-
-  console.log("currentBookInfo", currentBookInfo);
 
   return (
     <StyledBook>
@@ -67,8 +67,18 @@ export default function BookCard({
         <li className="genre">{genre}</li>
       </StyledInfos>
       <StyledButtonWrapper>
-        <StyledButton $isActive={currentBookIsBookmarked}>☆</StyledButton>
-        <StyledButton $isActive={currentBookIsAlreadyRead}>✔️</StyledButton>
+        <StyledButton
+          $isActive={currentBookIsBookmarked}
+          onClick={(event) => handleToggleBookmark(bookId, event)}
+        >
+          ☆
+        </StyledButton>
+        <StyledButton
+          $isActive={currentBookIsAlreadyRead}
+          onClick={(event) => handleToggleAlreadyRead(bookId, event)}
+        >
+          ✔️
+        </StyledButton>
       </StyledButtonWrapper>
     </StyledBook>
   );

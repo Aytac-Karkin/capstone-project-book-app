@@ -18,7 +18,12 @@ const StyledLink = styled(Link)`
   color: black;
 `;
 
-export default function BookList({ books, booksInfo }) {
+export default function BookList({
+  books,
+  booksInfo,
+  handleToggleAlreadyRead,
+  handleToggleBookmark,
+}) {
   return (
     <StyledList>
       {books?.map((book) => (
@@ -31,6 +36,8 @@ export default function BookList({ books, booksInfo }) {
               cover={book.cover}
               booksInfo={booksInfo}
               bookId={book.id}
+              handleToggleAlreadyRead={handleToggleAlreadyRead}
+              handleToggleBookmark={handleToggleBookmark}
             />
           </StyledLink>
         </li>
