@@ -1,24 +1,19 @@
 import Image from "next/image";
 import styled from "styled-components";
 
-const StyledBook = styled.article`
+const StyledBook = styled.div`
   list-style: none;
   display: flex;
   justify-content: space-around;
+  gap: 5px;
   border: 2px solid black;
   border-radius: 8px;
   padding: 5px;
   box-shadow: 0 3px 3px 2px rgba(0, 0, 0, 0.19);
 `;
 
-const StyledInfos = styled.ul`
-  list-style: none;
-  margin-left: -20px;
+const StyledInfos = styled.article`
   flex-grow: 1.5;
-  .genre {
-    font-style: italic;
-    padding-top: 5px;
-  }
 `;
 
 const StyledImage = styled(Image)`
@@ -35,6 +30,10 @@ const StyledButtonWrapper = styled.section`
   display: flex;
   flex-direction: column;
   gap: 4px;
+`;
+
+const StyledGenre = styled.p`
+  font-style: italic;
 `;
 
 export default function BookCard({
@@ -58,11 +57,9 @@ export default function BookCard({
     <StyledBook>
       <StyledImage src={cover} alt={title} width={100} height={149} />
       <StyledInfos>
-        <li>
-          <h4>{title}</h4>
-        </li>
-        <li>{author}</li>
-        <li className="genre">{genre}</li>
+        <h4>{title}</h4>
+        <p>{author}</p>
+        <StyledGenre>{genre}</StyledGenre>
       </StyledInfos>
       <StyledButtonWrapper>
         <StyledButton
