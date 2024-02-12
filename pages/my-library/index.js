@@ -18,13 +18,17 @@ const StyledParagraph = styled.p`
   text-align: center;
 `;
 
+const StyledFilterButton = styled.button`
+  background-color: ${({ $isActive }) =>
+    $isActive ? "darkseagreen" : "seashell"};
+`;
+
 export default function MyLibraryPage({ books, booksInfo }) {
   const [filter, setFilter] = useState("saved-books");
   console.log("filter:", filter);
   function handleFilter(newFilter) {
     setFilter(newFilter);
   }
-  console.log("booksinfo:", booksInfo);
 
   const filteredBooks = books.filter((book) => {
     if (filter === "saved-books") {
@@ -38,38 +42,37 @@ export default function MyLibraryPage({ books, booksInfo }) {
     }
   });
 
-  console.log("filteredBooks:", filteredBooks);
-
   return (
     <>
       <StyledLibraryPage>
         <Header />
         <StyledHeadline>My Library</StyledHeadline>
-        <button
+        <StyledFilterButton
           type="button"
           aria-label="shows list of saved books"
           onClick={() => {
             handleFilter("saved-books");
           }}
+          $isActive={filter === "saved-books" ? true : false}
         >
           ☆
-        </button>
-        <button
+        </StyledFilterButton>
+        <StyledFilterButton
           type="button"
           aria-label="shows list of already read books"
           onClick={() => {
             handleFilter("already-read-books");
           }}
+          $isActive={filter === "already-read-books" ? true : false}
         >
           ✔︎
-        </button>
+        </StyledFilterButton>
         {filteredBooks?.length > 0 ? (
           <BookList books={filteredBooks} />
         ) : (
           <StyledParagraph>You have not added any books yet.</StyledParagraph>
         )}
 
-        <BookList books={filteredBooks} />
         <Navigation />
       </StyledLibraryPage>
     </>
