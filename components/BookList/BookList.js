@@ -11,6 +11,8 @@ const StyledList = styled.ul`
   margin-right: auto;
   width: 95%;
   max-width: 600px;
+  padding-left: 5px;
+  padding-right: 5px;
 `;
 
 const StyledLink = styled(Link)`

@@ -7,8 +7,6 @@ const StyledBook = styled.article`
   justify-content: space-around;
   border: 2px solid black;
   border-radius: 8px;
-  margin-left: -30px;
-  margin-right: 10px;
   padding: 5px;
   box-shadow: 0 3px 3px 2px rgba(0, 0, 0, 0.19);
 `;
