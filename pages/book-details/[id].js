@@ -2,8 +2,9 @@ import { useRouter } from "next/router";
 import Header from "@/components/Header/Header";
 import Image from "next/image";
 import styled from "styled-components";
-import Button from "@/components/Button/MyLibraryButton";
 import Navigation from "@/components/Navigation/Navigation";
+import MyLibraryButton from "@/components/Button/MyLibraryButton";
+import AlreadyReadButton from "@/components/Button/AlreadyReadButton";
 
 const StyledImage = styled(Image)`
   border-radius: 8px;
@@ -14,7 +15,6 @@ const StyledImage = styled(Image)`
 const StyledBookDetail = styled.article`
   border: 2px solid black;
   border-radius: 8px;
-  width: 90%;
   margin: 2rem auto;
   text-align: center;
 `;
@@ -27,8 +27,25 @@ const StyledDescription = styled.p`
   text-align: justify;
   padding: 15px;
 `;
+
+const StyledButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 150px;
+  right: 12%;
+  gap: 1rem;
+`;
+
+const StyledDetailedPage = styled.div`
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+  position: relative;
+`;
 export default function BookDetailsPage({
-  HandleToggleBookmark,
+  handleToggleBookmark,
+  handleToggleAlreadyRead,
   books,
   booksInfo,
 }) {
@@ -40,32 +57,44 @@ export default function BookDetailsPage({
   }
   return (
     <>
-      <Header />
-      <StyledBookDetail>
-        <StyledImage
-          src={currentBook.cover}
-          height={224}
-          width={150}
-          alt={`Cover Image of ${currentBook.title}`}
-        />
-        <Button
-          onToggle={HandleToggleBookmark}
-          id={currentBook.id}
-          isBookmarked={
-            booksInfo.find((bookInfo) => bookInfo.id === currentBook.id)
-              ?.isBookmarked
-          }
-        />
-        <h2>{currentBook.title}</h2>
-        <p>{currentBook.author}</p>
-        <StyledSection>
-          <span>{currentBook.genre}</span>
-          <span>{currentBook.publishYear}</span>
-          <span>{currentBook.pages} Pages</span>
-        </StyledSection>
-        <StyledDescription>{currentBook.description}</StyledDescription>
-      </StyledBookDetail>
-      <Navigation />
+      <StyledDetailedPage>
+        <Header />
+        <StyledBookDetail>
+          <StyledImage
+            src={currentBook.cover}
+            height={224}
+            width={150}
+            alt={`Cover Image of ${currentBook.title}`}
+          />
+          <StyledButtonWrapper>
+            <MyLibraryButton
+              onToggle={handleToggleBookmark}
+              id={currentBook.id}
+              isBookmarked={
+                booksInfo.find((bookInfo) => bookInfo.id === currentBook.id)
+                  ?.isBookmarked
+              }
+            />
+            <AlreadyReadButton
+              onToggle={handleToggleAlreadyRead}
+              id={currentBook.id}
+              isAlreadyRead={
+                booksInfo.find((bookInfo) => bookInfo.id === currentBook.id)
+                  ?.isAlreadyRead
+              }
+            />
+          </StyledButtonWrapper>
+          <h2>{currentBook.title}</h2>
+          <p>{currentBook.author}</p>
+          <StyledSection>
+            <span>{currentBook.genre}</span>
+            <span>{currentBook.publishYear}</span>
+            <span>{currentBook.pages} Pages</span>
+          </StyledSection>
+          <StyledDescription>{currentBook.description}</StyledDescription>
+        </StyledBookDetail>
+        <Navigation />
+      </StyledDetailedPage>
     </>
   );
 }

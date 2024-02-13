@@ -7,18 +7,35 @@ export default function App({ Component, pageProps }) {
     defaultValue: [],
   });
 
-  function HandleToggleBookmark(id) {
+  function handleToggleBookmark(id, event) {
+    event.preventDefault();
     const currentBook = booksInfo.find((book) => book.id === id);
     if (currentBook) {
       setBooksInfo(
         booksInfo.map((bookInfo) =>
           bookInfo.id === id
-            ? { id, isBookmarked: !bookInfo.isBookmarked }
+            ? { ...bookInfo, isBookmarked: !bookInfo.isBookmarked }
             : bookInfo
         )
       );
     } else {
       setBooksInfo([...booksInfo, { id, isBookmarked: true }]);
+    }
+  }
+
+  function handleToggleAlreadyRead(id, event) {
+    event.preventDefault();
+    const currentBook = booksInfo.find((book) => book.id === id);
+    if (currentBook) {
+      setBooksInfo(
+        booksInfo.map((bookInfo) =>
+          bookInfo.id === id
+            ? { ...bookInfo, isAlreadyRead: !bookInfo.isAlreadyRead }
+            : bookInfo
+        )
+      );
+    } else {
+      setBooksInfo([...booksInfo, { id, isAlreadyRead: true }]);
     }
   }
 
@@ -28,7 +45,8 @@ export default function App({ Component, pageProps }) {
       <Component
         {...pageProps}
         books={books}
-        HandleToggleBookmark={HandleToggleBookmark}
+        handleToggleBookmark={handleToggleBookmark}
+        handleToggleAlreadyRead={handleToggleAlreadyRead}
         booksInfo={booksInfo}
       />
     </>
