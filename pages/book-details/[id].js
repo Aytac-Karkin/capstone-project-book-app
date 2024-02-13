@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Navigation from "@/components/Navigation/Navigation";
 import MyLibraryButton from "@/components/Button/MyLibraryButton";
 import AlreadyReadButton from "@/components/Button/AlreadyReadButton";
+import CurrentlyReadingButton from "@/components/Button/CurrentlyReadingButton";
 
 const StyledImage = styled(Image)`
   border-radius: 8px;
@@ -46,6 +47,7 @@ const StyledDetailedPage = styled.div`
 export default function BookDetailsPage({
   handleToggleBookmark,
   handleToggleAlreadyRead,
+  handleToggleCurrentlyReading,
   books,
   booksInfo,
 }) {
@@ -73,6 +75,14 @@ export default function BookDetailsPage({
               isBookmarked={
                 booksInfo.find((bookInfo) => bookInfo.id === currentBook.id)
                   ?.isBookmarked
+              }
+            />
+            <CurrentlyReadingButton
+              onToggle={handleToggleCurrentlyReading}
+              id={currentBook.id}
+              isCurrentlyReading={
+                booksInfo.find((bookInfo) => bookInfo.id === currentBook.id)
+                  ?.isCurrentlyReading
               }
             />
             <AlreadyReadButton

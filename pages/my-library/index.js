@@ -34,6 +34,7 @@ export default function MyLibraryPage({
   booksInfo,
   handleToggleBookmark,
   handleToggleAlreadyRead,
+  handleToggleCurrentlyReading,
 }) {
   const [filter, setFilter] = useState("saved-books");
   function handleFilter(newFilter) {
@@ -48,6 +49,10 @@ export default function MyLibraryPage({
     } else if (filter === "already-read-books") {
       return booksInfo.find(
         (bookInfo) => bookInfo.id === book.id && bookInfo.isAlreadyRead
+      );
+    } else if (filter === "currently-reading-books") {
+      return booksInfo.find(
+        (bookInfo) => bookInfo.id === book.id && bookInfo.isCurrentlyReading
       );
     }
   });
@@ -70,6 +75,16 @@ export default function MyLibraryPage({
           </StyledFilterButton>
           <StyledFilterButton
             type="button"
+            aria-label="show list of books marked as currently reading"
+            onClick={() => {
+              handleFilter("currently-reading-books");
+            }}
+            $isActive={filter === "currently-reading-books" ? true : false}
+          >
+            📖
+          </StyledFilterButton>
+          <StyledFilterButton
+            type="button"
             aria-label="shows list of already read books"
             onClick={() => {
               handleFilter("already-read-books");
@@ -85,6 +100,7 @@ export default function MyLibraryPage({
             booksInfo={booksInfo}
             handleToggleBookmark={handleToggleBookmark}
             handleToggleAlreadyRead={handleToggleAlreadyRead}
+            handleToggleCurrentlyReading={handleToggleCurrentlyReading}
           />
         ) : (
           <StyledParagraph>You have not added any books yet.</StyledParagraph>

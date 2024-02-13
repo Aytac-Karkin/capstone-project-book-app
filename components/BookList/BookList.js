@@ -25,6 +25,7 @@ export default function BookList({
   booksInfo,
   handleToggleAlreadyRead,
   handleToggleBookmark,
+  handleToggleCurrentlyReading,
 }) {
   return (
     <StyledList>
@@ -40,6 +41,7 @@ export default function BookList({
               bookId={book.id}
               handleToggleAlreadyRead={handleToggleAlreadyRead}
               handleToggleBookmark={handleToggleBookmark}
+              handleToggleCurrentlyReading={handleToggleCurrentlyReading}
             />
           </StyledLink>
         </li>
