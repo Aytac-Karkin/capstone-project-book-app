@@ -45,6 +45,7 @@ export default function BookCard({
   bookId,
   handleToggleBookmark,
   handleToggleAlreadyRead,
+  handleToggleCurrentlyReading,
 }) {
   const currentBookInfo = booksInfo?.find((bookInfo) => {
     return bookInfo.id === bookId;
@@ -52,6 +53,7 @@ export default function BookCard({
 
   const currentBookIsAlreadyRead = currentBookInfo?.isAlreadyRead;
   const currentBookIsBookmarked = currentBookInfo?.isBookmarked;
+  const currentBookIsCurrentlyReading = currentBookInfo?.isCurrentlyReading;
 
   return (
     <StyledBook>
@@ -63,12 +65,33 @@ export default function BookCard({
       </StyledInfos>
       <StyledButtonWrapper>
         <StyledButton
+          aria-label={
+            currentBookIsBookmarked
+              ? "remove from my-library"
+              : "add to my-library"
+          }
           $isActive={currentBookIsBookmarked}
           onClick={(event) => handleToggleBookmark(bookId, event)}
         >
           ☆
         </StyledButton>
         <StyledButton
+          aria-label={
+            currentBookIsCurrentlyReading
+              ? "remove from list of books I am currently reading"
+              : "add to list of books I am currently reading"
+          }
+          $isActive={currentBookIsCurrentlyReading}
+          onClick={(event) => handleToggleCurrentlyReading(bookId, event)}
+        >
+          📖
+        </StyledButton>
+        <StyledButton
+          aria-label={
+            currentBookIsAlreadyRead
+              ? "remove from list of books I have already read"
+              : "add to list of books I have already read"
+          }
           $isActive={currentBookIsAlreadyRead}
           onClick={(event) => handleToggleAlreadyRead(bookId, event)}
         >
