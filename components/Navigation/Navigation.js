@@ -16,6 +16,7 @@ const StyledList = styled.ul`
 
   padding-left: 0;
   border-top: 2px solid black;
+  margin-top: 20px;
   font-size: 1.2rem;
   margin: 0 auto;
   position: fixed;
