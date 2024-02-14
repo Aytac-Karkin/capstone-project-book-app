@@ -63,6 +63,12 @@ const StyledParagraph = styled.p`
   margin-top: 0.2rem;
 `;
 
+const ToggleFilterButton = styled.button`
+  margin: auto;
+  max-width: 600px;
+  display: flex;
+`;
+
 export default function HomePage({
   books,
   booksInfo,
@@ -76,15 +82,56 @@ export default function HomePage({
     setFilterModal(!filterModal);
   }
 
+  const [filters, setFilters] = useState({
+    yearStart: "1021",
+    yearEnd: "2024",
+  });
+
+  function handleFilterSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    setFilters(data);
+    setFilterModal(false);
+  }
+
+  console.log("filters", filters);
+
+  function updateBookList() {
+    const filteredByGenre = filters.genre
+      ? books.filter((book) => book.genre === filters.genre)
+      : books;
+
+    const filteredByLength = filters.bookLength
+      ? filteredByGenre.filter((book) => {
+          if (filters.bookLength === "short") return book.pages <= 150;
+          else if (filters.bookLength === "medium")
+            return 150 < book.pages <= 300;
+          else if (filters.bookLength === "long") return book.pages < 300;
+        })
+      : filteredByGenre;
+
+    const filteredByYear = filteredByLength.filter(
+      (book) => filters.yearStart <= book.publishingYear <= filters.yearEnd
+    );
+
+    return filteredByYear;
+  }
+  const filteredBookList = updateBookList();
+  const currentYear = new Date().getFullYear();
+
   return (
     <>
       <Header />
-      <button type="button" onClick={() => handleToggleFilterModal()}>
+      <ToggleFilterButton
+        type="button"
+        onClick={() => handleToggleFilterModal()}
+      >
         Find your next read!
-      </button>
+      </ToggleFilterButton>
       {filterModal && (
         <Overlay>
-          <StyledFilterForm>
+          <StyledFilterForm onSubmit={handleFilterSubmit}>
             <ExitButton type="button" onClick={() => handleToggleFilterModal()}>
               ❌
             </ExitButton>
@@ -117,7 +164,7 @@ export default function HomePage({
                   <h3>Book Length</h3>
                   <FilterCategory
                     filterNames={["short", "medium", "long"]}
-                    category={"book-length"}
+                    category={"bookLength"}
                   />
                 </StyledFilterCategoryWrapper>
                 <StyledFilterCategoryWrapper>
@@ -130,6 +177,7 @@ export default function HomePage({
                       min={1000}
                       max={2050}
                       name="yearStart"
+                      defaultValue={1021}
                     ></StyledYearInput>
                   </label>
                   <label htmlFor="ending-year">
@@ -140,6 +188,7 @@ export default function HomePage({
                       min={1000}
                       max={2050}
                       name="yearEnd"
+                      defaultValue={currentYear}
                     ></StyledYearInput>
                   </label>
                 </StyledFilterCategoryWrapper>
@@ -151,7 +200,7 @@ export default function HomePage({
         </Overlay>
       )}
       <BookList
-        books={books}
+        books={filteredBookList}
         booksInfo={booksInfo}
         handleToggleBookmark={handleToggleBookmark}
         handleToggleAlreadyRead={handleToggleAlreadyRead}
