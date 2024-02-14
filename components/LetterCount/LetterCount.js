@@ -17,9 +17,11 @@ const StyledCount = styled.p`
   margin-left: 100px;
 `;
 
-export default function WordLetterCounter() {
+export default function LetterCount() {
   const [text, setText] = useState("");
   const letterCount = text.length;
+
+  const maxLength = 250;
 
   const handleTextChange = (e) => {
     setText(e.target.value);
@@ -27,14 +29,16 @@ export default function WordLetterCounter() {
 
   return (
     <>
+      <label htmlFor="input-notes">What were your thoughts on this Book?</label>
       <StyledInput
         onChange={handleTextChange}
         value={text}
         name="thought"
         placeholder="I really liked it!"
-        maxLength={250}
+        maxLength={maxLength}
+        id="input-notes"
       />
-      <StyledCount>{250 - letterCount} characters left</StyledCount>
+      <StyledCount>{maxLength - letterCount} characters left</StyledCount>
     </>
   );
 }

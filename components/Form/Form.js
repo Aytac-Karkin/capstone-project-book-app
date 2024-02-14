@@ -1,7 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
 import useLocalStorageState from "use-local-storage-state";
-import WordLetterCounter from "../LetterCount/LetterCount";
+import LetterCount from "../LetterCount/LetterCount";
+import { uid } from "uid";
 
 const StyledSection = styled.section`
   display: flex;
@@ -97,18 +98,25 @@ export default function CommentModal({ id }) {
 
     const comment = form.elements.thought.value;
     if (comment) {
-      setComments([...comments, { id: id, comment }]);
+      setComments([
+        ...comments,
+        { bookId: id, comment: comment, uniqueId: uid() },
+      ]);
       form.reset();
       setModal(false);
     }
   }
-
+  const currentComments = comments.filter((comment) => {
+    return comment.bookId === id;
+  });
   return (
     <>
       <h4>What were your thoughts on this book?</h4>
       <CommentsList>
-        {comments.map((comment) => (
-          <StyledComment key={id}>{comment}</StyledComment>
+        {currentComments.map((currentComment) => (
+          <StyledComment key={currentComment.uniqueId}>
+            {currentComment.comment}
+          </StyledComment>
         ))}
       </CommentsList>
       <StyledSection>
@@ -121,8 +129,7 @@ export default function CommentModal({ id }) {
       {modal && (
         <Overlay>
           <CommentForm onSubmit={handleSubmit}>
-            <label>What were your thoughts on this Book?</label>
-            <WordLetterCounter />
+            <LetterCount />
             <ButtonWrapper>
               <StyledButton type="submit">Save my thoughts</StyledButton>
               <StyledButton type="button" onClick={() => toggleSkip()}>
