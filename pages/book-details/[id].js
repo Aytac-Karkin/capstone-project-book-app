@@ -92,7 +92,7 @@ export default function BookDetailsPage({
           </StyledSection>
           <ReadMoreReadLess description={currentBook.description} />
         </StyledBookDetail>
-        <CommentModal />
+        <CommentModal id={currentBook.id} />
         <Navigation />
       </StyledDetailedPage>
     </>

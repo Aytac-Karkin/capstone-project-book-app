@@ -70,50 +70,50 @@ const StyledButton = styled.button`
   margin: 3px;
 `;
 
-export default function CommentModal() {
+export default function CommentModal({ id }) {
   const [modal, setModal] = useState(false);
   const [skip, setSkip] = useState(false);
   const [comments, setComments] = useLocalStorageState("comments", {
     defaultValue: [],
   });
 
-  function toggleModal = () => {
+  function toggleModal() {
     setModal(!modal);
-  };
+  }
 
-  function toggleSkip = () => {
+  function toggleSkip() {
     setModal(false);
     setSkip(true);
-  };
+  }
 
-  function closeSkipModal = () => {
+  function closeSkipModal() {
     setSkip(false);
     setModal(true);
-  };
+  }
 
-  const handleSubmit = (event) => {
+  function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
 
     const comment = form.elements.thought.value;
     if (comment) {
-      setComments([...comments, comment]);
+      setComments([...comments, { id: id, comment }]);
       form.reset();
       setModal(false);
     }
-  };
+  }
 
   return (
     <>
       <h4>What were your thoughts on this book?</h4>
       <CommentsList>
-        {comments.map((comment, index) => (
-          <StyledComment key={index}>{comment}</StyledComment>
+        {comments.map((comment) => (
+          <StyledComment key={id}>{comment}</StyledComment>
         ))}
       </CommentsList>
       <StyledSection>
         <p>
-          <CommentButton onClick={toggleModal}>+</CommentButton>
+          <CommentButton onClick={() => toggleModal()}>+</CommentButton>
           add a thought
         </p>
       </StyledSection>
@@ -125,7 +125,7 @@ export default function CommentModal() {
             <WordLetterCounter />
             <ButtonWrapper>
               <StyledButton type="submit">Save my thoughts</StyledButton>
-              <StyledButton type="button" onClick={toggleSkip}>
+              <StyledButton type="button" onClick={() => toggleSkip()}>
                 Skip
               </StyledButton>
             </ButtonWrapper>
@@ -138,7 +138,7 @@ export default function CommentModal() {
           <ConfirmationModal>
             <h4>Are you sure you want to skip adding your thoughts?</h4>
             <ButtonWrapper>
-              <StyledButton onClick={closeSkipModal}>No!</StyledButton>
+              <StyledButton onClick={() => closeSkipModal()}>No!</StyledButton>
               <StyledButton
                 onClick={() => {
                   setSkip(false);
