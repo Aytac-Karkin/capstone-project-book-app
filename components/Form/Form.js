@@ -13,7 +13,7 @@ const CommentButton = styled.button`
 `;
 
 const StyledInput = styled.input`
-  width: 60%;
+  width: 80%;
   height: 50px;
   margin: 15%;
 `;
@@ -21,21 +21,25 @@ const StyledInput = styled.input`
 const ButtonWrapper = styled.section`
   display: flex;
   flex-direction: column;
-  width: 35%;
+  width: 50%;
   margin: 10%;
 `;
+
 const ConfirmationModal = styled.section`
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-self: center;
-  padding-top: 30%;
-  background-color: seashell;
-  margin-top: 20%;
+  justify-content: center;
+  background-color: white;
   border-radius: 8px;
+  padding: 20px;
+  border: 3px red solid;
 `;
 
 const Overlay = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   top: 0;
@@ -50,11 +54,10 @@ const CommentForm = styled.form`
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-self: center;
-  padding-top: 30%;
+  justify-content: center;
   background-color: seashell;
-  margin-top: 20%;
   border-radius: 8px;
+  padding: 20px;
 `;
 const CommentsList = styled.section`
   margin-top: 20px;
@@ -66,6 +69,10 @@ const StyledComment = styled.p`
   background-color: seashell;
   border-radius: 4px;
   padding: 3px;
+`;
+
+const StyledButton = styled.button`
+  margin: 3px;
 `;
 
 export default function CommentModal() {
@@ -122,14 +129,14 @@ export default function CommentModal() {
             <label>What were your thoughts on this Book?</label>
             <StyledInput
               name="thought"
-              placeholder="I really liked it!"
+              placeholder="max. 250 characters"
               maxLength={250}
             />
             <ButtonWrapper>
-              <button type="submit">Save my thoughts</button>
-              <button type="button" onClick={toggleSkip}>
+              <StyledButton type="submit">Save my thoughts</StyledButton>
+              <StyledButton type="button" onClick={toggleSkip}>
                 Skip
-              </button>
+              </StyledButton>
             </ButtonWrapper>
           </CommentForm>
         </Overlay>
@@ -138,17 +145,17 @@ export default function CommentModal() {
       {skip && (
         <Overlay>
           <ConfirmationModal>
-            <h3>Are you sure you want to skip adding your thoughts?</h3>
+            <h4>Are you sure you want to skip adding your thoughts?</h4>
             <ButtonWrapper>
-              <button onClick={closeSkipModal}>No!</button>
-              <button
+              <StyledButton onClick={closeSkipModal}>No!</StyledButton>
+              <StyledButton
                 onClick={() => {
                   setSkip(false);
                   setModal(false);
                 }}
               >
                 Yes
-              </button>
+              </StyledButton>
             </ButtonWrapper>
           </ConfirmationModal>
         </Overlay>
