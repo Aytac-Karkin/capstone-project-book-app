@@ -134,7 +134,7 @@ export default function CommentModal({ id }) {
             <ButtonWrapper>
               <StyledButton type="submit">Save my thoughts</StyledButton>
               <StyledButton type="button" onClick={() => toggleSkip()}>
-                Skip
+                Cancel
               </StyledButton>
             </ButtonWrapper>
           </CommentForm>
@@ -144,7 +144,7 @@ export default function CommentModal({ id }) {
       {skip && (
         <Overlay>
           <ConfirmationModal>
-            <h4>Are you sure you want to skip adding your thoughts?</h4>
+            <h5>Are you sure you want to cancel adding your thoughts?</h5>
             <ButtonWrapper>
               <StyledButton onClick={() => closeSkipModal()}>No!</StyledButton>
               <StyledButton
