@@ -25,10 +25,10 @@ const ConfirmationModal = styled.section`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   border-radius: 8px;
   padding: 20px;
-  border: 3px red solid;
+  border: 3px rgb(255, 0, 0) solid;
 `;
 
 const Overlay = styled.div`
@@ -50,7 +50,7 @@ const CommentForm = styled.form`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: seashell;
+  background-color: rgb(255, 245, 238);
   border-radius: 8px;
   padding: 20px;
 `;
@@ -60,8 +60,8 @@ const CommentsList = styled.section`
 `;
 
 const StyledComment = styled.p`
-  border: 1px solid black;
-  background-color: seashell;
+  border: 1px solid rgb(0, 0, 0);
+  background-color: rgb(255, 245, 238);
   border-radius: 4px;
   padding: 3px;
 `;
@@ -77,16 +77,16 @@ export default function CommentModal() {
     defaultValue: [],
   });
 
-  const toggleModal = () => {
+  function toggleModal = () => {
     setModal(!modal);
   };
 
-  const toggleSkip = () => {
+  function toggleSkip = () => {
     setModal(false);
     setSkip(true);
   };
 
-  const closeSkipModal = () => {
+  function closeSkipModal = () => {
     setSkip(false);
     setModal(true);
   };
