@@ -77,15 +77,15 @@ export default function HomePage({
   handleToggleCurrentlyReading,
 }) {
   const [filterModal, setFilterModal] = useState(false);
-
-  function handleToggleFilterModal() {
-    setFilterModal(!filterModal);
-  }
-
   const [filters, setFilters] = useState({
     yearStart: "1021",
     yearEnd: "2024",
   });
+  const currentYear = new Date().getFullYear();
+
+  function handleToggleFilterModal() {
+    setFilterModal(!filterModal);
+  }
 
   function handleFilterSubmit(event) {
     event.preventDefault();
@@ -94,8 +94,6 @@ export default function HomePage({
     setFilters(data);
     setFilterModal(false);
   }
-
-  console.log("filters", filters);
 
   function updateBookList() {
     const filteredByGenre = filters.genre
@@ -117,8 +115,16 @@ export default function HomePage({
 
     return filteredByYear;
   }
+
   const filteredBookList = updateBookList();
-  const currentYear = new Date().getFullYear();
+
+  function handleResetFilters() {
+    setFilters({
+      yearStart: "1021",
+      yearEnd: "2024",
+    });
+    setFilterModal(false);
+  }
 
   return (
     <>
@@ -195,7 +201,9 @@ export default function HomePage({
               </StyledRightSide>
             </FilterWrapper>
             <FilterButton type="submit">Filter</FilterButton>
-            <FilterButton type="button">Reset Filters</FilterButton>
+            <FilterButton type="button" onClick={() => handleResetFilters()}>
+              Reset Filters
+            </FilterButton>
           </StyledFilterForm>
         </Overlay>
       )}
