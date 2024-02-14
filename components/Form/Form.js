@@ -98,7 +98,7 @@ export default function CommentModal({ id }) {
     const form = event.target;
 
     const comment = form.elements.thought.value;
-    if (comment.length > 0) {
+    if (comment.trim().length > 0) {
       setComments([
         ...comments,
         { bookId: id, comment: comment, uniqueId: uid() },
