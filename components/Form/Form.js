@@ -98,15 +98,18 @@ export default function CommentModal({ id }) {
     const form = event.target;
 
     const comment = form.elements.thought.value;
-    if (comment) {
+    if (comment.length > 0) {
       setComments([
         ...comments,
         { bookId: id, comment: comment, uniqueId: uid() },
       ]);
       form.reset();
       setModal(false);
+    } else {
+      alert("don´t forget to add a thought");
     }
   }
+
   const currentComments = comments.filter((comment) => {
     return comment.bookId === id;
   });
