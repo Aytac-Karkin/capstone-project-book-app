@@ -65,6 +65,7 @@ const StyledComment = styled.p`
   background-color: rgb(255, 245, 238);
   border-radius: 4px;
   padding: 3px;
+  word-wrap: break-word;
 `;
 
 const StyledButton = styled.button`
