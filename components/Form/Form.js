@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import useLocalStorageState from "use-local-storage-state";
+import WordLetterCounter from "../LetterCount/LetterCount";
 
 const StyledSection = styled.section`
   display: flex;
@@ -10,12 +11,6 @@ const CommentButton = styled.button`
   width: 25px;
   height: 25px;
   margin-right: 10px;
-`;
-
-const StyledInput = styled.input`
-  width: 80%;
-  height: 50px;
-  margin: 15%;
 `;
 
 const ButtonWrapper = styled.section`
@@ -127,11 +122,7 @@ export default function CommentModal() {
         <Overlay>
           <CommentForm onSubmit={handleSubmit}>
             <label>What were your thoughts on this Book?</label>
-            <StyledInput
-              name="thought"
-              placeholder="max. 250 characters"
-              maxLength={250}
-            />
+            <WordLetterCounter />
             <ButtonWrapper>
               <StyledButton type="submit">Save my thoughts</StyledButton>
               <StyledButton type="button" onClick={toggleSkip}>
