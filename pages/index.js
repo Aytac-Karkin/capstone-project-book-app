@@ -112,8 +112,8 @@ export default function HomePage({
 
     const filteredByYear = filteredByLength.filter(
       (book) =>
-        filters.yearStart <= book.publishingYear &&
-        book.publishingYear <= filters.yearEnd
+        filters.yearStart <= book.publishYear &&
+        book.publishYear <= filters.yearEnd
     );
 
     return filteredByYear;
