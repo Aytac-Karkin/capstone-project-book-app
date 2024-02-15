@@ -4,6 +4,7 @@ import Navigation from "@/components/Navigation/Navigation";
 import styled from "styled-components";
 import FilterCategory from "@/components/FilterCategory/FilterCategory";
 import { useState } from "react";
+import genres from "../lib/genres.json";
 
 const StyledFilterCategoryWrapper = styled.div`
   display: flex;
@@ -157,44 +158,19 @@ export default function HomePage({
     <>
       <Header />
       <StyledBody>
-        <ToggleFilterButton
-          type="button"
-          onClick={() => handleToggleFilterModal()}
-        >
+        <ToggleFilterButton type="button" onClick={handleToggleFilterModal}>
           Find your next read!
         </ToggleFilterButton>
         {filterModal && (
           <Overlay>
             <StyledFilterForm onSubmit={handleFilterSubmit}>
-              <ExitButton
-                type="button"
-                onClick={() => handleToggleFilterModal()}
-              >
+              <ExitButton type="button" onClick={handleToggleFilterModal}>
                 ❌
               </ExitButton>
               <FilterWrapper>
                 <StyledFilterCategoryWrapper>
                   <h3>Genre</h3>
-                  <FilterCategory
-                    filterNames={[
-                      "Thriller",
-                      "Icelandic Crime",
-                      "Feminism",
-                      "Young Literature",
-                      "Psychology",
-                      "Fantasy",
-                      "Cats in Japan",
-                      "Haunted Houses",
-                      "American Poetry",
-                      "Body Horror",
-                      "Court Intrigues",
-                      "Biography",
-                      "AI in Fiction",
-                      "Reviewed by the NYT",
-                      "Old-School SciFi",
-                    ]}
-                    category={"genre"}
-                  />
+                  <FilterCategory filterNames={genres} category={"genre"} />
                 </StyledFilterCategoryWrapper>
                 <StyledRightSide>
                   <StyledFilterCategoryWrapper>
@@ -248,7 +224,7 @@ export default function HomePage({
         </FilterTagSection>
         {filters.yearStart && <span>{filterResultsCount} result(s)</span>}
         {filters.yearStart && (
-          <FilterButton type="button" onClick={() => handleResetFilters()}>
+          <FilterButton type="button" onClick={handleResetFilters}>
             Reset Filters
           </FilterButton>
         )}
