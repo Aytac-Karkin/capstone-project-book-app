@@ -5,7 +5,7 @@ const StyledParagraph = styled.p`
   text-align: justify;
   padding: 20px;
   line-height: 1.3;
-  transition: height 1.4s;
+  transition: 3.4s;
 `;
 
 const StyledButton = styled.button`

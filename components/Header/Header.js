@@ -31,16 +31,18 @@ export default function Header() {
   return (
     <StyledHomepagediv>
       <StyledHeader>
-        {router.pathname !== "/" && (
-          <StyledBackButton onClick={() => router.back()}>
-            <span
-              role="image"
-              aria-label="Arrow emoji indicating the return to the previous page"
-            >
-              ⬅️
-            </span>
-          </StyledBackButton>
-        )}
+        {router.pathname !== "/" &&
+          router.pathname !== "/spotlight" &&
+          router.pathname !== "/my-library" && (
+            <StyledBackButton onClick={() => router.back()}>
+              <span
+                role="image"
+                aria-label="Arrow emoji indicating the return to the previous page"
+              >
+                ⬅️
+              </span>
+            </StyledBackButton>
+          )}
         <StyledHeadline>Shelfie</StyledHeadline>
       </StyledHeader>
     </StyledHomepagediv>
