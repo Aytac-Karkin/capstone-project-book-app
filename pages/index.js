@@ -7,6 +7,7 @@ export default function HomePage({
   booksInfo,
   handleToggleBookmark,
   handleToggleAlreadyRead,
+  handleToggleCurrentlyReading,
 }) {
   return (
     <>
@@ -16,6 +17,7 @@ export default function HomePage({
         booksInfo={booksInfo}
         handleToggleBookmark={handleToggleBookmark}
         handleToggleAlreadyRead={handleToggleAlreadyRead}
+        handleToggleCurrentlyReading={handleToggleCurrentlyReading}
       />
       <Navigation />
     </>

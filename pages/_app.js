@@ -39,6 +39,22 @@ export default function App({ Component, pageProps }) {
     }
   }
 
+  function handleToggleCurrentlyReading(id, event) {
+    event.preventDefault();
+    const currentBook = booksInfo.find((book) => book.id === id);
+    if (currentBook) {
+      setBooksInfo(
+        booksInfo.map((bookInfo) =>
+          bookInfo.id === id
+            ? { ...bookInfo, isCurrentlyReading: !bookInfo.isCurrentlyReading }
+            : bookInfo
+        )
+      );
+    } else {
+      setBooksInfo([...booksInfo, { id, isCurrentlyReading: true }]);
+    }
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -47,6 +63,7 @@ export default function App({ Component, pageProps }) {
         books={books}
         handleToggleBookmark={handleToggleBookmark}
         handleToggleAlreadyRead={handleToggleAlreadyRead}
+        handleToggleCurrentlyReading={handleToggleCurrentlyReading}
         booksInfo={booksInfo}
       />
     </>
