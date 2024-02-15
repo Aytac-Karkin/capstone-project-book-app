@@ -37,12 +37,22 @@ const StyledDescription = styled.p`
   word-wrap: break-word;
 `;
 
+const SytledBookStar = styled.h2`
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 200px;
+  margin: auto;
+  background-color: mintcream;
+`;
+
 export default function Spotlight({ books }) {
   const currentBook = books[Math.floor(Math.random() * books.length)];
   return (
     <>
       <StyledDetailedPage>
         <Header />
+        <SytledBookStar>Book ✨ Star</SytledBookStar>
         <StyledBookDetail>
           <StyledImage
             src={currentBook.cover}

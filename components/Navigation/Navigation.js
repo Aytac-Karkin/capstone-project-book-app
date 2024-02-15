@@ -33,6 +33,15 @@ const StyledListElement = styled.li`
   padding: 7px 0px;
 `;
 
+const StyledSpotlightElement = styled.li`
+  background-color: ${({ $isActive }) =>
+    $isActive ? "darkseagreen" : "seashell"};
+  width: 20%;
+  padding: 7px 0px;
+  border-right: 1px solid gainsboro;
+  border-left: 1px solid gainsboro;
+`;
+
 export default function Navigation() {
   const router = useRouter();
   return (
@@ -41,9 +50,9 @@ export default function Navigation() {
         <StyledListElement $isActive={router.pathname === "/"}>
           <NavigationLink href="/">Home</NavigationLink>
         </StyledListElement>
-        <StyledListElement $isActive={router.pathname === "/spotlight"}>
+        <StyledSpotlightElement $isActive={router.pathname === "/spotlight"}>
           <NavigationLink href="/spotlight">🌟</NavigationLink>
-        </StyledListElement>
+        </StyledSpotlightElement>
         <StyledListElement $isActive={router.pathname === "/my-library"}>
           <NavigationLink href="/my-library">My Library</NavigationLink>
         </StyledListElement>
