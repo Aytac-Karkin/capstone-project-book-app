@@ -5,7 +5,10 @@ import styled from "styled-components";
 import Navigation from "@/components/Navigation/Navigation";
 import MyLibraryButton from "@/components/Button/MyLibraryButton";
 import AlreadyReadButton from "@/components/Button/AlreadyReadButton";
+import CommentModal from "@/components/Form/Form";
+import ReadMoreReadLess from "@/components/ReadMore/ReadMore";
 import CurrentlyReadingButton from "@/components/Button/CurrentlyReadingButton";
+
 
 const StyledImage = styled(Image)`
   border-radius: 8px;
@@ -24,10 +27,6 @@ const StyledSection = styled.section`
   justify-content: space-around;
   font-style: italic;
 `;
-const StyledDescription = styled.p`
-  text-align: justify;
-  padding: 15px;
-`;
 
 const StyledButtonWrapper = styled.div`
   display: flex;
@@ -43,6 +42,7 @@ const StyledDetailedPage = styled.div`
   max-width: 600px;
   margin: auto;
   position: relative;
+  padding-bottom: 50px;
 `;
 export default function BookDetailsPage({
   handleToggleBookmark,
@@ -101,8 +101,9 @@ export default function BookDetailsPage({
             <span>{currentBook.publishYear}</span>
             <span>{currentBook.pages} Pages</span>
           </StyledSection>
-          <StyledDescription>{currentBook.description}</StyledDescription>
+          <ReadMoreReadLess description={currentBook.description} />
         </StyledBookDetail>
+        <CommentModal id={currentBook.id} />
         <Navigation />
       </StyledDetailedPage>
     </>
