@@ -77,11 +77,12 @@ export default function HomePage({
   handleToggleCurrentlyReading,
 }) {
   const [filterModal, setFilterModal] = useState(false);
+  const currentYear = new Date().getFullYear();
+
   const [filters, setFilters] = useState({
     yearStart: "1021",
-    yearEnd: "2024",
+    yearEnd: `${currentYear}`,
   });
-  const currentYear = new Date().getFullYear();
 
   function handleToggleFilterModal() {
     setFilterModal(!filterModal);
@@ -104,13 +105,15 @@ export default function HomePage({
       ? filteredByGenre.filter((book) => {
           if (filters.bookLength === "short") return book.pages <= 150;
           else if (filters.bookLength === "medium")
-            return 150 < book.pages <= 300;
-          else if (filters.bookLength === "long") return book.pages < 300;
+            return 150 < book.pages && book.pages <= 300;
+          else if (filters.bookLength === "long") return book.pages > 300;
         })
       : filteredByGenre;
 
     const filteredByYear = filteredByLength.filter(
-      (book) => filters.yearStart <= book.publishingYear <= filters.yearEnd
+      (book) =>
+        filters.yearStart <= book.publishingYear &&
+        book.publishingYear <= filters.yearEnd
     );
 
     return filteredByYear;
@@ -121,9 +124,8 @@ export default function HomePage({
   function handleResetFilters() {
     setFilters({
       yearStart: "1021",
-      yearEnd: "2024",
+      yearEnd: `${currentYear}`,
     });
-    setFilterModal(false);
   }
 
   return (
