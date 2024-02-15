@@ -31,7 +31,7 @@ export default function Header() {
   return (
     <StyledHomepagediv>
       <StyledHeader>
-        {router.pathname !== "/" && (
+        {router.pathname !== "/" && router.pathname !== "/spotlight" && (
           <StyledBackButton onClick={() => router.back()}>
             <span
               role="image"
