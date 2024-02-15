@@ -9,10 +9,9 @@ const StyledList = styled.ul`
   gap: 1rem;
   margin-left: auto;
   margin-right: auto;
-  width: 95%;
-  max-width: 600px;
   padding-left: 5px;
   padding-right: 5px;
+  padding-bottom: 40px;
 `;
 
 const StyledLink = styled(Link)`
