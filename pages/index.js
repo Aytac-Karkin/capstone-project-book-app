@@ -14,7 +14,7 @@ const FilterWrapper = styled.section`
 `;
 
 const ExitButton = styled.button`
-  background-color: white;
+  background-color: rgba(255, 255, 255);
   position: absolute;
   top: 0.7rem;
   right: 0.7rem;
@@ -23,13 +23,13 @@ const ExitButton = styled.button`
 
 const FilterButton = styled.button`
   margin-top: 1rem;
-  background-color: white;
+  background-color: rgba(255, 255, 255);
   border-radius: 5px;
   font-size: 0.9rem;
 `;
 
 const StyledFilterForm = styled.form`
-  background-color: seashell;
+  background-color: rgba(255, 245, 238);
   border-radius: 8px;
   padding: 20px;
   position: relative;
@@ -67,14 +67,34 @@ const ToggleFilterButton = styled.button`
   margin: auto;
   max-width: 600px;
   display: flex;
+  background-color: rgba(255, 245, 238);
+  border-radius: 4px;
+  font-size: 1rem;
 `;
 
 const NoFilterMatchesMessage = styled.p`
   width: 80%;
-  max-width: 500px;
   margin: auto;
   padding-top: 20%;
   color: rgba(127, 43, 55);
+`;
+
+const FilterTagSection = styled.section`
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem;
+`;
+
+const FilterTag = styled.span`
+  background-color: rgba(239, 230, 224);
+  border-radius: 4px;
+  padding: 2px;
+`;
+
+const StyledBody = styled.div`
+  width: 95%;
+  max-width: 600px;
+  margin: auto;
 `;
 
 export default function HomePage({
@@ -87,10 +107,7 @@ export default function HomePage({
   const [filterModal, setFilterModal] = useState(false);
   const currentYear = new Date().getFullYear();
 
-  const [filters, setFilters] = useState({
-    yearStart: "1021",
-    yearEnd: `${currentYear}`,
-  });
+  const [filters, setFilters] = useState({});
 
   function handleToggleFilterModal() {
     setFilterModal(!filterModal);
@@ -118,119 +135,135 @@ export default function HomePage({
         })
       : filteredByGenre;
 
-    const filteredByYear = filteredByLength.filter(
-      (book) =>
-        filters.yearStart <= book.publishYear &&
-        book.publishYear <= filters.yearEnd
-    );
-
+    const filteredByYear = filters.yearStart
+      ? filteredByLength.filter(
+          (book) =>
+            filters.yearStart <= book.publishYear &&
+            book.publishYear <= filters.yearEnd
+        )
+      : filteredByLength;
     return filteredByYear;
   }
 
-  const filteredBookList = updateBookList();
-
   function handleResetFilters() {
-    setFilters({
-      yearStart: "1021",
-      yearEnd: `${currentYear}`,
-    });
+    setFilters({});
   }
+
+  const filteredBookList = updateBookList();
+  const filterResultsCount = filteredBookList.length;
 
   return (
     <>
       <Header />
-      <ToggleFilterButton
-        type="button"
-        onClick={() => handleToggleFilterModal()}
-      >
-        Find your next read!
-      </ToggleFilterButton>
-      {filterModal && (
-        <Overlay>
-          <StyledFilterForm onSubmit={handleFilterSubmit}>
-            <ExitButton type="button" onClick={() => handleToggleFilterModal()}>
-              ❌
-            </ExitButton>
-            <FilterWrapper>
-              <StyledFilterCategoryWrapper>
-                <h3>Genre</h3>
-                <FilterCategory
-                  filterNames={[
-                    "Thriller",
-                    "Icelandic Crime",
-                    "Feminism",
-                    "Young Literature",
-                    "Psychology",
-                    "Fantasy",
-                    "Cats in Japan",
-                    "Haunted Houses",
-                    "American Poetry",
-                    "Body Horror",
-                    "Court Intrigues",
-                    "Biography",
-                    "AI in Fiction",
-                    "Reviewed by the NYT",
-                    "Old-School SciFi",
-                  ]}
-                  category={"genre"}
-                />
-              </StyledFilterCategoryWrapper>
-              <StyledRightSide>
+      <StyledBody>
+        <ToggleFilterButton
+          type="button"
+          onClick={() => handleToggleFilterModal()}
+        >
+          Find your next read!
+        </ToggleFilterButton>
+        {filterModal && (
+          <Overlay>
+            <StyledFilterForm onSubmit={handleFilterSubmit}>
+              <ExitButton
+                type="button"
+                onClick={() => handleToggleFilterModal()}
+              >
+                ❌
+              </ExitButton>
+              <FilterWrapper>
                 <StyledFilterCategoryWrapper>
-                  <h3>Book Length</h3>
+                  <h3>Genre</h3>
                   <FilterCategory
-                    filterNames={["short", "medium", "long"]}
-                    category={"bookLength"}
+                    filterNames={[
+                      "Thriller",
+                      "Icelandic Crime",
+                      "Feminism",
+                      "Young Literature",
+                      "Psychology",
+                      "Fantasy",
+                      "Cats in Japan",
+                      "Haunted Houses",
+                      "American Poetry",
+                      "Body Horror",
+                      "Court Intrigues",
+                      "Biography",
+                      "AI in Fiction",
+                      "Reviewed by the NYT",
+                      "Old-School SciFi",
+                    ]}
+                    category={"genre"}
                   />
                 </StyledFilterCategoryWrapper>
-                <StyledFilterCategoryWrapper>
-                  <h3>Publishing Year</h3>
-                  <label htmlFor="starting-year">
-                    <StyledParagraph>From:</StyledParagraph>
-                    <StyledYearInput
-                      type="number"
-                      id="starting-year"
-                      min={1000}
-                      max={2050}
-                      name="yearStart"
-                      defaultValue={1021}
-                    ></StyledYearInput>
-                  </label>
-                  <label htmlFor="ending-year">
-                    <StyledParagraph>To:</StyledParagraph>
-                    <StyledYearInput
-                      type="number"
-                      id="ending-year"
-                      min={1000}
-                      max={2050}
-                      name="yearEnd"
-                      defaultValue={currentYear}
-                    ></StyledYearInput>
-                  </label>
-                </StyledFilterCategoryWrapper>
-              </StyledRightSide>
-            </FilterWrapper>
-            <FilterButton type="submit">Filter</FilterButton>
-            <FilterButton type="button" onClick={() => handleResetFilters()}>
-              Reset Filters
-            </FilterButton>
-          </StyledFilterForm>
-        </Overlay>
-      )}
-      {filteredBookList.length > 0 ? (
-        <BookList
-          books={filteredBookList}
-          booksInfo={booksInfo}
-          handleToggleBookmark={handleToggleBookmark}
-          handleToggleAlreadyRead={handleToggleAlreadyRead}
-          handleToggleCurrentlyReading={handleToggleCurrentlyReading}
-        />
-      ) : (
-        <NoFilterMatchesMessage>
-          Sadly, there are no books that match your filters. Try another
-          combination to find your next favorite book!
-        </NoFilterMatchesMessage>
-      )}
+                <StyledRightSide>
+                  <StyledFilterCategoryWrapper>
+                    <h3>Book Length</h3>
+                    <FilterCategory
+                      filterNames={["short", "medium", "long"]}
+                      category={"bookLength"}
+                    />
+                  </StyledFilterCategoryWrapper>
+                  <StyledFilterCategoryWrapper>
+                    <h3>Publishing Year</h3>
+                    <label htmlFor="starting-year">
+                      <StyledParagraph>From:</StyledParagraph>
+                      <StyledYearInput
+                        type="number"
+                        id="starting-year"
+                        min={1000}
+                        max={2050}
+                        name="yearStart"
+                        defaultValue={1021}
+                      ></StyledYearInput>
+                    </label>
+                    <label htmlFor="ending-year">
+                      <StyledParagraph>To:</StyledParagraph>
+                      <StyledYearInput
+                        type="number"
+                        id="ending-year"
+                        min={1000}
+                        max={2050}
+                        name="yearEnd"
+                        defaultValue={currentYear}
+                      ></StyledYearInput>
+                    </label>
+                  </StyledFilterCategoryWrapper>
+                </StyledRightSide>
+              </FilterWrapper>
+              <FilterButton type="submit">Filter</FilterButton>
+              <FilterButton type="button" onClick={() => handleResetFilters()}>
+                Reset Filters
+              </FilterButton>
+            </StyledFilterForm>
+          </Overlay>
+        )}
+        <FilterTagSection>
+          {filters.bookLength && (
+            <FilterTag>{filters.bookLength} length</FilterTag>
+          )}
+          {filters.genre && <FilterTag>{filters.genre}</FilterTag>}
+          {filters.yearStart && (
+            <FilterTag>
+              {filters.yearStart} - {filters.yearEnd}
+            </FilterTag>
+          )}
+        </FilterTagSection>
+        {filters.yearStart && <p>{filterResultsCount} result(s)</p>}
+        {filteredBookList.length > 0 ? (
+          <BookList
+            books={filteredBookList}
+            booksInfo={booksInfo}
+            handleToggleBookmark={handleToggleBookmark}
+            handleToggleAlreadyRead={handleToggleAlreadyRead}
+            handleToggleCurrentlyReading={handleToggleCurrentlyReading}
+          />
+        ) : (
+          <NoFilterMatchesMessage>
+            Sadly, there are no books that match your filters. Try another
+            combination to find your next favorite book!
+          </NoFilterMatchesMessage>
+        )}
+      </StyledBody>
       <Navigation />
     </>
   );
