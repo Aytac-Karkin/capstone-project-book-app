@@ -23,8 +23,8 @@ export default function LetterCount() {
 
   const maxLength = 250;
 
-  const handleTextChange = (e) => {
-    setText(e.target.value);
+  const handleTextChange = (event) => {
+    setText(event.target.value);
   };
 
   return (
@@ -37,6 +37,11 @@ export default function LetterCount() {
         placeholder="I really liked it!"
         maxLength={maxLength}
         id="input-notes"
+        required
+        onInvalid={(event) =>
+          event.target.setCustomValidity("please add a thought")
+        }
+        onInput={(event) => event.target.setCustomValidity("")}
       />
       <StyledCount>{maxLength - letterCount} characters left</StyledCount>
     </>

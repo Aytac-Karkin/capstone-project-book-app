@@ -105,8 +105,6 @@ export default function CommentModal({ id }) {
       ]);
       form.reset();
       setModal(false);
-    } else {
-      alert("don´t forget to add a thought");
     }
   }
 
