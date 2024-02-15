@@ -69,6 +69,14 @@ const ToggleFilterButton = styled.button`
   display: flex;
 `;
 
+const NoFilterMatchesMessage = styled.p`
+  width: 80%;
+  max-width: 500px;
+  margin: auto;
+  padding-top: 20%;
+  color: rgba(127, 43, 55);
+`;
+
 export default function HomePage({
   books,
   booksInfo,
@@ -209,13 +217,20 @@ export default function HomePage({
           </StyledFilterForm>
         </Overlay>
       )}
-      <BookList
-        books={filteredBookList}
-        booksInfo={booksInfo}
-        handleToggleBookmark={handleToggleBookmark}
-        handleToggleAlreadyRead={handleToggleAlreadyRead}
-        handleToggleCurrentlyReading={handleToggleCurrentlyReading}
-      />
+      {filteredBookList.length > 0 ? (
+        <BookList
+          books={filteredBookList}
+          booksInfo={booksInfo}
+          handleToggleBookmark={handleToggleBookmark}
+          handleToggleAlreadyRead={handleToggleAlreadyRead}
+          handleToggleCurrentlyReading={handleToggleCurrentlyReading}
+        />
+      ) : (
+        <NoFilterMatchesMessage>
+          Sadly, there are no books that match your filters. Try another
+          combination to find your next favorite book!
+        </NoFilterMatchesMessage>
+      )}
       <Navigation />
     </>
   );
