@@ -33,11 +33,10 @@ const StyledDescription = styled.p`
   text-align: justify;
   padding: 20px;
   line-height: 1.3;
-  transition: height 1.4s;
   word-wrap: break-word;
 `;
 
-const SytledBookStar = styled.h2`
+const StyledBookStar = styled.h2`
   text-align: center;
   border: 1px solid black;
   border-radius: 5px;
@@ -52,7 +51,7 @@ export default function Spotlight({ books }) {
     <>
       <StyledDetailedPage>
         <Header />
-        <SytledBookStar>Book ✨ Star</SytledBookStar>
+        <StyledBookStar>Book ✨ Star</StyledBookStar>
         <StyledBookDetail>
           <StyledImage
             src={currentBook.cover}
