@@ -42,7 +42,7 @@ export default function Navigation() {
           <NavigationLink href="/">Home</NavigationLink>
         </StyledListElement>
         <StyledListElement $isActive={router.pathname === "/spotlight"}>
-          <NavigationLink href="/spotlight">SP</NavigationLink>
+          <NavigationLink href="/spotlight">🌟</NavigationLink>
         </StyledListElement>
         <StyledListElement $isActive={router.pathname === "/my-library"}>
           <NavigationLink href="/my-library">My Library</NavigationLink>
