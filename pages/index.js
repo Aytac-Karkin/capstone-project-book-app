@@ -26,6 +26,7 @@ const FilterButton = styled.button`
   background-color: rgba(255, 255, 255);
   border-radius: 5px;
   font-size: 0.9rem;
+  margin-left: 5px;
 `;
 
 const StyledFilterForm = styled.form`
@@ -231,9 +232,6 @@ export default function HomePage({
                 </StyledRightSide>
               </FilterWrapper>
               <FilterButton type="submit">Filter</FilterButton>
-              <FilterButton type="button" onClick={() => handleResetFilters()}>
-                Reset Filters
-              </FilterButton>
             </StyledFilterForm>
           </Overlay>
         )}
@@ -248,7 +246,12 @@ export default function HomePage({
             </FilterTag>
           )}
         </FilterTagSection>
-        {filters.yearStart && <p>{filterResultsCount} result(s)</p>}
+        {filters.yearStart && <span>{filterResultsCount} result(s)</span>}
+        {filters.yearStart && (
+          <FilterButton type="button" onClick={() => handleResetFilters()}>
+            Reset Filters
+          </FilterButton>
+        )}
         {filteredBookList.length > 0 ? (
           <BookList
             books={filteredBookList}
