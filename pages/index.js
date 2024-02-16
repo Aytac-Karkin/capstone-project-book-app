@@ -5,6 +5,7 @@ import styled from "styled-components";
 import FilterCategory from "@/components/FilterCategory/FilterCategory";
 import { useState } from "react";
 import genres from "../lib/genres.json";
+import SearchBar from "@/components/Searchbar/Searchbar";
 
 const StyledFilterCategoryWrapper = styled.div`
   display: flex;
@@ -152,12 +153,29 @@ export default function HomePage({
   }
 
   const filteredBookList = updateBookList();
-  const filterResultsCount = filteredBookList.length;
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const foundBooks = filteredBookList
+    .filter(({ title, genre, publishYear, author }) => {
+      const titleMatch = title.toLowerCase().includes(searchTerm);
+      const genreMatch = genre.toLowerCase().includes(searchTerm);
+      const yearMatch = publishYear.toString().includes(searchTerm);
+      const authorMatch = author.toLowerCase().includes(searchTerm);
+
+      return titleMatch || genreMatch || yearMatch || authorMatch;
+    })
+
+    .sort((a, b) => a.title.localeCompare(b.title));
+
+  const filterResultsCount = foundBooks
+    ? foundBooks.length
+    : filteredBookList.length;
 
   return (
     <>
       <Header />
       <StyledBody>
+        <SearchBar setSearchTerm={setSearchTerm} />
         <ToggleFilterButton type="button" onClick={handleToggleFilterModal}>
           Find your next read!
         </ToggleFilterButton>
@@ -230,7 +248,7 @@ export default function HomePage({
         )}
         {filteredBookList.length > 0 ? (
           <BookList
-            books={filteredBookList}
+            books={searchTerm.length === 0 ? filteredBookList : foundBooks}
             booksInfo={booksInfo}
             handleToggleBookmark={handleToggleBookmark}
             handleToggleAlreadyRead={handleToggleAlreadyRead}
