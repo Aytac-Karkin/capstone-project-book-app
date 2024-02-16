@@ -156,17 +156,11 @@ export default function HomePage({
 
   const [searchTerm, setSearchTerm] = useState("");
   const foundBooks = filteredBookList
-    .filter((book) => {
-      const titleMatch = book.title
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
-      const genreMatch = book.genre
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
-      const yearMatch = book.publishYear.toString().includes(searchTerm);
-      const authorMatch = book.author
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
+    .filter(({ title, genre, publishYear, author }) => {
+      const titleMatch = title.toLowerCase().includes(searchTerm);
+      const genreMatch = genre.toLowerCase().includes(searchTerm);
+      const yearMatch = publishYear.toString().includes(searchTerm);
+      const authorMatch = author.toLowerCase().includes(searchTerm);
 
       return titleMatch || genreMatch || yearMatch || authorMatch;
     })
