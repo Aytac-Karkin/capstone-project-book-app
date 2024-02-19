@@ -5,45 +5,10 @@ import styled from "styled-components";
 import Navigation from "@/components/Navigation/Navigation";
 import MyLibraryButton from "@/components/Button/MyLibraryButton";
 import AlreadyReadButton from "@/components/Button/AlreadyReadButton";
-import CommentModal from "@/components/Form/Form";
-import ReadMoreReadLess from "@/components/ReadMore/ReadMore";
+import CommentModal from "@/components/CommentModal/CommentModal";
+import ReadMore from "@/components/ReadMore/ReadMore";
 import CurrentlyReadingButton from "@/components/Button/CurrentlyReadingButton";
 
-
-const StyledImage = styled(Image)`
-  border-radius: 8px;
-  position: relative;
-  top: -20px;
-  box-shadow: 0 6px 20px 5px rgba(0, 0, 0, 0.19);
-`;
-const StyledBookDetail = styled.article`
-  border: 2px solid black;
-  border-radius: 8px;
-  margin: 2rem auto;
-  text-align: center;
-`;
-const StyledSection = styled.section`
-  display: flex;
-  justify-content: space-around;
-  font-style: italic;
-`;
-
-const StyledButtonWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 150px;
-  right: 12%;
-  gap: 1rem;
-`;
-
-const StyledDetailedPage = styled.div`
-  width: 90%;
-  max-width: 600px;
-  margin: auto;
-  position: relative;
-  padding-bottom: 50px;
-`;
 export default function BookDetailsPage({
   handleToggleBookmark,
   handleToggleAlreadyRead,
@@ -101,7 +66,7 @@ export default function BookDetailsPage({
             <span>{currentBook.publishYear}</span>
             <span>{currentBook.pages} Pages</span>
           </StyledSection>
-          <ReadMoreReadLess description={currentBook.description} />
+          <ReadMore description={currentBook.description} />
         </StyledBookDetail>
         <CommentModal id={currentBook.id} />
         <Navigation />
@@ -109,3 +74,38 @@ export default function BookDetailsPage({
     </>
   );
 }
+
+const StyledImage = styled(Image)`
+  border-radius: 8px;
+  position: relative;
+  top: -20px;
+  box-shadow: 0 6px 20px 5px rgba(0, 0, 0, 0.19);
+`;
+const StyledBookDetail = styled.article`
+  border: 2px solid black;
+  border-radius: 8px;
+  margin: 2rem auto;
+  text-align: center;
+`;
+const StyledSection = styled.section`
+  display: flex;
+  justify-content: space-around;
+  font-style: italic;
+`;
+
+const StyledButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 150px;
+  right: 12%;
+  gap: 1rem;
+`;
+
+const StyledDetailedPage = styled.div`
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+  position: relative;
+  padding-bottom: 50px;
+`;

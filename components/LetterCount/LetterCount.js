@@ -1,22 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const StyledInput = styled.textarea`
-  width: 80%;
-  height: 50px;
-  margin: 15%;
-  margin-bottom: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  &::placeholder {
-    font-family: Arial, Helvetica, sans-serif;
-  }
-`;
-
-const StyledCount = styled.p`
-  font-size: 14px;
-  margin-left: 100px;
-`;
-
 export default function LetterCount() {
   const [text, setText] = useState("");
   const letterCount = text.length;
@@ -47,3 +31,19 @@ export default function LetterCount() {
     </>
   );
 }
+
+const StyledInput = styled.textarea`
+  width: 80%;
+  height: 50px;
+  margin: 15%;
+  margin-bottom: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  &::placeholder {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+`;
+
+const StyledCount = styled.p`
+  font-size: 14px;
+  margin-left: 100px;
+`;

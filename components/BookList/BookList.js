@@ -2,23 +2,6 @@ import BookCard from "../BookCard/BookCard";
 import styled from "styled-components";
 import Link from "next/link";
 
-const StyledList = styled.ul`
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-bottom: 40px;
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: black;
-`;
-
 export default function BookList({
   books,
   booksInfo,
@@ -48,3 +31,20 @@ export default function BookList({
     </StyledList>
   );
 }
+
+const StyledList = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 40px;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+`;

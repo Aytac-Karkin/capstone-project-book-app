@@ -7,99 +7,6 @@ import { useState } from "react";
 import genres from "../lib/genres.json";
 import SearchBar from "@/components/Searchbar/Searchbar";
 
-const StyledFilterCategoryWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const FilterWrapper = styled.section`
-  display: flex;
-`;
-
-const ExitButton = styled.button`
-  background-color: rgba(255, 255, 255);
-  position: absolute;
-  top: 0.7rem;
-  right: 0.7rem;
-  border-radius: 5px;
-`;
-
-const FilterButton = styled.button`
-  margin-top: 1rem;
-  background-color: rgba(255, 255, 255);
-  border-radius: 5px;
-  font-size: 0.9rem;
-  margin-left: 5px;
-`;
-
-const StyledFilterForm = styled.form`
-  background-color: rgba(255, 245, 238);
-  border-radius: 8px;
-  padding: 20px;
-  position: relative;
-`;
-
-const StyledRightSide = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const StyledYearInput = styled.input`
-  width: 5em;
-`;
-
-const Overlay = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: fixed;
-  background-color: rgba(49, 49, 49, 0.8);
-`;
-
-const StyledParagraph = styled.p`
-  margin-bottom: 0;
-  margin-top: 0.2rem;
-`;
-
-const ToggleFilterButton = styled.button`
-  margin: auto;
-  max-width: 600px;
-  display: flex;
-  background-color: rgba(255, 245, 238);
-  border-radius: 4px;
-  font-size: 1rem;
-`;
-
-const NoFilterMatchesMessage = styled.p`
-  width: 80%;
-  margin: auto;
-  padding-top: 20%;
-  color: rgba(127, 43, 55);
-`;
-
-const FilterTagSection = styled.section`
-  display: flex;
-  justify-content: space-around;
-  padding: 0.5rem;
-`;
-
-const FilterTag = styled.span`
-  background-color: rgba(239, 230, 224);
-  border-radius: 4px;
-  padding: 2px;
-`;
-
-const StyledBody = styled.div`
-  width: 95%;
-  max-width: 600px;
-  margin: auto;
-`;
-
 export default function HomePage({
   books,
   booksInfo,
@@ -265,3 +172,96 @@ export default function HomePage({
     </>
   );
 }
+
+const StyledFilterCategoryWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const FilterWrapper = styled.section`
+  display: flex;
+`;
+
+const ExitButton = styled.button`
+  background-color: rgba(255, 255, 255);
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  border-radius: 5px;
+`;
+
+const FilterButton = styled.button`
+  margin-top: 1rem;
+  background-color: rgba(255, 255, 255);
+  border-radius: 5px;
+  font-size: 0.9rem;
+  margin-left: 5px;
+`;
+
+const StyledFilterForm = styled.form`
+  background-color: rgba(255, 245, 238);
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+`;
+
+const StyledRightSide = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const StyledYearInput = styled.input`
+  width: 5em;
+`;
+
+const Overlay = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background-color: rgba(49, 49, 49, 0.8);
+`;
+
+const StyledParagraph = styled.p`
+  margin-bottom: 0;
+  margin-top: 0.2rem;
+`;
+
+const ToggleFilterButton = styled.button`
+  margin: auto;
+  max-width: 600px;
+  display: flex;
+  background-color: rgba(255, 245, 238);
+  border-radius: 4px;
+  font-size: 1rem;
+`;
+
+const NoFilterMatchesMessage = styled.p`
+  width: 80%;
+  margin: auto;
+  padding-top: 20%;
+  color: rgba(127, 43, 55);
+`;
+
+const FilterTagSection = styled.section`
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem;
+`;
+
+const FilterTag = styled.span`
+  background-color: rgba(239, 230, 224);
+  border-radius: 4px;
+  padding: 2px;
+`;
+
+const StyledBody = styled.div`
+  width: 95%;
+  max-width: 600px;
+  margin: auto;
+`;

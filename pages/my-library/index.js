@@ -4,31 +4,6 @@ import Navigation from "@/components/Navigation/Navigation";
 import styled from "styled-components";
 import { useState } from "react";
 
-const StyledHeadline = styled.h2`
-  text-align: center;
-`;
-
-const StyledLibraryPage = styled.div`
-  width: 90%;
-  max-width: 600px;
-  margin: auto;
-`;
-
-const StyledParagraph = styled.p`
-  text-align: center;
-`;
-
-const StyledFilterButton = styled.button`
-  background-color: ${({ $isActive }) =>
-    $isActive ? "darkseagreen" : "seashell"};
-  border-radius: 4px;
-`;
-
-const StyledButtonWrapper = styled.section`
-  display: flex;
-  gap: 5px;
-`;
-
 export default function MyLibraryPage({
   books,
   booksInfo,
@@ -111,3 +86,28 @@ export default function MyLibraryPage({
     </>
   );
 }
+
+const StyledHeadline = styled.h2`
+  text-align: center;
+`;
+
+const StyledLibraryPage = styled.div`
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+`;
+
+const StyledParagraph = styled.p`
+  text-align: center;
+`;
+
+const StyledFilterButton = styled.button`
+  background-color: ${({ $isActive }) =>
+    $isActive ? "darkseagreen" : "seashell"};
+  border-radius: 4px;
+`;
+
+const StyledButtonWrapper = styled.section`
+  display: flex;
+  gap: 5px;
+`;

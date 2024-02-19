@@ -1,41 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
 
-const StyledBook = styled.div`
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-  gap: 5px;
-  border: 2px solid black;
-  border-radius: 8px;
-  padding: 5px;
-  box-shadow: 0 3px 3px 2px rgba(0, 0, 0, 0.19);
-`;
-
-const StyledInfos = styled.article`
-  flex-grow: 1.5;
-`;
-
-const StyledImage = styled(Image)`
-  margin: auto 2px;
-`;
-
-const StyledButton = styled.button`
-  background-color: ${({ $isActive }) =>
-    $isActive ? "darkseagreen" : "seashell"};
-  border-radius: 4px;
-`;
-
-const StyledButtonWrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-`;
-
-const StyledGenre = styled.p`
-  font-style: italic;
-`;
-
 export default function BookCard({
   title,
   author,
@@ -101,3 +66,38 @@ export default function BookCard({
     </StyledBook>
   );
 }
+
+const StyledBook = styled.div`
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  gap: 5px;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 5px;
+  box-shadow: 0 3px 3px 2px rgba(0, 0, 0, 0.19);
+`;
+
+const StyledInfos = styled.article`
+  flex-grow: 1.5;
+`;
+
+const StyledImage = styled(Image)`
+  margin: auto 2px;
+`;
+
+const StyledButton = styled.button`
+  background-color: ${({ $isActive }) =>
+    $isActive ? "darkseagreen" : "seashell"};
+  border-radius: 4px;
+`;
+
+const StyledButtonWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+const StyledGenre = styled.p`
+  font-style: italic;
+`;

@@ -1,8 +1,38 @@
-import { useRouter } from "next/router";
 import Header from "@/components/Header/Header";
 import Image from "next/image";
 import styled from "styled-components";
 import Navigation from "@/components/Navigation/Navigation";
+
+export default function Spotlight({ books }) {
+  const currentBook = books[Math.floor(Math.random() * books.length)];
+  return (
+    <>
+      <StyledDetailedPage>
+        <Header />
+        <StyledBookStar>Book ✨ Star</StyledBookStar>
+        <StyledBookDetail>
+          <StyledImage
+            src={currentBook.cover}
+            height={224}
+            width={150}
+            alt={`Cover Image of ${currentBook.title}`}
+          />
+          <h2>{currentBook.title}</h2>
+          <p>{currentBook.author}</p>
+          <StyledSection>
+            <span>{currentBook.genre}</span>
+            <span>{currentBook.publishYear}</span>
+            <span>{currentBook.pages} Pages</span>
+          </StyledSection>
+          <StyledDescription>
+            <span>{currentBook.description}</span>
+          </StyledDescription>
+        </StyledBookDetail>
+        <Navigation />
+      </StyledDetailedPage>
+    </>
+  );
+}
 
 const StyledImage = styled(Image)`
   border-radius: 8px;
@@ -44,34 +74,3 @@ const StyledBookStar = styled.h2`
   margin: auto;
   background-color: mintcream;
 `;
-
-export default function Spotlight({ books }) {
-  const currentBook = books[Math.floor(Math.random() * books.length)];
-  return (
-    <>
-      <StyledDetailedPage>
-        <Header />
-        <StyledBookStar>Book ✨ Star</StyledBookStar>
-        <StyledBookDetail>
-          <StyledImage
-            src={currentBook.cover}
-            height={224}
-            width={150}
-            alt={`Cover Image of ${currentBook.title}`}
-          />
-          <h2>{currentBook.title}</h2>
-          <p>{currentBook.author}</p>
-          <StyledSection>
-            <span>{currentBook.genre}</span>
-            <span>{currentBook.publishYear}</span>
-            <span>{currentBook.pages} Pages</span>
-          </StyledSection>
-          <StyledDescription>
-            <span>{currentBook.description}</span>
-          </StyledDescription>
-        </StyledBookDetail>
-        <Navigation />
-      </StyledDetailedPage>
-    </>
-  );
-}
