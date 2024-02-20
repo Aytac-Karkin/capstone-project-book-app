@@ -4,8 +4,8 @@ export default function AlreadyReadButton({ onToggle, id, isAlreadyRead }) {
   return (
     <StyledButton
       type="button"
-      onClick={(event) => {
-        onToggle(id, event);
+      onClick={() => {
+        onToggle(id);
       }}
       $isAlreadyRead={isAlreadyRead}
       aria-label={

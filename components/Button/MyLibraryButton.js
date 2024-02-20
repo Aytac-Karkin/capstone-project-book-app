@@ -4,8 +4,8 @@ export default function MyLibraryButton({ onToggle, id, isBookmarked }) {
   return (
     <StyledButton
       type="button"
-      onClick={(event) => {
-        onToggle(id, event);
+      onClick={() => {
+        onToggle(id);
       }}
       $isBookmarked={isBookmarked}
       aria-label={isBookmarked ? "remove from my-library" : "add to my-library"}

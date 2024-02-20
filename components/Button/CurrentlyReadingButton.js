@@ -8,8 +8,8 @@ export default function CurrentlyReadingButton({
   return (
     <StyledButton
       type="button"
-      onClick={(event) => {
-        onToggle(id, event);
+      onClick={() => {
+        onToggle(id);
       }}
       $isCurrentlyReading={isCurrentlyReading}
       aria-label={

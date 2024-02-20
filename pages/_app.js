@@ -7,8 +7,7 @@ export default function App({ Component, pageProps }) {
     defaultValue: [],
   });
 
-  function handleToggleBookmark(id, event) {
-    event.preventDefault();
+  function handleToggleBookmark(id) {
     const currentBook = booksInfo.find((book) => book.id === id);
     if (currentBook) {
       setBooksInfo(
@@ -23,8 +22,7 @@ export default function App({ Component, pageProps }) {
     }
   }
 
-  function handleToggleAlreadyRead(id, event) {
-    event.preventDefault();
+  function handleToggleAlreadyRead(id) {
     const currentBook = booksInfo.find((book) => book.id === id);
     if (currentBook) {
       setBooksInfo(
@@ -39,8 +37,7 @@ export default function App({ Component, pageProps }) {
     }
   }
 
-  function handleToggleCurrentlyReading(id, event) {
-    event.preventDefault();
+  function handleToggleCurrentlyReading(id) {
     const currentBook = booksInfo.find((book) => book.id === id);
     if (currentBook) {
       setBooksInfo(

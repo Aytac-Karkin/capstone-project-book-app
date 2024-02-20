@@ -10,7 +10,7 @@ export default function Header() {
         {router.pathname !== "/" &&
           router.pathname !== "/spotlight" &&
           router.pathname !== "/my-library" && (
-            <StyledBackButton onClick={() => router.back()}>
+            <StyledBackButton onClick={router.back}>
               <span
                 role="image"
                 aria-label="Arrow emoji indicating the return to the previous page"

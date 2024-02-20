@@ -1,6 +1,5 @@
 import BookCard from "../BookCard/BookCard";
 import styled from "styled-components";
-import Link from "next/link";
 
 export default function BookList({
   books,
@@ -13,19 +12,17 @@ export default function BookList({
     <StyledList>
       {books?.map((book) => (
         <li key={book.id}>
-          <StyledLink href={`/book-details/${book.id}`}>
-            <BookCard
-              title={book.title}
-              author={book.author}
-              genre={book.genre}
-              cover={book.cover}
-              booksInfo={booksInfo}
-              bookId={book.id}
-              handleToggleAlreadyRead={handleToggleAlreadyRead}
-              handleToggleBookmark={handleToggleBookmark}
-              handleToggleCurrentlyReading={handleToggleCurrentlyReading}
-            />
-          </StyledLink>
+          <BookCard
+            title={book.title}
+            author={book.author}
+            genre={book.genre}
+            cover={book.cover}
+            booksInfo={booksInfo}
+            bookId={book.id}
+            handleToggleAlreadyRead={handleToggleAlreadyRead}
+            handleToggleBookmark={handleToggleBookmark}
+            handleToggleCurrentlyReading={handleToggleCurrentlyReading}
+          />
         </li>
       ))}
     </StyledList>
@@ -42,9 +39,4 @@ const StyledList = styled.ul`
   padding-left: 5px;
   padding-right: 5px;
   padding-bottom: 40px;
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: black;
 `;

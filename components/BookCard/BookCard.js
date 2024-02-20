@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
+import Link from "next/link";
 
 export default function BookCard({
   title,
@@ -22,12 +23,14 @@ export default function BookCard({
 
   return (
     <StyledBook>
-      <StyledImage src={cover} alt={title} width={100} height={149} />
-      <StyledInfos>
-        <h4>{title}</h4>
-        <p>{author}</p>
-        <StyledGenre>{genre}</StyledGenre>
-      </StyledInfos>
+      <StyledLink href={`/book-details/${bookId}`}>
+        <StyledImage src={cover} alt={title} width={100} height={149} />
+        <StyledInfos>
+          <h4>{title}</h4>
+          <p>{author}</p>
+          <StyledGenre>{genre}</StyledGenre>
+        </StyledInfos>
+      </StyledLink>
       <StyledButtonWrapper>
         <StyledButton
           aria-label={
@@ -36,7 +39,7 @@ export default function BookCard({
               : "add to my-library"
           }
           $isActive={currentBookIsBookmarked}
-          onClick={(event) => handleToggleBookmark(bookId, event)}
+          onClick={() => handleToggleBookmark(bookId)}
         >
           ☆
         </StyledButton>
@@ -47,7 +50,7 @@ export default function BookCard({
               : "add to list of books I am currently reading"
           }
           $isActive={currentBookIsCurrentlyReading}
-          onClick={(event) => handleToggleCurrentlyReading(bookId, event)}
+          onClick={() => handleToggleCurrentlyReading(bookId)}
         >
           📖
         </StyledButton>
@@ -58,7 +61,7 @@ export default function BookCard({
               : "add to list of books I have already read"
           }
           $isActive={currentBookIsAlreadyRead}
-          onClick={(event) => handleToggleAlreadyRead(bookId, event)}
+          onClick={() => handleToggleAlreadyRead(bookId)}
         >
           ✔️
         </StyledButton>
@@ -76,6 +79,14 @@ const StyledBook = styled.div`
   border-radius: 8px;
   padding: 5px;
   box-shadow: 0 3px 3px 2px rgba(0, 0, 0, 0.19);
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  display: flex;
+  width: 90%;
+  gap: 8px;
 `;
 
 const StyledInfos = styled.article`

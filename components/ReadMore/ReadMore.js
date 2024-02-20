@@ -11,9 +11,11 @@ export default function ReadMore({ description }) {
   return (
     <StyledParagraph>
       {isReadMore ? description.slice(0, readMoreLength) : description}
-      <StyledButton onClick={() => toggleReadMore()}>
-        {isReadMore ? "...read more" : " show less"}
-      </StyledButton>
+      {description.length > readMoreLength && (
+        <StyledButton onClick={toggleReadMore}>
+          {isReadMore ? "...read more" : " show less"}
+        </StyledButton>
+      )}
     </StyledParagraph>
   );
 }

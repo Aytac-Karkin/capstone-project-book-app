@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-export default function LetterCount() {
+export default function NotesInput() {
   const [text, setText] = useState("");
   const letterCount = text.length;
 
   const maxLength = 250;
 
-  const handleTextChange = (event) => {
+  function handleTextChange(event) {
     setText(event.target.value);
-  };
+  }
 
   return (
     <>

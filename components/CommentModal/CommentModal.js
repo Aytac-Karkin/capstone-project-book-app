@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import useLocalStorageState from "use-local-storage-state";
-import LetterCount from "../LetterCount/LetterCount";
+import NotesInput from "../NotesInput/NotesInput";
 import { uid } from "uid";
 
 export default function CommentModal({ id }) {
@@ -55,7 +55,7 @@ export default function CommentModal({ id }) {
       </CommentsList>
       <StyledSection>
         <p>
-          <CommentButton onClick={() => toggleModal()}>+</CommentButton>
+          <CommentButton onClick={toggleModal}>+</CommentButton>
           add a thought
         </p>
       </StyledSection>
@@ -63,10 +63,10 @@ export default function CommentModal({ id }) {
       {modal && (
         <Overlay>
           <CommentForm onSubmit={handleSubmit}>
-            <LetterCount />
+            <NotesInput />
             <ButtonWrapper>
               <StyledButton type="submit">Save my thoughts</StyledButton>
-              <StyledButton type="button" onClick={() => toggleSkip()}>
+              <StyledButton type="button" onClick={toggleSkip}>
                 Cancel
               </StyledButton>
             </ButtonWrapper>
@@ -79,7 +79,7 @@ export default function CommentModal({ id }) {
           <ConfirmationModal>
             <h5>Are you sure you want to cancel adding your thoughts?</h5>
             <ButtonWrapper>
-              <StyledButton onClick={() => closeSkipModal()}>No!</StyledButton>
+              <StyledButton onClick={closeSkipModal}>No!</StyledButton>
               <StyledButton
                 onClick={() => {
                   setSkip(false);
