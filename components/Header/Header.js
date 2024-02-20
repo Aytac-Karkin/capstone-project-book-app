@@ -5,7 +5,7 @@ export default function Header() {
   const router = useRouter();
 
   return (
-    <StyledHomepagediv>
+    <StyledContainer>
       <StyledHeader>
         {router.pathname !== "/" &&
           router.pathname !== "/spotlight" &&
@@ -21,7 +21,7 @@ export default function Header() {
           )}
         <StyledHeadline>Shelfie</StyledHeadline>
       </StyledHeader>
-    </StyledHomepagediv>
+    </StyledContainer>
   );
 }
 
@@ -43,7 +43,7 @@ const StyledBackButton = styled.button`
   }
 `;
 
-const StyledHomepagediv = styled.div`
+const StyledContainer = styled.div`
   width: 90%;
   max-width: 600px;
   margin: auto;

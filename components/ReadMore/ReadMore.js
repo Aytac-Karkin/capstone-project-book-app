@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-export default function ReadMore({ description }) {
+export default function ReadMore({ description, pathName }) {
   const [isReadMore, setIsReadMore] = useState(true);
   function toggleReadMore() {
     setIsReadMore(!isReadMore);
@@ -10,12 +10,15 @@ export default function ReadMore({ description }) {
 
   return (
     <StyledParagraph>
-      {isReadMore ? description.slice(0, readMoreLength) : description}
-      {description.length > readMoreLength && (
-        <StyledButton onClick={toggleReadMore}>
-          {isReadMore ? "...read more" : " show less"}
-        </StyledButton>
-      )}
+      {isReadMore && pathName === "/book-details/[id]"
+        ? description.slice(0, readMoreLength)
+        : description}
+      {description.length > readMoreLength &&
+        pathName === "/book-details/[id]" && (
+          <StyledButton onClick={toggleReadMore}>
+            {isReadMore ? "...read more" : " show less"}
+          </StyledButton>
+        )}
     </StyledParagraph>
   );
 }

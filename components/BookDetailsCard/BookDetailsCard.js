@@ -15,7 +15,7 @@ export default function BookDetailsCard({
 }) {
   const { cover, title, id, author, genre, publishYear, pages, description } =
     book;
-  const currentBookInfo = booksInfo.find((bookInfo) => bookInfo.id === id);
+  const currentBookInfo = booksInfo?.find((bookInfo) => bookInfo.id === id);
 
   return (
     <StyledBookDetail>
@@ -51,7 +51,7 @@ export default function BookDetailsCard({
         <li>{publishYear}</li>
         <li>{pages} Pages</li>
       </StyledSection>
-      <ReadMore description={description} />
+      <ReadMore description={description} pathName={pathName} />
     </StyledBookDetail>
   );
 }

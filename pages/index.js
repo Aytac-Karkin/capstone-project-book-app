@@ -219,10 +219,7 @@ const Overlay = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   position: fixed;
   background-color: rgba(49, 49, 49, 0.8);
 `;
