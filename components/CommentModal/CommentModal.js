@@ -5,24 +5,25 @@ import NotesInput from "../NotesInput/NotesInput";
 import { uid } from "uid";
 
 export default function CommentModal({ id }) {
-  const [modal, setModal] = useState(false);
-  const [skip, setSkip] = useState(false);
+  const [modalState, setModalState] = useState({
+    isOpen: false,
+    isCancelled: false,
+  });
+
   const [comments, setComments] = useLocalStorageState("comments", {
     defaultValue: [],
   });
 
-  function toggleModal() {
-    setModal(!modal);
+  function openModal() {
+    setModalState({ isOpen: true, isCancelled: false });
   }
 
-  function toggleSkip() {
-    setModal(false);
-    setSkip(true);
+  function closeModal() {
+    setModalState({ isOpen: false, isCancelled: false });
   }
 
-  function closeSkipModal() {
-    setSkip(false);
-    setModal(true);
+  function cancelModal() {
+    setModalState({ isOpen: false, isCancelled: true });
   }
 
   function handleSubmit(event) {
@@ -36,7 +37,7 @@ export default function CommentModal({ id }) {
         { bookId: id, comment: comment, uniqueId: uid() },
       ]);
       form.reset();
-      setModal(false);
+      setModalState({ ...modalState, isOpen: false });
     }
   }
 
@@ -55,18 +56,18 @@ export default function CommentModal({ id }) {
       </CommentsList>
       <StyledSection>
         <p>
-          <CommentButton onClick={toggleModal}>+</CommentButton>
+          <CommentButton onClick={openModal}>+</CommentButton>
           add a thought
         </p>
       </StyledSection>
 
-      {modal && (
+      {modalState.isOpen && (
         <Overlay>
           <CommentForm onSubmit={handleSubmit}>
             <NotesInput />
             <ButtonWrapper>
               <StyledButton type="submit">Save my thoughts</StyledButton>
-              <StyledButton type="button" onClick={toggleSkip}>
+              <StyledButton type="button" onClick={cancelModal}>
                 Cancel
               </StyledButton>
             </ButtonWrapper>
@@ -74,20 +75,13 @@ export default function CommentModal({ id }) {
         </Overlay>
       )}
 
-      {skip && (
+      {modalState.isCancelled && (
         <Overlay>
           <ConfirmationModal>
             <h5>Are you sure you want to cancel adding your thoughts?</h5>
             <ButtonWrapper>
-              <StyledButton onClick={closeSkipModal}>No!</StyledButton>
-              <StyledButton
-                onClick={() => {
-                  setSkip(false);
-                  setModal(false);
-                }}
-              >
-                Yes
-              </StyledButton>
+              <StyledButton onClick={openModal}>No!</StyledButton>
+              <StyledButton onClick={closeModal}>Yes</StyledButton>
             </ButtonWrapper>
           </ConfirmationModal>
         </Overlay>

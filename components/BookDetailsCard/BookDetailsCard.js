@@ -15,6 +15,8 @@ export default function BookDetailsCard({
 }) {
   const { cover, title, id, author, genre, publishYear, pages, description } =
     book;
+  const currentBookInfo = booksInfo.find((bookInfo) => bookInfo.id === id);
+
   return (
     <StyledBookDetail>
       <StyledImage
@@ -28,24 +30,17 @@ export default function BookDetailsCard({
           <MyLibraryButton
             onToggle={handleToggleBookmark}
             id={id}
-            isBookmarked={
-              booksInfo.find((bookInfo) => bookInfo.id === id)?.isBookmarked
-            }
+            isBookmarked={currentBookInfo?.isBookmarked}
           />
           <CurrentlyReadingButton
             onToggle={handleToggleCurrentlyReading}
             id={id}
-            isCurrentlyReading={
-              booksInfo.find((bookInfo) => bookInfo.id === id)
-                ?.isCurrentlyReading
-            }
+            isCurrentlyReading={currentBookInfo?.isCurrentlyReading}
           />
           <AlreadyReadButton
             onToggle={handleToggleAlreadyRead}
             id={id}
-            isAlreadyRead={
-              booksInfo.find((bookInfo) => bookInfo.id === id)?.isAlreadyRead
-            }
+            isAlreadyRead={currentBookInfo?.isAlreadyRead}
           />
         </StyledButtonWrapper>
       )}

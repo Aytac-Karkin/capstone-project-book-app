@@ -30,9 +30,6 @@ const StyledList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-bottom: 40px;
+  margin: 0 auto;
+  padding: 0 5px 40px;
 `;
