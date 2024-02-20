@@ -24,15 +24,8 @@ export default function BookDetailsPage({
       <StyledDetailedPage>
         <Header />
         <BookDetailsCard
-          cover={currentBook.cover}
-          title={currentBook.title}
+          book={currentBook}
           booksInfo={booksInfo}
-          id={currentBook.id}
-          author={currentBook.author}
-          genre={currentBook.genre}
-          publishYear={currentBook.publishYear}
-          pages={currentBook.pages}
-          description={currentBook.description}
           handleToggleBookmark={handleToggleBookmark}
           handleToggleCurrentlyReading={handleToggleCurrentlyReading}
           handleToggleAlreadyRead={handleToggleAlreadyRead}

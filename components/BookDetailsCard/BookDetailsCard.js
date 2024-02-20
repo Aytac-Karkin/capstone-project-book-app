@@ -6,20 +6,15 @@ import styled from "styled-components";
 import Image from "next/image";
 
 export default function BookDetailsCard({
-  cover,
-  title,
+  book,
   booksInfo,
-  id,
-  author,
-  genre,
-  publishYear,
-  pages,
-  description,
   handleToggleAlreadyRead,
   handleToggleBookmark,
   handleToggleCurrentlyReading,
   pathName,
 }) {
+  const { cover, title, id, author, genre, publishYear, pages, description } =
+    book;
   return (
     <StyledBookDetail>
       <StyledImage

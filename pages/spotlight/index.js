@@ -10,16 +10,7 @@ export default function Spotlight({ books }) {
       <StyledDetailedPage>
         <Header />
         <StyledBookStar>Book ✨ Star</StyledBookStar>
-        <BookDetailsCard
-          cover={currentBook.cover}
-          title={currentBook.title}
-          id={currentBook.id}
-          author={currentBook.author}
-          genre={currentBook.genre}
-          publishYear={currentBook.publishYear}
-          pages={currentBook.pages}
-          description={currentBook.description}
-        />
+        <BookDetailsCard book={currentBook} />
         <Navigation />
       </StyledDetailedPage>
     </>
