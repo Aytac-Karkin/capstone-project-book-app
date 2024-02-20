@@ -13,12 +13,8 @@ export default function BookList({
       {books?.map((book) => (
         <li key={book.id}>
           <BookCard
-            title={book.title}
-            author={book.author}
-            genre={book.genre}
-            cover={book.cover}
+            book={book}
             booksInfo={booksInfo}
-            bookId={book.id}
             handleToggleAlreadyRead={handleToggleAlreadyRead}
             handleToggleBookmark={handleToggleBookmark}
             handleToggleCurrentlyReading={handleToggleCurrentlyReading}

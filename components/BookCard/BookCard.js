@@ -3,18 +3,15 @@ import styled from "styled-components";
 import Link from "next/link";
 
 export default function BookCard({
-  title,
-  author,
-  genre,
-  cover,
+  book,
   booksInfo,
-  bookId,
   handleToggleBookmark,
   handleToggleAlreadyRead,
   handleToggleCurrentlyReading,
 }) {
+  const { title, author, genre, cover, id } = book;
   const currentBookInfo = booksInfo?.find((bookInfo) => {
-    return bookInfo.id === bookId;
+    return bookInfo.id === id;
   });
 
   const currentBookIsAlreadyRead = currentBookInfo?.isAlreadyRead;
@@ -23,7 +20,7 @@ export default function BookCard({
 
   return (
     <StyledBook>
-      <StyledLink href={`/book-details/${bookId}`}>
+      <StyledLink href={`/book-details/${id}`}>
         <StyledImage src={cover} alt={title} width={100} height={149} />
         <StyledInfos>
           <h4>{title}</h4>
@@ -39,7 +36,7 @@ export default function BookCard({
               : "add to my-library"
           }
           $isActive={currentBookIsBookmarked}
-          onClick={() => handleToggleBookmark(bookId)}
+          onClick={() => handleToggleBookmark(id)}
         >
           ☆
         </StyledButton>
@@ -50,7 +47,7 @@ export default function BookCard({
               : "add to list of books I am currently reading"
           }
           $isActive={currentBookIsCurrentlyReading}
-          onClick={() => handleToggleCurrentlyReading(bookId)}
+          onClick={() => handleToggleCurrentlyReading(id)}
         >
           📖
         </StyledButton>
@@ -61,7 +58,7 @@ export default function BookCard({
               : "add to list of books I have already read"
           }
           $isActive={currentBookIsAlreadyRead}
-          onClick={() => handleToggleAlreadyRead(bookId)}
+          onClick={() => handleToggleAlreadyRead(id)}
         >
           ✔️
         </StyledButton>
@@ -109,6 +106,6 @@ const StyledButtonWrapper = styled.section`
   gap: 4px;
 `;
 
-const StyledGenre = styled.p`
+const StyledGenre = styled.span`
   font-style: italic;
 `;
