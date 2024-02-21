@@ -9,7 +9,8 @@ export default function Header() {
       <StyledHeader>
         {router.pathname !== "/" &&
           router.pathname !== "/spotlight" &&
-          router.pathname !== "/my-library" && (
+          router.pathname !== "/my-library" &&
+          router.pathname !== "/challenge" && (
             <StyledBackButton onClick={router.back}>
               <span
                 role="image"
