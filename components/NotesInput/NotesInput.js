@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-export default function NotesInput() {
-  const [text, setText] = useState("");
+export default function NotesInput({ commentToBeEdited }) {
+  const [text, setText] = useState(commentToBeEdited || "");
   const letterCount = text.length;
 
   const maxLength = 250;

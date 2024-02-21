@@ -58,9 +58,38 @@ export default function CommentModal({ id }) {
     }
   }
 
+  function editComment(id) {
+    setModalState({ ...modalState, isEditing: true, toBeEdited: id });
+  }
+
+  function handleEditSubmit(event, commentId) {
+    event.preventDefault();
+    const form = event.target;
+
+    const comment = form.elements.thought.value;
+    if (comment.trim().length > 0) {
+      const filteredComments = comments.filter((comment) => {
+        return comment?.uniqueId !== commentId;
+      });
+      setComments([
+        ...filteredComments,
+        { bookId: id, comment: comment, uniqueId: commentId },
+      ]);
+      form.reset();
+      setModalState({ ...modalState, isEditing: false });
+    }
+  }
+
+  const commentToBeEdited = comments.find(
+    (comment) => comment?.uniqueId === modalState.toBeEdited
+  );
+
   const currentComments = comments.filter((comment) => {
     return comment?.bookId === id;
   });
+
+  console.log(commentToBeEdited);
+
   return (
     <>
       <h4>What were your thoughts on this book?</h4>
@@ -68,6 +97,9 @@ export default function CommentModal({ id }) {
         {currentComments.map((currentComment) => (
           <StyledComment key={currentComment.uniqueId}>
             {currentComment.comment}
+            <StyledButton onClick={() => editComment(currentComment.uniqueId)}>
+              ✎
+            </StyledButton>
             <DeleteButton
               onClick={() => openDeleteModal(currentComment.uniqueId)}
             >
@@ -118,6 +150,24 @@ export default function CommentModal({ id }) {
               <StyledButton onClick={deleteComment}>Yes</StyledButton>
             </ButtonWrapper>
           </ConfirmationModal>
+        </Overlay>
+      )}
+
+      {modalState.isEditing && (
+        <Overlay>
+          <CommentForm
+            onSubmit={() =>
+              handleEditSubmit(event, commentToBeEdited?.uniqueId)
+            }
+          >
+            <NotesInput commentToBeEdited={commentToBeEdited?.comment} />
+            <ButtonWrapper>
+              <StyledButton type="submit">Save my thoughts</StyledButton>
+              <StyledButton type="button" onClick={cancelModal}>
+                Cancel
+              </StyledButton>
+            </ButtonWrapper>
+          </CommentForm>
         </Overlay>
       )}
     </>
