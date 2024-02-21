@@ -3,28 +3,56 @@ import { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 
 export default function ReadingChallenge() {
+  const [modalState, setModalState] = useState({
+    isOpen: false,
+    isCancelled: false,
+  });
+
+  function openModal() {
+    setModalState({ isOpen: true, isSaved: false });
+  }
+
+  function savedModal() {
+    setModalState({ isOpen: false, isSaved: true });
+  }
+
+  function closeModal() {
+    setModalState({ isOpen: false, isSaved: false });
+  }
+
   return (
     <>
       <StyledBox>
-        <section>This will be a text</section>
-        <StyledButton>+</StyledButton>
+        <StyledButton onClick={openModal}>+</StyledButton>
       </StyledBox>
-      <Overlay>
-        <CommentForm>
-          <h4>I want to read</h4>
-          <div>
-            <input type="number" min="0" step="1"></input>
-            <select>
-              <option value="books">Books</option>
-              <option value="pages">Pages</option>
-            </select>
-          </div>
-          <ButtonWrapper>
-            <button>Save Challenge</button>
-            <button>Cancel</button>
-          </ButtonWrapper>
-        </CommentForm>
-      </Overlay>
+
+      {modalState.isOpen && (
+        <Overlay>
+          <CommentForm>
+            <h4>I want to read</h4>
+            <div>
+              <input type="number" min="0" step="1"></input>
+              <select>
+                <option value="books">Books</option>
+                <option value="pages">Pages</option>
+              </select>
+            </div>
+            <ButtonWrapper>
+              <button onClick={savedModal}>Save Challenge</button>
+              <button>Cancel</button>
+            </ButtonWrapper>
+          </CommentForm>
+        </Overlay>
+      )}
+
+      {modalState.isSaved && (
+        <Overlay onClick={closeModal}>
+          <Container>
+            <h4>Congratulations 🎉</h4>
+            <p>You succesfully created a new challenge</p>
+          </Container>
+        </Overlay>
+      )}
     </>
   );
 }
@@ -83,4 +111,15 @@ const ButtonWrapper = styled.section`
   flex-direction: column;
   width: 50%;
   margin: 10%;
+`;
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(255, 245, 238);
+  border-radius: 8px;
+  padding: 20px;
+  width: 90%;
 `;
