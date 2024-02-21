@@ -26,6 +26,23 @@ export default function CommentModal({ id }) {
     setModalState({ isOpen: false, isCancelled: true });
   }
 
+  function openDeleteModal(id) {
+    setModalState({ ...modalState, isDelete: true, toBeDeleted: id });
+  }
+
+  function deleteComment() {
+    setModalState({ ...modalState, isDelete: false });
+    setComments(
+      comments.filter((comment) => {
+        return comment?.uniqueId !== modalState.toBeDeleted;
+      })
+    );
+  }
+
+  function cancelDeleteComment() {
+    setModalState({ ...modalState, isDelete: false, toBeDeleted: null });
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -42,7 +59,7 @@ export default function CommentModal({ id }) {
   }
 
   const currentComments = comments.filter((comment) => {
-    return comment.bookId === id;
+    return comment?.bookId === id;
   });
   return (
     <>
@@ -51,6 +68,11 @@ export default function CommentModal({ id }) {
         {currentComments.map((currentComment) => (
           <StyledComment key={currentComment.uniqueId}>
             {currentComment.comment}
+            <DeleteButton
+              onClick={() => openDeleteModal(currentComment.uniqueId)}
+            >
+              🗑️
+            </DeleteButton>
           </StyledComment>
         ))}
       </CommentsList>
@@ -82,6 +104,18 @@ export default function CommentModal({ id }) {
             <ButtonWrapper>
               <StyledButton onClick={openModal}>No!</StyledButton>
               <StyledButton onClick={closeModal}>Yes</StyledButton>
+            </ButtonWrapper>
+          </ConfirmationModal>
+        </Overlay>
+      )}
+
+      {modalState.isDelete && (
+        <Overlay>
+          <ConfirmationModal>
+            <h5>Are you sure you want to delete your thought?</h5>
+            <ButtonWrapper>
+              <StyledButton onClick={cancelDeleteComment}>No!</StyledButton>
+              <StyledButton onClick={deleteComment}>Yes</StyledButton>
             </ButtonWrapper>
           </ConfirmationModal>
         </Overlay>
@@ -152,8 +186,15 @@ const StyledComment = styled.p`
   border-radius: 4px;
   padding: 3px;
   word-wrap: break-word;
+  position: relative;
 `;
 
 const StyledButton = styled.button`
   margin: 3px;
+`;
+
+const DeleteButton = styled.button`
+  position: absolute;
+  bottom: 1px;
+  right: 2px;
 `;
