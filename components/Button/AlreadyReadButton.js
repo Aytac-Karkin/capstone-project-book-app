@@ -1,18 +1,11 @@
 import styled from "styled-components";
 
-const StyledButton = styled.button`
-  background-color: ${(props) =>
-    props.$isAlreadyRead ? "darkseagreen" : "seashell"};
-  padding: 0.3rem 0.5rem;
-  border-radius: 5px;
-`;
-
 export default function AlreadyReadButton({ onToggle, id, isAlreadyRead }) {
   return (
     <StyledButton
       type="button"
-      onClick={(event) => {
-        onToggle(id, event);
+      onClick={() => {
+        onToggle(id);
       }}
       $isAlreadyRead={isAlreadyRead}
       aria-label={
@@ -25,3 +18,10 @@ export default function AlreadyReadButton({ onToggle, id, isAlreadyRead }) {
     </StyledButton>
   );
 }
+
+const StyledButton = styled.button`
+  background-color: ${(props) =>
+    props.$isAlreadyRead ? "darkseagreen" : "seashell"};
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+`;

@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-const StyledLabel = styled.label`
-  padding: 2px;
-`;
-
 export default function FilterCategory({ filterNames, category }) {
   return (
     <>
@@ -21,3 +17,7 @@ export default function FilterCategory({ filterNames, category }) {
     </>
   );
 }
+
+const StyledLabel = styled.label`
+  padding: 2px;
+`;

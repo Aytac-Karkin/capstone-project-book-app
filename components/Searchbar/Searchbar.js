@@ -1,5 +1,18 @@
 import styled from "styled-components";
 
+export default function SearchBar({ setSearchTerm }) {
+  return (
+    <SearchInput
+      onChange={(event) => setSearchTerm(event.target.value.toLowerCase())}
+      type="text"
+      id="searchTerm"
+      name="searchTerm"
+      placeholder="🔍 search... "
+      aria-label="searchbar"
+    />
+  );
+}
+
 const SearchBarContainer = styled.form`
   display: flex;
   justify-content: center;
@@ -13,16 +26,3 @@ const SearchInput = styled.input`
   margin: auto;
   margin-bottom: 0.5rem;
 `;
-
-export default function SearchBar({ setSearchTerm }) {
-  return (
-    <SearchInput
-      onChange={(event) => setSearchTerm(event.target.value.toLowerCase())}
-      type="text"
-      id="searchTerm"
-      name="searchTerm"
-      placeholder="🔍 search... "
-      aria-label="searchbar"
-    />
-  );
-}
