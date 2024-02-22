@@ -68,10 +68,10 @@ export default function CommentModal({ id }) {
 
     const comment = form.elements.thought.value;
     if (comment.trim().length > 0) {
-      const updatedComments = comments.map((commentParameter) => {
-        return commentParameter?.uniqueId === commentId
-          ? { ...commentParameter, comment: comment }
-          : commentParameter;
+      const updatedComments = comments.map((comment_) => {
+        return comment_.uniqueId === commentId
+          ? { ...comment_, comment: comment }
+          : comment_;
       });
       setComments(updatedComments);
       form.reset();
