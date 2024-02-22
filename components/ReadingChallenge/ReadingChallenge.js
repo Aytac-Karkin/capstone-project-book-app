@@ -42,7 +42,9 @@ export default function ReadingChallenge() {
         ) : (
           <Paragraph>You have not created a challenge yet</Paragraph>
         )}
-        <StyledButton onClick={openModal}>+</StyledButton>
+        <StyledButton onClick={openModal}>
+          {challenge !== null ? "🖊️" : "+"}
+        </StyledButton>
       </StyledBox>
 
       {modalState.isOpen && (
@@ -57,7 +59,6 @@ export default function ReadingChallenge() {
                 value={formAmount}
                 onChange={(event) => setFormAmount(event.target.value)}
               />
-
               <select
                 value={formType}
                 onChange={(event) => setFormType(event.target.value)}
