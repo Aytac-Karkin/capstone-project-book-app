@@ -15,11 +15,11 @@ export default function CommentModal({ id }) {
     defaultValue: [],
   });
 
-  function openModal() {
+  function openAddCommentModal() {
     setModalState({ isOpen: true, isCancelled: false });
   }
 
-  function closeModal() {
+  function closeAddCommentModal() {
     setModalState({ isOpen: false, isCancelled: false });
   }
 
@@ -120,7 +120,7 @@ export default function CommentModal({ id }) {
       </CommentsList>
       <StyledSection>
         <p>
-          <CommentButton onClick={openModal}>+</CommentButton>
+          <CommentButton onClick={openAddCommentModal}>+</CommentButton>
           add a thought
         </p>
       </StyledSection>
@@ -141,8 +141,8 @@ export default function CommentModal({ id }) {
 
       {modalState.isCancelled && (
         <ConfirmationModalWindow
-          onCancel={openModal}
-          onConfirm={closeModal}
+          onCancel={openAddCommentModal}
+          onConfirm={closeAddCommentModal}
           text="cancel adding your thoughts"
         />
       )}
@@ -199,17 +199,6 @@ const ButtonWrapper = styled.section`
   flex-direction: column;
   width: 50%;
   margin: 10%;
-`;
-
-const ConfirmationModal = styled.section`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  background-color: rgb(255, 255, 255);
-  border-radius: 8px;
-  padding: 20px;
-  border: 3px rgb(255, 0, 0) solid;
 `;
 
 const Overlay = styled.div`
