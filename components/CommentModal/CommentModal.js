@@ -68,13 +68,12 @@ export default function CommentModal({ id }) {
 
     const comment = form.elements.thought.value;
     if (comment.trim().length > 0) {
-      const filteredComments = comments.filter((comment) => {
-        return comment?.uniqueId !== commentId;
+      const updatedComments = comments.map((commentParameter) => {
+        return commentParameter?.uniqueId === commentId
+          ? { ...commentParameter, comment: comment }
+          : commentParameter;
       });
-      setComments([
-        ...filteredComments,
-        { bookId: id, comment: comment, uniqueId: commentId },
-      ]);
+      setComments(updatedComments);
       form.reset();
       setModalState({ ...modalState, isEditing: false });
     }
@@ -88,8 +87,6 @@ export default function CommentModal({ id }) {
     return comment?.bookId === id;
   });
 
-  console.log(commentToBeEdited);
-
   return (
     <>
       <h4>What were your thoughts on this book?</h4>
@@ -97,9 +94,9 @@ export default function CommentModal({ id }) {
         {currentComments.map((currentComment) => (
           <StyledComment key={currentComment.uniqueId}>
             {currentComment.comment}
-            <StyledButton onClick={() => editComment(currentComment.uniqueId)}>
+            <EditButton onClick={() => editComment(currentComment.uniqueId)}>
               ✎
-            </StyledButton>
+            </EditButton>
             <DeleteButton
               onClick={() => openDeleteModal(currentComment.uniqueId)}
             >
@@ -247,4 +244,12 @@ const DeleteButton = styled.button`
   position: absolute;
   bottom: 1px;
   right: 2px;
+  font-size: 0.8rem;
+`;
+
+const EditButton = styled.button`
+  position: absolute;
+  bottom: 1px;
+  right: 35px;
+  font-size: 0.85rem;
 `;
