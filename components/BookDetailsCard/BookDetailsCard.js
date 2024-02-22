@@ -4,6 +4,7 @@ import ReadMore from "@/components/ReadMore/ReadMore";
 import CurrentlyReadingButton from "@/components/Button/CurrentlyReadingButton";
 import styled from "styled-components";
 import Image from "next/image";
+import Rating from "../Rating/Rating";
 
 export default function BookDetailsCard({
   book,
@@ -51,6 +52,7 @@ export default function BookDetailsCard({
         <li>{publishYear}</li>
         <li>{pages} Pages</li>
       </StyledSection>
+      {pathName === "/book-details/[id]" && <Rating id={id} />}
       <ReadMore description={description} pathName={pathName} />
     </StyledBookDetail>
   );
