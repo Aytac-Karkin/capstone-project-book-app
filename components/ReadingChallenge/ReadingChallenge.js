@@ -8,11 +8,23 @@ export default function ReadingChallenge() {
     isCancelled: false,
   });
 
+  const [challenge, setChallenge] = useLocalStorageState("challenge", {
+    defaultValue: null,
+  });
+
+  const [progress, setProgress] = useLocalStorageState("progress", {
+    defaultValue: 0,
+  });
+
+  const [formAmount, setFormAmount] = useState("");
+  const [formType, setFormType] = useState("books");
+
   function openModal() {
     setModalState({ isOpen: true, isSaved: false });
   }
 
-  function savedModal() {
+  function savedModal(amount, type) {
+    setChallenge({ amount, type });
     setModalState({ isOpen: false, isSaved: true });
   }
 
@@ -23,25 +35,44 @@ export default function ReadingChallenge() {
   return (
     <>
       <StyledBox>
+        {challenge !== null ? (
+          <Paragraph>
+            You have read {progress} out of {challenge.amount} {challenge.type}
+          </Paragraph>
+        ) : (
+          <Paragraph>You have not created a challenge yet</Paragraph>
+        )}
         <StyledButton onClick={openModal}>+</StyledButton>
       </StyledBox>
 
       {modalState.isOpen && (
         <Overlay>
-          <CommentForm>
+          <ChallengeForm>
             <h4>I want to read</h4>
             <div>
-              <input type="number" min="0" step="1"></input>
-              <select>
+              <input
+                type="number"
+                min="0"
+                step="1"
+                value={formAmount}
+                onChange={(event) => setFormAmount(event.target.value)}
+              />
+
+              <select
+                value={formType}
+                onChange={(event) => setFormType(event.target.value)}
+              >
                 <option value="books">Books</option>
                 <option value="pages">Pages</option>
               </select>
             </div>
             <ButtonWrapper>
-              <button onClick={savedModal}>Save Challenge</button>
-              <button>Cancel</button>
+              <button onClick={() => savedModal(formAmount, formType)}>
+                Save Challenge
+              </button>
+              <button onClick={closeModal}>Cancel</button>
             </ButtonWrapper>
-          </CommentForm>
+          </ChallengeForm>
         </Overlay>
       )}
 
@@ -75,7 +106,7 @@ const StyledButton = styled.button`
   border-radius: 35px;
   border: 1px solid black;
   font-size: 40px;
-  margin: 185px;
+  margin: 145px;
   margin-left: 360px;
   display: flex;
   justify-content: center;
@@ -95,7 +126,7 @@ const Overlay = styled.div`
   background-color: rgba(49, 49, 49, 0.8);
 `;
 
-const CommentForm = styled.form`
+const ChallengeForm = styled.form`
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -122,4 +153,9 @@ const Container = styled.div`
   border-radius: 8px;
   padding: 20px;
   width: 90%;
+`;
+
+const Paragraph = styled.p`
+  font-size: 25px;
+  text-align: center;
 `;
