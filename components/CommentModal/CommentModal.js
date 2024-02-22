@@ -153,11 +153,9 @@ export default function CommentModal({ id }) {
       {modalState.isEditing && (
         <Overlay>
           <CommentForm
-            onSubmit={() =>
-              handleEditSubmit(event, commentToBeEdited?.uniqueId)
-            }
+            onSubmit={() => handleEditSubmit(event, commentToBeEdited.uniqueId)}
           >
-            <NotesInput commentToBeEdited={commentToBeEdited?.comment} />
+            <NotesInput commentToBeEdited={commentToBeEdited.comment} />
             <ButtonWrapper>
               <StyledButton type="submit">Save my thoughts</StyledButton>
               <StyledButton type="button" onClick={cancelModal}>
