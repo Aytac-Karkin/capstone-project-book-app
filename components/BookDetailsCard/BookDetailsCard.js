@@ -52,7 +52,7 @@ export default function BookDetailsCard({
         <li>{publishYear}</li>
         <li>{pages} Pages</li>
       </StyledSection>
-      {pathName === "/book-details/[id]" && <Rating id={id} />}
+      {currentBookInfo?.isAlreadyRead && <Rating id={id} />}
       <ReadMore description={description} pathName={pathName} />
     </StyledBookDetail>
   );
@@ -86,3 +86,5 @@ const StyledButtonWrapper = styled.div`
   right: 12%;
   gap: 1rem;
 `;
+
+// {pathName === "/book-details/[id]" && <Rating id={id} />}

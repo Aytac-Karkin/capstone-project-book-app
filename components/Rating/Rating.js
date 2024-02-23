@@ -31,7 +31,6 @@ export default function Rating({ id }) {
               value={currentRating}
               onClick={() => handleClick(currentRating)}
             />
-
             <StyledStar
               style={{
                 color:
