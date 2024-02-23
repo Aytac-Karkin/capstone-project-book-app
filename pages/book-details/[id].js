@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
 import Header from "@/components/Header/Header";
 import styled from "styled-components";
 import Navigation from "@/components/Navigation/Navigation";
@@ -16,6 +17,7 @@ export default function BookDetailsPage({
   const { id } = router.query;
   const pathName = router.pathname;
   const currentBook = books.find((book) => book.id === id);
+
   if (!currentBook) {
     return;
   }
@@ -31,7 +33,6 @@ export default function BookDetailsPage({
           handleToggleAlreadyRead={handleToggleAlreadyRead}
           pathName={pathName}
         />
-
         <CommentModal id={currentBook.id} />
         <Navigation />
       </StyledDetailedPage>

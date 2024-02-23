@@ -5,7 +5,7 @@ import styled from "styled-components";
 import FilterCategory from "@/components/FilterCategory/FilterCategory";
 import { useState } from "react";
 import genres from "../lib/genres.json";
-import SearchBar from "@/components/Searchbar/Searchbar";
+import SearchBar from "@/components/SearchBar/Searchbar";
 
 export default function HomePage({
   books,
