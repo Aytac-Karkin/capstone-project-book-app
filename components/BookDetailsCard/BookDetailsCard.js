@@ -86,5 +86,3 @@ const StyledButtonWrapper = styled.div`
   right: 12%;
   gap: 1rem;
 `;
-
-// {pathName === "/book-details/[id]" && <Rating id={id} />}
