@@ -1,23 +1,17 @@
 import styled from "styled-components";
 import { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
+import ChallengeBookList from "../ChallengeBookList/ChallengeBookList";
 
-export default function ReadingChallenge() {
+export default function ReadingChallenge({
+  books,
+  booksInfo,
+  handleToggleAlreadyRead,
+}) {
   const [modalState, setModalState] = useState({
     isOpen: false,
     isCancelled: false,
   });
-
-  const [challenge, setChallenge] = useLocalStorageState("challenge", {
-    defaultValue: null,
-  });
-
-  const [progress, setProgress] = useLocalStorageState("progress", {
-    defaultValue: 0,
-  });
-
-  const [formAmount, setFormAmount] = useState("");
-  const [formType, setFormType] = useState("books");
 
   function openModal() {
     setModalState({ isOpen: true, isSaved: false });
@@ -31,13 +25,23 @@ export default function ReadingChallenge() {
   function closeModal() {
     setModalState({ isOpen: false, isSaved: false });
   }
+  const [challenge, setChallenge] = useLocalStorageState("challenge", {
+    defaultValue: null,
+  });
+
+  const [progress, setProgress] = useLocalStorageState("progress", {
+    defaultValue: 0,
+  });
+
+  const [amount, setAmount] = useState("");
+  const [type, setType] = useState("books");
 
   return (
     <>
       <StyledBox>
         {challenge !== null ? (
           <Paragraph>
-            You have read {progress} out of {challenge.amount} {challenge.type}
+            You have read {progress} out of {amount} {type}
           </Paragraph>
         ) : (
           <Paragraph>You have not created a challenge yet</Paragraph>
@@ -46,6 +50,11 @@ export default function ReadingChallenge() {
           {challenge !== null ? "🖊️" : "+"}
         </StyledButton>
       </StyledBox>
+      <ChallengeBookList
+        books={books}
+        booksInfo={booksInfo}
+        handleToggleAlreadyRead={handleToggleAlreadyRead}
+      />
 
       {modalState.isOpen && (
         <Overlay>
@@ -56,19 +65,19 @@ export default function ReadingChallenge() {
                 type="number"
                 min="0"
                 step="1"
-                value={formAmount}
-                onChange={(event) => setFormAmount(event.target.value)}
+                value={amount}
+                onChange={(event) => setAmount(event.target.value)}
               />
               <select
-                value={formType}
-                onChange={(event) => setFormType(event.target.value)}
+                value={type}
+                onChange={(event) => setType(event.target.value)}
               >
                 <option value="books">Books</option>
                 <option value="pages">Pages</option>
               </select>
             </div>
             <ButtonWrapper>
-              <button onClick={() => savedModal(formAmount, formType)}>
+              <button onClick={() => savedModal(amount, type)}>
                 Save Challenge
               </button>
               <button onClick={closeModal}>Cancel</button>
@@ -92,13 +101,9 @@ export default function ReadingChallenge() {
 const StyledBox = styled.div`
   border: 1px solid black;
   border-radius: 8px;
-  width: 90%;
-  height: 30%;
-  position: absolute;
-  margin-left: 5%;
-  margin-right: 5%;
+  display: flex;
+  justify-content: space-evenly;
 `;
-
 const StyledButton = styled.button`
   border: none;
   background: seashell;
@@ -107,10 +112,7 @@ const StyledButton = styled.button`
   border-radius: 35px;
   border: 1px solid black;
   font-size: 40px;
-  margin: 145px;
-  margin-left: 360px;
-  display: flex;
-  justify-content: center;
+  margin: 20px;
 `;
 
 const Overlay = styled.div`
@@ -159,4 +161,6 @@ const Container = styled.div`
 const Paragraph = styled.p`
   font-size: 25px;
   text-align: center;
+  /* border: 1px solid black;
+  border-radius: 8px; */
 `;
