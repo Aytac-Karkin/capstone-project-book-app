@@ -17,10 +17,10 @@ export default function ReadingChallenge({
     setModalState({ isOpen: true, isSaved: false });
   }
 
-  function savedModal(amount, type) {
-    setChallenge({ amount, type });
-    setModalState({ isOpen: false, isSaved: true });
-  }
+  // function savedModal(amount, type) {
+  //   setChallenge({ amount, type });
+  //   setModalState({ isOpen: false, isSaved: true });
+  // }
 
   function closeModal() {
     setModalState({ isOpen: false, isSaved: false });
@@ -29,19 +29,33 @@ export default function ReadingChallenge({
     defaultValue: null,
   });
 
+  const readBooks = books.filter((book) =>
+    booksInfo.find(
+      (bookInfo) => bookInfo.id === book.id && bookInfo.isAlreadyRead
+    )
+  );
+
   const [progress, setProgress] = useLocalStorageState("progress", {
     defaultValue: 0,
   });
 
-  const [amount, setAmount] = useState("");
-  const [type, setType] = useState("books");
+  setProgress(readBooks.length);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    closeModal();
+    setChallenge({ amount: data.amount, type: data.type });
+    console.log(data);
+  }
 
   return (
     <>
       <StyledBox>
         {challenge !== null ? (
           <Paragraph>
-            You have read {progress} out of {amount} {type}
+            You have read {progress} out of {challenge.amount} {challenge.type}
           </Paragraph>
         ) : (
           <Paragraph>You have not created a challenge yet</Paragraph>
@@ -51,35 +65,30 @@ export default function ReadingChallenge({
         </StyledButton>
       </StyledBox>
       <ChallengeBookList
-        books={books}
+        readBooks={readBooks}
         booksInfo={booksInfo}
         handleToggleAlreadyRead={handleToggleAlreadyRead}
       />
 
       {modalState.isOpen && (
         <Overlay>
-          <ChallengeForm>
+          <ChallengeForm onSubmit={handleSubmit}>
             <h4>I want to read</h4>
             <div>
               <input
+                name="amount"
                 type="number"
                 min="0"
                 step="1"
-                value={amount}
-                onChange={(event) => setAmount(event.target.value)}
+                defaultValue={challenge.amount}
               />
-              <select
-                value={type}
-                onChange={(event) => setType(event.target.value)}
-              >
+              <select name="type" defaultValue={challenge.type}>
                 <option value="books">Books</option>
                 <option value="pages">Pages</option>
               </select>
             </div>
             <ButtonWrapper>
-              <button onClick={() => savedModal(amount, type)}>
-                Save Challenge
-              </button>
+              <button type="submit"> Save Challenge</button>
               <button onClick={closeModal}>Cancel</button>
             </ButtonWrapper>
           </ChallengeForm>
@@ -164,3 +173,5 @@ const Paragraph = styled.p`
   /* border: 1px solid black;
   border-radius: 8px; */
 `;
+
+// onClick={() => savedModal(amount, type)}

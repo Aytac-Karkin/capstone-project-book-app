@@ -1,15 +1,10 @@
 import BookList from "../BookList/BookList";
 
 export default function ChallengeBookList({
-  books,
   booksInfo,
   handleToggleAlreadyRead,
+  readBooks,
 }) {
-  const readBooks = books?.filter((book) =>
-    booksInfo.some(
-      (bookInfo) => bookInfo.id === book.id && bookInfo.isAlreadyRead
-    )
-  );
   return (
     <>
       <h3>Books you´ve already read</h3>
