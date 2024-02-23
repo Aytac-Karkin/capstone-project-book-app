@@ -31,7 +31,6 @@ export default function BookDetailsPage({
           handleToggleAlreadyRead={handleToggleAlreadyRead}
           pathName={pathName}
         />
-
         <CommentModal id={currentBook.id} />
         <Navigation />
       </StyledDetailedPage>
