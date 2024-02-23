@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import useLocalStorageState from "use-local-storage-state";
 
@@ -17,19 +17,16 @@ export default function ProgressBar({ pages, id }) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    const thisReadingProgress = readingProgress.find((readingProgress_) => {
-      return readingProgress_.bookId === id;
-    });
 
-    if (thisReadingProgress) {
+    if (currentReadingProgress) {
       setReadingProgress(
         readingProgress.map((readingProgress_) =>
-          readingProgress_ === thisReadingProgress
+          readingProgress_ === currentReadingProgress
             ? { ...readingProgress_, progress: data.pageCount }
             : readingProgress_
         )
       );
-    } else if (!thisReadingProgress) {
+    } else {
       setReadingProgress([
         ...readingProgress,
         { bookId: id, progress: data.pageCount },
@@ -47,15 +44,9 @@ export default function ProgressBar({ pages, id }) {
     return readingProgress_.bookId === id;
   });
 
-  function updateProgressPercentage() {
-    if (!currentReadingProgress) {
-      return;
-    } else {
-      return Math.round((currentReadingProgress.progress / pages) * 100);
-    }
-  }
-
-  const progressPercentage = updateProgressPercentage();
+  const progressPercentage = currentReadingProgress
+    ? Math.round((currentReadingProgress.progress / pages) * 100)
+    : 0;
 
   return (
     <>
@@ -84,7 +75,7 @@ export default function ProgressBar({ pages, id }) {
                 name="pageCount"
                 min={0}
                 max={pages}
-                defaultValue={currentReadingProgress.progress}
+                defaultValue={currentReadingProgress?.progress}
               ></input>
             </label>
             <ButtonWrapper>
