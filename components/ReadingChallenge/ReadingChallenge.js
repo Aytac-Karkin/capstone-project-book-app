@@ -67,7 +67,7 @@ export default function ReadingChallenge({
           <Paragraph>You have not created a challenge yet</Paragraph>
         )}
         <StyledButton onClick={openModal}>
-          {challenge !== null ? "+" : "🖊️"}
+          {challenge !== null ? "🖊️" : "+"}
         </StyledButton>
       </StyledBox>
       <ChallengeBookList
