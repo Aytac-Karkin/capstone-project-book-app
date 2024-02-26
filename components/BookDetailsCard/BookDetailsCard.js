@@ -5,6 +5,7 @@ import CurrentlyReadingButton from "@/components/Button/CurrentlyReadingButton";
 import styled from "styled-components";
 import Image from "next/image";
 import ProgressBar from "../ProgressBar/ProgressBar";
+import Rating from "../Rating/Rating";
 
 export default function BookDetailsCard({
   book,
@@ -55,6 +56,7 @@ export default function BookDetailsCard({
         <li>{publishYear}</li>
         <li>{pages} Pages</li>
       </StyledSection>
+      {currentBookInfo?.isAlreadyRead && <Rating id={id} />}
       <ReadMore description={description} pathName={pathName} />
     </StyledBookDetail>
   );

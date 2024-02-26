@@ -3,6 +3,7 @@ import styled from "styled-components";
 import useLocalStorageState from "use-local-storage-state";
 import NotesInput from "../NotesInput/NotesInput";
 import { uid } from "uid";
+import ConfirmationModalWindow from "../ConfirmationModalWindow/ConfirmationModalWindow";
 
 export default function CommentModal({ id }) {
   const [modalState, setModalState] = useState({
@@ -14,11 +15,11 @@ export default function CommentModal({ id }) {
     defaultValue: [],
   });
 
-  function openModal() {
+  function openAddCommentModal() {
     setModalState({ isOpen: true, isCancelled: false });
   }
 
-  function closeModal() {
+  function closeAddCommentModal() {
     setModalState({ isOpen: false, isCancelled: false });
   }
 
@@ -58,9 +59,47 @@ export default function CommentModal({ id }) {
     }
   }
 
+  function editComment(id) {
+    setModalState({ ...modalState, isEditing: true, toBeEdited: id });
+  }
+
+  function cancelEditComment() {
+    setModalState({ ...modalState, isCancelEditing: true });
+  }
+
+  function abortCancelEditComment() {
+    setModalState({ ...modalState, isCancelEditing: false });
+  }
+
+  function confirmCancelEditComment() {
+    setModalState({ ...modalState, isEditing: false, isCancelEditing: false });
+  }
+
+  function handleEditSubmit(event, commentId) {
+    event.preventDefault();
+    const form = event.target;
+
+    const comment = form.elements.thought.value;
+    if (comment.trim().length > 0) {
+      const updatedComments = comments.map((comment_) => {
+        return comment_.uniqueId === commentId
+          ? { ...comment_, comment: comment }
+          : comment_;
+      });
+      setComments(updatedComments);
+      form.reset();
+      setModalState({ ...modalState, isEditing: false });
+    }
+  }
+
+  const commentToBeEdited = comments.find(
+    (comment) => comment?.uniqueId === modalState.toBeEdited
+  );
+
   const currentComments = comments.filter((comment) => {
     return comment?.bookId === id;
   });
+
   return (
     <>
       <h4>What were your thoughts on this book?</h4>
@@ -68,6 +107,9 @@ export default function CommentModal({ id }) {
         {currentComments.map((currentComment) => (
           <StyledComment key={currentComment.uniqueId}>
             {currentComment.comment}
+            <EditButton onClick={() => editComment(currentComment.uniqueId)}>
+              ✎
+            </EditButton>
             <DeleteButton
               onClick={() => openDeleteModal(currentComment.uniqueId)}
             >
@@ -78,7 +120,7 @@ export default function CommentModal({ id }) {
       </CommentsList>
       <StyledSection>
         <p>
-          <CommentButton onClick={openModal}>+</CommentButton>
+          <CommentButton onClick={openAddCommentModal}>+</CommentButton>
           add a thought
         </p>
       </StyledSection>
@@ -98,27 +140,45 @@ export default function CommentModal({ id }) {
       )}
 
       {modalState.isCancelled && (
-        <Overlay>
-          <ConfirmationModal>
-            <h5>Are you sure you want to cancel adding your thoughts?</h5>
-            <ButtonWrapper>
-              <StyledButton onClick={openModal}>No!</StyledButton>
-              <StyledButton onClick={closeModal}>Yes</StyledButton>
-            </ButtonWrapper>
-          </ConfirmationModal>
-        </Overlay>
+        <ConfirmationModalWindow
+          onCancel={openAddCommentModal}
+          onConfirm={closeAddCommentModal}
+          text="cancel adding your thoughts"
+        />
       )}
 
       {modalState.isDelete && (
+        <ConfirmationModalWindow
+          onCancel={cancelDeleteComment}
+          onConfirm={deleteComment}
+          text="delete your thought"
+        />
+      )}
+
+      {modalState.isEditing && (
         <Overlay>
-          <ConfirmationModal>
-            <h5>Are you sure you want to delete your thought?</h5>
+          <CommentForm
+            onSubmit={(event) =>
+              handleEditSubmit(event, commentToBeEdited.uniqueId)
+            }
+          >
+            <NotesInput commentToBeEdited={commentToBeEdited.comment} />
             <ButtonWrapper>
-              <StyledButton onClick={cancelDeleteComment}>No!</StyledButton>
-              <StyledButton onClick={deleteComment}>Yes</StyledButton>
+              <StyledButton type="submit">Save my thoughts</StyledButton>
+              <StyledButton type="button" onClick={cancelEditComment}>
+                Cancel
+              </StyledButton>
             </ButtonWrapper>
-          </ConfirmationModal>
+          </CommentForm>
         </Overlay>
+      )}
+
+      {modalState.isCancelEditing && (
+        <ConfirmationModalWindow
+          text="cancel editing your thought"
+          onCancel={abortCancelEditComment}
+          onConfirm={confirmCancelEditComment}
+        />
       )}
     </>
   );
@@ -139,17 +199,6 @@ const ButtonWrapper = styled.section`
   flex-direction: column;
   width: 50%;
   margin: 10%;
-`;
-
-const ConfirmationModal = styled.section`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  background-color: rgb(255, 255, 255);
-  border-radius: 8px;
-  padding: 20px;
-  border: 3px rgb(255, 0, 0) solid;
 `;
 
 const Overlay = styled.div`
@@ -197,4 +246,12 @@ const DeleteButton = styled.button`
   position: absolute;
   bottom: 1px;
   right: 2px;
+  font-size: 0.8rem;
+`;
+
+const EditButton = styled.button`
+  position: absolute;
+  bottom: 1px;
+  right: 35px;
+  font-size: 0.85rem;
 `;
