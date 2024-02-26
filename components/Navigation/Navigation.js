@@ -13,6 +13,9 @@ export default function Navigation() {
         <StyledSpotlightElement $isActive={router.pathname === "/spotlight"}>
           <NavigationLink href="/spotlight">🌟</NavigationLink>
         </StyledSpotlightElement>
+        <ChallengeElement $isActive={router.pathname === "/challenge"}>
+          <NavigationLink href="/challenge">🏆</NavigationLink>
+        </ChallengeElement>
         <StyledListElement $isActive={router.pathname === "/my-library"}>
           <NavigationLink href="/my-library">My Library</NavigationLink>
         </StyledListElement>
@@ -59,4 +62,12 @@ const StyledSpotlightElement = styled.li`
   padding: 7px 0px;
   border-right: 1px solid gainsboro;
   border-left: 1px solid gainsboro;
+`;
+
+const ChallengeElement = styled.li`
+  background-color: ${({ $isActive }) =>
+    $isActive ? "darkseagreen" : "seashell"};
+  width: 20%;
+  padding: 7px 0px;
+  border-right: 1px solid gainsboro;
 `;
