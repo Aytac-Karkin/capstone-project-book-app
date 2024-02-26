@@ -22,7 +22,7 @@ export default function ReadingChallenge({
     setModalState({ isOpen: false, isSaved: false });
   }
   const [challenge, setChallenge] = useLocalStorageState("challenge", {
-    defaultValue: {},
+    defaultValue: null,
   });
 
   const readBooks = books.filter((book) =>
@@ -59,7 +59,7 @@ export default function ReadingChallenge({
   return (
     <StyledBody>
       <StyledBox>
-        {Object.keys(challenge).length > 0 ? (
+        {challenge !== null ? (
           <Paragraph>
             You have read {progress} out of {challenge.amount} {challenge.type}
           </Paragraph>
