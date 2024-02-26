@@ -22,7 +22,7 @@ export default function ReadingChallenge({
     setModalState({ isOpen: false, isSaved: false });
   }
   const [challenge, setChallenge] = useLocalStorageState("challenge", {
-    defaultValue: null,
+    defaultValue: {},
   });
 
   const readBooks = books.filter((book) =>
