@@ -11,6 +11,7 @@ export default function ReadingChallenge({
   const [modalState, setModalState] = useState({
     isOpen: false,
     isCancelled: false,
+    isSaved: false,
   });
 
   function openModal() {
@@ -51,67 +52,64 @@ export default function ReadingChallenge({
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    closeModal();
     setChallenge({ amount: data.amount, type: data.type });
+    setModalState({ isOpen: true, isSaved: true });
   }
 
   return (
-    <>
-      <StyledBody>
-        <StyledBox>
-          {challenge !== null ? (
-            <Paragraph>
-              You have read {progress} out of {challenge.amount}{" "}
-              {challenge.type}
-            </Paragraph>
-          ) : (
-            <Paragraph>You have not created a challenge yet</Paragraph>
-          )}
-          <StyledButton onClick={openModal}>
-            {challenge !== null ? "🖊️" : "+"}
-          </StyledButton>
-        </StyledBox>
-        <ChallengeBookList
-          readBooks={readBooks}
-          booksInfo={booksInfo}
-          handleToggleAlreadyRead={handleToggleAlreadyRead}
-        />
-
-        {modalState.isOpen && (
-          <Overlay>
-            <ChallengeForm onSubmit={handleSubmit}>
-              <h4>I want to read</h4>
-              <div>
-                <input
-                  name="amount"
-                  type="number"
-                  min="0"
-                  step="1"
-                  defaultValue={challenge.amount}
-                />
-                <select name="type" defaultValue={challenge.type}>
-                  <option value="books">Books</option>
-                  <option value="pages">Pages</option>
-                </select>
-              </div>
-              <ButtonWrapper>
-                <button type="submit"> Save Challenge</button>
-                <button onClick={closeModal}>Cancel</button>
-              </ButtonWrapper>
-            </ChallengeForm>
-          </Overlay>
+    <StyledBody>
+      <StyledBox>
+        {challenge !== null ? (
+          <Paragraph>
+            You have read {progress} out of {challenge.amount} {challenge.type}
+          </Paragraph>
+        ) : (
+          <Paragraph>You have not created a challenge yet</Paragraph>
         )}
+        <StyledButton onClick={openModal}>
+          {challenge !== null ? "🖊️" : "+"}
+        </StyledButton>
+      </StyledBox>
+      <ChallengeBookList
+        readBooks={readBooks}
+        booksInfo={booksInfo}
+        handleToggleAlreadyRead={handleToggleAlreadyRead}
+      />
 
-        {modalState.isSaved && (
-          <Overlay onClick={closeModal}>
-            <Container>
-              <h4>Congratulations 🎉</h4>
-              <p>You succesfully created a new challenge</p>
-            </Container>
-          </Overlay>
-        )}
-      </StyledBody>
-    </>
+      {modalState.isOpen && (
+        <Overlay>
+          <ChallengeForm onSubmit={handleSubmit}>
+            <h4>I want to read</h4>
+            <div>
+              <input
+                name="amount"
+                type="number"
+                min="0"
+                step="1"
+                defaultValue={challenge.amount}
+              />
+              <select name="type" defaultValue={challenge.type}>
+                <option value="books">Books</option>
+                <option value="pages">Pages</option>
+              </select>
+            </div>
+            <ButtonWrapper>
+              <button type="submit"> Save Challenge</button>
+              <button onClick={closeModal}>Cancel</button>
+            </ButtonWrapper>
+          </ChallengeForm>
+        </Overlay>
+      )}
+
+      {modalState.isSaved && (
+        <Overlay onClick={closeModal}>
+          <Container>
+            <h4>Congratulations 🎉</h4>
+            <p>You succesfully created a new challenge</p>
+          </Container>
+        </Overlay>
+      )}
+    </StyledBody>
   );
 }
 
