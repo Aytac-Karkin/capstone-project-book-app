@@ -198,7 +198,7 @@ const FilterButton = styled.button`
 `;
 
 const StyledFilterForm = styled.form`
-  background-color: rgba(255, 245, 238);
+  background-color: var(--color-cards);
   border-radius: 8px;
   padding: 20px;
   position: relative;
@@ -241,6 +241,7 @@ const ToggleFilterButton = styled.button`
   padding: 0.2rem;
   font-size: 0.9rem;
   width: 45%;
+  box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.15);
 `;
 
 const NoFilterMatchesMessage = styled.p`

@@ -7,7 +7,7 @@ export default function SearchBar({ setSearchTerm }) {
       type="text"
       id="searchTerm"
       name="searchTerm"
-      placeholder="🔍 search... "
+      placeholder="Search... "
       aria-label="searchbar"
     />
   );

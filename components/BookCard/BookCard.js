@@ -78,7 +78,7 @@ const StyledBook = styled.div`
   // border: 2px solid black;
   border-radius: 8px;
   padding: 5px;
-  box-shadow: 0 3px 3px 2px rgba(0, 0, 0, 0.19);
+  box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.15);
   background-color: var(--color-cards);
   padding-right: 10px;
 `;
