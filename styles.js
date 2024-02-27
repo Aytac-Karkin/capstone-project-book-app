@@ -6,9 +6,10 @@ const garamond = EB_Garamond({ subsets: ["latin"], weight: "500" });
 export default createGlobalStyle`
 :root {
 --color-background: rgb(237,174,73);
---color-cards: rgb(250,240,202);
+--color-cards: rgb(255,236,204);
 // --color-text: rgb(13,59,102);
---color-text: rgb(0,157,136);
+--color-text: rgb(0,132,114);
+// --color-text: rgb(75, 129, 120);
 --serif-font-bold: ${garamond.style.fontFamily};
 }
   *,
