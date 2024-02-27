@@ -1,4 +1,4 @@
-### Shelfie
+# Shelfie
 
 Shelfie is a user-friendly book-tracking app that assists individuals in managing their reading habits. This app is not just a tracker – it's a comprehensive reading assistant, designed to cater to the diverse needs of avid readers, book clubs, and casual readers alike.
 
