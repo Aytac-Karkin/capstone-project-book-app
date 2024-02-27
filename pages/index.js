@@ -233,9 +233,14 @@ const ToggleFilterButton = styled.button`
   margin: auto;
   max-width: 600px;
   display: flex;
-  background-color: rgba(255, 245, 238);
-  border-radius: 4px;
-  font-size: 1rem;
+  justify-content: center;
+  background-color: var(--color-cards);
+  // color: var(--color-text);
+  border-radius: 8px;
+  border-style: none;
+  padding: 0.2rem;
+  font-size: 0.9rem;
+  width: 45%;
 `;
 
 const NoFilterMatchesMessage = styled.p`

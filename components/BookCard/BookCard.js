@@ -1,6 +1,9 @@
 import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
+import CurrentlyReadingIcon from "../Icons/CurrentlyReadingIcon";
+import BookmarkIcon from "../Icons/BookMarkIcon";
+import AlreadyReadIcon from "../Icons/AlreadyReadIcon";
 
 export default function BookCard({
   book,
@@ -23,7 +26,7 @@ export default function BookCard({
       <StyledLink href={`/book-details/${id}`}>
         <StyledImage src={cover} alt={title} width={100} height={149} />
         <StyledInfos>
-          <h4>{title}</h4>
+          <h3>{title}</h3>
           <p>{author}</p>
           <StyledGenre>{genre}</StyledGenre>
         </StyledInfos>
@@ -38,7 +41,7 @@ export default function BookCard({
           $isActive={currentBookIsBookmarked}
           onClick={() => handleToggleBookmark(id)}
         >
-          ☆
+          <BookmarkIcon $isActive={currentBookIsBookmarked} />
         </StyledButton>
         <StyledButton
           aria-label={
@@ -49,7 +52,7 @@ export default function BookCard({
           $isActive={currentBookIsCurrentlyReading}
           onClick={() => handleToggleCurrentlyReading(id)}
         >
-          📖
+          <CurrentlyReadingIcon $isActive={currentBookIsCurrentlyReading} />
         </StyledButton>
         <StyledButton
           aria-label={
@@ -60,7 +63,7 @@ export default function BookCard({
           $isActive={currentBookIsAlreadyRead}
           onClick={() => handleToggleAlreadyRead(id)}
         >
-          ✔️
+          <AlreadyReadIcon $isActive={currentBookIsAlreadyRead} />
         </StyledButton>
       </StyledButtonWrapper>
     </StyledBook>
@@ -72,10 +75,12 @@ const StyledBook = styled.div`
   display: flex;
   justify-content: space-around;
   gap: 5px;
-  border: 2px solid black;
+  // border: 2px solid black;
   border-radius: 8px;
   padding: 5px;
   box-shadow: 0 3px 3px 2px rgba(0, 0, 0, 0.19);
+  background-color: var(--color-cards);
+  padding-right: 10px;
 `;
 
 const StyledLink = styled(Link)`
@@ -96,14 +101,18 @@ const StyledImage = styled(Image)`
 
 const StyledButton = styled.button`
   background-color: ${({ $isActive }) =>
-    $isActive ? "darkseagreen" : "seashell"};
+    $isActive ? "var(--color-text)" : "var(--color-cards)"};
   border-radius: 4px;
+  border: none;
+  width: 32px;
+  height: 32px;
 `;
 
 const StyledButtonWrapper = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  //gap: 4px;
+  justify-content: space-evenly;
 `;
 
 const StyledGenre = styled.span`

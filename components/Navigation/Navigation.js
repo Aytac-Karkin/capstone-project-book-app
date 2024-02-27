@@ -1,6 +1,10 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import styled from "styled-components";
+import ChallengeIcon from "../Icons/ChallengeIcon";
+import HomeIcon from "../Icons/HomeIcon";
+import SpotlightIcon from "../Icons/SpotlightIcon";
+import LibraryIcon from "../Icons/LibraryIcon";
 
 export default function Navigation() {
   const router = useRouter();
@@ -8,16 +12,24 @@ export default function Navigation() {
     <nav>
       <StyledList>
         <StyledListElement $isActive={router.pathname === "/"}>
-          <NavigationLink href="/">Home</NavigationLink>
+          <NavigationLink href="/">
+            <HomeIcon $isActive={router.pathname === "/"} />
+          </NavigationLink>
         </StyledListElement>
-        <StyledSpotlightElement $isActive={router.pathname === "/spotlight"}>
-          <NavigationLink href="/spotlight">🌟</NavigationLink>
-        </StyledSpotlightElement>
-        <ChallengeElement $isActive={router.pathname === "/challenge"}>
-          <NavigationLink href="/challenge">🏆</NavigationLink>
-        </ChallengeElement>
+        <StyledListElement $isActive={router.pathname === "/spotlight"}>
+          <NavigationLink href="/spotlight">
+            <SpotlightIcon $isActive={router.pathname === "/spotlight"} />
+          </NavigationLink>
+        </StyledListElement>
+        <StyledListElement $isActive={router.pathname === "/challenge"}>
+          <NavigationLink href="/challenge">
+            <ChallengeIcon $isActive={router.pathname === "/challenge"} />
+          </NavigationLink>
+        </StyledListElement>
         <StyledListElement $isActive={router.pathname === "/my-library"}>
-          <NavigationLink href="/my-library">My Library</NavigationLink>
+          <NavigationLink href="/my-library">
+            <LibraryIcon $isActive={router.pathname === "/my-library"} />
+          </NavigationLink>
         </StyledListElement>
       </StyledList>
     </nav>
@@ -37,7 +49,7 @@ const StyledList = styled.ul`
   justify-content: space-around;
 
   padding-left: 0;
-  border-top: 2px solid black;
+  border-top: 2px solid var(--color-text);
   margin-top: 20px;
   font-size: 1.2rem;
   margin: 0 auto;
@@ -50,7 +62,7 @@ const StyledList = styled.ul`
 
 const StyledListElement = styled.li`
   background-color: ${({ $isActive }) =>
-    $isActive ? "darkseagreen" : "seashell"};
+    $isActive ? "var(--color-text)" : "var(--color-cards)"};
   width: 50%;
   padding: 7px 0px;
 `;

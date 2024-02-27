@@ -18,5 +18,8 @@ const SearchInput = styled.input`
   font-size: 0.9rem;
   display: flex;
   margin: auto;
-  margin-bottom: 0.5rem;
+  width: 60%;
+  border-radius: 8px;
+  border-style: none;
+  margin-bottom: 25px;
 `;
