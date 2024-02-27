@@ -1,15 +1,20 @@
 import { createGlobalStyle } from "styled-components";
 import { EB_Garamond } from "next/font/google";
+import { Inter } from "next/font/google";
+import { IBM_Plex_Sans } from "next/font/google";
 
 const garamond = EB_Garamond({ subsets: ["latin"], weight: "500" });
+const inter = Inter({ subsets: ["latin"], weight: "400" });
+const plexSans = IBM_Plex_Sans({ subsets: ["latin"], weight: "400" });
 
 export default createGlobalStyle`
+
 :root {
 --color-dark-yellow: rgb(237,174,73);
---color-cards: rgb(255,236,204);
-// --color-text: rgb(13,59,102);
---color-text: rgb(0,132,114);
+--color-light-yellow: rgb(255,236,204);
+--color-green: rgb(0,132,114);
 --serif-font-bold: ${garamond.style.fontFamily};
+--sans-serif-font: ${plexSans.style.fontFamily};
 }
   *,
   *::before,
@@ -20,13 +25,12 @@ export default createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: system-ui;
+    font-family: var(--sans-serif-font), sans-serif;
     background-color: var(--color-dark-yellow);
   }
 
   h1,h2,h3,h4{
-    //color: var(--color-text);
-    font-family: var(--serif-font-bold);
+    font-family: var(--serif-font-bold), serif;
 
   }
 `;

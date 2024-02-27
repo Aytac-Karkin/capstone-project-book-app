@@ -35,14 +35,15 @@ const StyledLabel = styled.label`
   border-radius: 8px;
   padding: 4px 4px 4px 8px;
   margin: 6px 20px 0px 0px;
-  background-color: var(--color-cards);
+  background-color: var(--color-light-yellow);
   cursor: pointer;
   &:hover {
-    background-color: var(--color-text);
-    color: var(--color-cards);
+    background-color: var(--color-green);
+    color: var(--color-light-yellow);
   }
-  background-color: ${(props) => (props.isSelected ? "var(--color-text)" : "")};
-  color: ${(props) => (props.isSelected ? "var(--color-cards)" : "")};
+  background-color: ${(props) =>
+    props.isSelected ? "var(--color-green)" : ""};
+  color: ${(props) => (props.isSelected ? "var(--color-light-yellow)" : "")};
   font-size: 16px;
 `;
 

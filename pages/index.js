@@ -6,7 +6,6 @@ import FilterCategory from "@/components/FilterCategory/FilterCategory";
 import { useState } from "react";
 import genres from "../lib/genres.json";
 import SearchBar from "@/components/Searchbar/Searchbar";
-import CloseWindowIcon from "@/components/Icons/CloseWindowIcon";
 
 export default function HomePage({
   books,
@@ -188,7 +187,7 @@ const FilterWrapper = styled.section`
 `;
 
 const ExitButton = styled.button`
-  background-color: var(--color-cards);
+  background-color: var(--color-light-yellow);
   width: 32px;
   height: 32px;
   position: absolute;
@@ -201,7 +200,7 @@ const ExitButton = styled.button`
 
 const FilterButton = styled.button`
   margin-top: 1rem;
-  background-color: var(--color-cards);
+  background-color: var(--color-light-yellow);
   border-radius: 8px;
   border-style: none;
   padding: 7px 8px;
@@ -256,8 +255,8 @@ const ToggleFilterButton = styled.button`
   max-width: 600px;
   display: flex;
   justify-content: center;
-  background-color: var(--color-cards);
-  // color: var(--color-text);
+  background-color: var(--color-light-yellow);
+  // color: var(--color-green);
   border-radius: 8px;
   border-style: none;
   padding: 0.2rem;

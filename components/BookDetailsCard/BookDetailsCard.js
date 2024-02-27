@@ -50,7 +50,7 @@ export default function BookDetailsCard({
         <ProgressBar pages={pages} id={id}></ProgressBar>
       )}
       <h2>{title}</h2>
-      <p>{author}</p>
+      <StyledAuthor>{author}</StyledAuthor>
       <StyledSection>
         <li>{genre}</li>
         <li>{publishYear}</li>
@@ -62,6 +62,10 @@ export default function BookDetailsCard({
   );
 }
 
+const StyledAuthor = styled.p`
+  font-size: 18px;
+`;
+
 const StyledImage = styled(Image)`
   border-radius: 8px;
   position: relative;
@@ -69,15 +73,15 @@ const StyledImage = styled(Image)`
   box-shadow: 0 6px 20px 5px rgba(0, 0, 0, 0.19);
 `;
 const StyledBookDetail = styled.article`
-  border: 2px solid black;
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.19);
   border-radius: 8px;
   margin: 2rem auto;
   text-align: center;
+  background-color: var(--color-light-yellow);
 `;
 const StyledSection = styled.ul`
   display: flex;
   justify-content: space-around;
-  font-style: italic;
   list-style: none;
   padding: 0px;
 `;

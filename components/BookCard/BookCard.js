@@ -78,7 +78,7 @@ const StyledBook = styled.div`
   border-radius: 8px;
   padding: 8px;
   box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.15);
-  background-color: var(--color-cards);
+  background-color: var(--color-light-yellow);
   padding-right: 10px;
 `;
 
@@ -102,7 +102,7 @@ const StyledImage = styled(Image)`
 
 const StyledButton = styled.button`
   background-color: ${({ $isActive }) =>
-    $isActive ? "var(--color-text)" : "var(--color-cards)"};
+    $isActive ? "var(--color-green)" : "var(--color-light-yellow)"};
   border-radius: 4px;
   border: none;
   width: 32px;

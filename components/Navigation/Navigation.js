@@ -49,7 +49,7 @@ const StyledList = styled.ul`
   justify-content: space-around;
 
   padding-left: 0;
-  border-top: 2px solid var(--color-text);
+  border-top: 2px solid var(--color-green);
   margin-top: 20px;
   font-size: 1.2rem;
   margin: 0 auto;
@@ -62,7 +62,7 @@ const StyledList = styled.ul`
 
 const StyledListElement = styled.li`
   background-color: ${({ $isActive }) =>
-    $isActive ? "var(--color-text)" : "var(--color-cards)"};
+    $isActive ? "var(--color-green)" : "var(--color-light-yellow)"};
   width: 50%;
   padding: 7px 0px;
 `;
