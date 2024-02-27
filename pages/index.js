@@ -6,6 +6,7 @@ import FilterCategory from "@/components/FilterCategory/FilterCategory";
 import { useState } from "react";
 import genres from "../lib/genres.json";
 import SearchBar from "@/components/Searchbar/Searchbar";
+import CloseWindowIcon from "@/components/Icons/CloseWindowIcon";
 
 export default function HomePage({
   books,
@@ -90,23 +91,23 @@ export default function HomePage({
           <Overlay>
             <StyledFilterForm onSubmit={handleFilterSubmit}>
               <ExitButton type="button" onClick={handleToggleFilterModal}>
-                ❌
+                X
               </ExitButton>
               <FilterWrapper>
                 <StyledFilterCategoryWrapper>
-                  <h3>Genre</h3>
+                  <FilterHeadline>Genre</FilterHeadline>
                   <FilterCategory filterNames={genres} category={"genre"} />
                 </StyledFilterCategoryWrapper>
                 <StyledRightSide>
                   <StyledFilterCategoryWrapper>
-                    <h3>Book Length</h3>
+                    <FilterHeadline>Book Length</FilterHeadline>
                     <FilterCategory
                       filterNames={["short", "medium", "long"]}
                       category={"bookLength"}
                     />
                   </StyledFilterCategoryWrapper>
                   <StyledFilterCategoryWrapper>
-                    <h3>Publishing Year</h3>
+                    <FilterHeadline>Publishing Year</FilterHeadline>
                     <label htmlFor="starting-year">
                       <StyledParagraph>From:</StyledParagraph>
                       <StyledYearInput
@@ -173,6 +174,11 @@ export default function HomePage({
   );
 }
 
+const FilterHeadline = styled.h3`
+  margin-bottom: 0;
+  margin-top: 0;
+`;
+
 const StyledFilterCategoryWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -182,35 +188,51 @@ const FilterWrapper = styled.section`
 `;
 
 const ExitButton = styled.button`
-  background-color: rgba(255, 255, 255);
+  background-color: var(--color-cards);
+  width: 32px;
+  height: 32px;
   position: absolute;
-  top: 0.7rem;
+  bottom: 0.7rem;
   right: 0.7rem;
-  border-radius: 5px;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.19);
 `;
 
 const FilterButton = styled.button`
   margin-top: 1rem;
-  background-color: rgba(255, 255, 255);
-  border-radius: 5px;
-  font-size: 0.9rem;
+  background-color: var(--color-cards);
+  border-radius: 8px;
+  border-style: none;
+  padding: 7px 8px;
+  // box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.15);
+  font-size: 1rem;
   margin-left: 5px;
+  position: absolute;
+  bottom: 0.7rem;
+  right: 3.5rem;
+  box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.19);
 `;
 
 const StyledFilterForm = styled.form`
-  background-color: var(--color-cards);
+  background-color: var(--color-dark-yellow);
   border-radius: 8px;
-  padding: 20px;
+  padding: 10px 20px;
   position: relative;
 `;
 
 const StyledRightSide = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 20px;
 `;
 
 const StyledYearInput = styled.input`
-  width: 5em;
+  width: 6em;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 4px 4px 4px 8px;
+  font-size: 16px;
 `;
 
 const Overlay = styled.div`
@@ -225,7 +247,7 @@ const Overlay = styled.div`
 `;
 
 const StyledParagraph = styled.p`
-  margin-bottom: 0;
+  margin-bottom: 3px;
   margin-top: 0.2rem;
 `;
 

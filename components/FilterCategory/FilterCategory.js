@@ -32,10 +32,10 @@ export default function FilterCategory({ filterNames, category }) {
 }
 
 const StyledLabel = styled.label`
-  border: 1px solid black;
   border-radius: 8px;
-  padding: 5px 5px 5px 10px;
+  padding: 4px 4px 4px 8px;
   margin: 6px 20px 0px 0px;
+  background-color: var(--color-cards);
   cursor: pointer;
   &:hover {
     background-color: var(--color-text);

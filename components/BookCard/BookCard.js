@@ -75,9 +75,8 @@ const StyledBook = styled.div`
   display: flex;
   justify-content: space-around;
   gap: 5px;
-  // border: 2px solid black;
   border-radius: 8px;
-  padding: 5px;
+  padding: 8px;
   box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.15);
   background-color: var(--color-cards);
   padding-right: 10px;
@@ -97,6 +96,8 @@ const StyledInfos = styled.article`
 
 const StyledImage = styled(Image)`
   margin: auto 2px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.15);
 `;
 
 const StyledButton = styled.button`
