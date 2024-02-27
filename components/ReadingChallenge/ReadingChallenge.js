@@ -2,11 +2,14 @@ import styled from "styled-components";
 import { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import ChallengeBookList from "../ChallengeBookList/ChallengeBookList";
+import EditIcon from "../Icons/EditIcon";
 
 export default function ReadingChallenge({
   books,
   booksInfo,
   handleToggleAlreadyRead,
+  handleToggleBookmark,
+  handleToggleCurrentlyReading,
 }) {
   const [modalState, setModalState] = useState({
     isOpen: false,
@@ -36,14 +39,16 @@ export default function ReadingChallenge({
   });
 
   function updateProgress() {
-    if (challenge.type === "books") {
+    if (readBooks.length > 0 && challenge.type === "books") {
       setProgress(readBooks.length);
-    } else if (challenge.type === "pages") {
-      const pagesArray = readBooks.map((readBook) => {
+    } else if (readBooks.length > 0 && challenge.type === "pages") {
+      const pagesArray = readBooks?.map((readBook) => {
         return readBook.pages;
       });
-      const pagesSum = pagesArray.reduce((a, b) => a + b);
+      const pagesSum = pagesArray?.reduce((a, b) => a + b);
       setProgress(pagesSum);
+    } else {
+      setProgress(0);
     }
   }
   updateProgress();
@@ -61,41 +66,55 @@ export default function ReadingChallenge({
       <StyledBox>
         {challenge !== null ? (
           <Paragraph>
-            You have read {progress} out of {challenge.amount} {challenge.type}
+            You have read {progress} out of {challenge.amount} {challenge.type}.
           </Paragraph>
         ) : (
-          <Paragraph>You have not created a challenge yet</Paragraph>
+          <Paragraph>You have not created a challenge yet.</Paragraph>
         )}
-        <StyledButton onClick={openModal}>
-          {challenge !== null ? "🖊️" : "+"}
-        </StyledButton>
+        <StyledEditButton onClick={openModal}>
+          {challenge !== null ? <EditIcon /> : "+"}
+        </StyledEditButton>
       </StyledBox>
       <ChallengeBookList
         readBooks={readBooks}
         booksInfo={booksInfo}
         handleToggleAlreadyRead={handleToggleAlreadyRead}
+        handleToggleBookmark={handleToggleBookmark}
+        handleToggleCurrentlyReading={handleToggleCurrentlyReading}
       />
 
       {modalState.isOpen && (
         <Overlay>
           <ChallengeForm onSubmit={handleSubmit}>
-            <h4>I want to read</h4>
+            <h3>I want to read</h3>
             <div>
-              <input
-                name="amount"
-                type="number"
-                min="0"
-                step="1"
-                defaultValue={challenge.amount}
-              />
-              <select name="type" defaultValue={challenge.type}>
-                <option value="books">Books</option>
-                <option value="pages">Pages</option>
-              </select>
+              <label htmlFor="amount-input">
+                <input
+                  id="amount-input"
+                  name="amount"
+                  type="number"
+                  min="0"
+                  step="1"
+                  defaultValue={challenge.amount}
+                />
+              </label>
+              <label htmlFor="type-input">
+                <select
+                  id="type-input"
+                  name="type"
+                  defaultValue={challenge.type}
+                >
+                  <option value="books">Books</option>
+                  <option value="pages">Pages</option>
+                </select>
+              </label>
             </div>
             <ButtonWrapper>
-              <button type="submit"> Save Challenge</button>
-              <button onClick={closeModal}>Cancel</button>
+              <StyledModalButton type="submit">
+                {" "}
+                Save Challenge
+              </StyledModalButton>
+              <StyledModalButton onClick={closeModal}>Cancel</StyledModalButton>
             </ButtonWrapper>
           </ChallengeForm>
         </Overlay>
@@ -113,20 +132,27 @@ export default function ReadingChallenge({
   );
 }
 
+const StyledModalButton = styled.button`
+  background-color: var(--color-light-yellow);
+  border-style: none;
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 4px;
+`;
+
 const StyledBox = styled.div`
-  border: 1px solid black;
   border-radius: 8px;
   display: flex;
   justify-content: space-evenly;
   position: relative;
+  background-color: var(--color-light-yellow);
 `;
-const StyledButton = styled.button`
+const StyledEditButton = styled.button`
   border: none;
-  background: seashell;
+  background: var(--color-green);
   height: 35px;
   width: 35px;
   border-radius: 35px;
-  border: 1px solid black;
   font-size: 25px;
   position: absolute;
   bottom: -20px;
@@ -152,7 +178,7 @@ const ChallengeForm = styled.form`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: rgb(255, 245, 238);
+  background-color: var(--color-dark-yellow);
   border-radius: 8px;
   padding: 20px;
   width: 90%;
@@ -163,6 +189,7 @@ const ButtonWrapper = styled.section`
   flex-direction: column;
   width: 50%;
   margin: 10%;
+  gap: 5px;
 `;
 
 const Container = styled.div`
@@ -177,7 +204,7 @@ const Container = styled.div`
 `;
 
 const Paragraph = styled.p`
-  font-size: 25px;
+  font-size: 20px;
   text-align: center;
   /* border: 1px solid black;
   border-radius: 8px; */

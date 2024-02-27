@@ -4,6 +4,8 @@ export default function ChallengeBookList({
   booksInfo,
   handleToggleAlreadyRead,
   readBooks,
+  handleToggleBookmark,
+  handleToggleCurrentlyReading,
 }) {
   return (
     <>
@@ -13,6 +15,8 @@ export default function ChallengeBookList({
           books={readBooks}
           booksInfo={booksInfo}
           handleToggleAlreadyRead={handleToggleAlreadyRead}
+          handleToggleBookmark={handleToggleBookmark}
+          handleToggleCurrentlyReading={handleToggleCurrentlyReading}
         />
       ) : (
         <p>You have not read any books yet.</p>

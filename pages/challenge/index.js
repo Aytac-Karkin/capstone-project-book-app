@@ -6,6 +6,8 @@ export default function ChallengePage({
   books,
   booksInfo,
   handleToggleAlreadyRead,
+  handleToggleBookmark,
+  handleToggleCurrentlyReading,
 }) {
   return (
     <>
@@ -14,6 +16,8 @@ export default function ChallengePage({
         books={books}
         booksInfo={booksInfo}
         handleToggleAlreadyRead={handleToggleAlreadyRead}
+        handleToggleBookmark={handleToggleBookmark}
+        handleToggleCurrentlyReading={handleToggleCurrentlyReading}
       />
       <Navigation />
     </>
