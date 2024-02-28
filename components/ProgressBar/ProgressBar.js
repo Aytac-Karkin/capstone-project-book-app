@@ -107,12 +107,14 @@ const ProgressBarWrapper = styled.div`
   border-radius: 10px;
   border: 1px solid black;
   margin: 0 auto;
+  box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.15);
 `;
 
 const ProgressBarFill = styled.div`
   height: 20px;
-  border-radius: 8px;
-  background-color: rgb(143, 188, 143);
+  border-radius: 10px;
+  //background-color: rgb(143, 188, 143);
+  background-color: var(--color-dark-yellow);
   width: ${(props) => props.$progresspercentage || 0}%;
 `;
 
