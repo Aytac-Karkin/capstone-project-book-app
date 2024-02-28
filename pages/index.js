@@ -6,7 +6,6 @@ import FilterCategory from "@/components/FilterCategory/FilterCategory";
 import { useState } from "react";
 import genres from "../lib/genres.json";
 import SearchBar from "@/components/Searchbar/Searchbar";
-import { motion } from "framer-motion";
 
 export default function HomePage({
   books,
@@ -79,14 +78,26 @@ export default function HomePage({
     ? foundBooks.length
     : filteredBookList.length;
 
-  const [animationActive, setAnimationActive] = useState(false);
+  const [animationActiveBookmark, setAnimationActiveBookmark] = useState(false);
+  const [animationActiveAlreadyRead, setAnimationActiveAlreadyRead] =
+    useState(false);
 
   function updateAnimationBookmark(id) {
     const currentBook = booksInfo.find((book) => book.id === id);
-    if (currentBook.isBookmarked) {
-      setAnimationActive(false);
+    console.log("currentBook updateAnimationBookmark", currentBook);
+    if (!currentBook.isBookmarked) {
+      setAnimationActiveBookmark(true);
     } else {
-      setAnimationActive(true);
+      setAnimationActiveBookmark(false);
+    }
+  }
+
+  function updateAnimationAlreadyRead(id) {
+    const currentBook = booksInfo.find((book) => book.id === id);
+    if (currentBook.isAlreadyRead) {
+      setAnimationActiveAlreadyRead(false);
+    } else {
+      setAnimationActiveAlreadyRead(true);
     }
   }
 
@@ -173,6 +184,7 @@ export default function HomePage({
             handleToggleAlreadyRead={handleToggleAlreadyRead}
             handleToggleCurrentlyReading={handleToggleCurrentlyReading}
             updateAnimationBookmark={updateAnimationBookmark}
+            updateAnimationAlreadyRead={updateAnimationAlreadyRead}
           />
         ) : (
           <NoFilterMatchesMessage>
@@ -181,7 +193,10 @@ export default function HomePage({
           </NoFilterMatchesMessage>
         )}
       </StyledBody>
-      <Navigation animationActive={animationActive} />
+      <Navigation
+        animationActiveBookmark={animationActiveBookmark}
+        animationActiveAlreadyRead={animationActiveAlreadyRead}
+      />
     </>
   );
 }

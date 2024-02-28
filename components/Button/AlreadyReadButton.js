@@ -1,12 +1,18 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-export default function AlreadyReadButton({ onToggle, id, isAlreadyRead }) {
+export default function AlreadyReadButton({
+  onToggle,
+  id,
+  isAlreadyRead,
+  updateAnimationAlreadyRead,
+}) {
   return (
     <StyledButton
       type="button"
       onClick={() => {
         onToggle(id);
+        updateAnimationAlreadyRead(id);
       }}
       $isAlreadyRead={isAlreadyRead}
       aria-label={

@@ -2,9 +2,15 @@ import GlobalStyle from "../styles";
 import books from "../lib/books.json";
 import useLocalStorageState from "use-local-storage-state";
 
+const initialBooksInfo = books.map((book) => {
+  return { id: book.id, isBookmarked: false, isAlreadyRead: false };
+});
+
+console.log("initialbooksinfo", initialBooksInfo);
+
 export default function App({ Component, pageProps }) {
   const [booksInfo, setBooksInfo] = useLocalStorageState("books-info", {
-    defaultValue: [],
+    defaultValue: initialBooksInfo,
   });
 
   function handleToggleBookmark(id) {

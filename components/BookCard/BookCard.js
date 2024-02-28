@@ -1,7 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import AlreadyReadButton from "../Button/AlreadyReadButton";
 import CurrentlyReadingButton from "../Button/CurrentlyReadingButton";
 import MyLibraryButton from "../Button/MyLibraryButton";
@@ -13,6 +12,7 @@ export default function BookCard({
   handleToggleAlreadyRead,
   handleToggleCurrentlyReading,
   updateAnimationBookmark,
+  updateAnimationAlreadyRead,
 }) {
   const { title, author, genre, cover, id } = book;
   const currentBookInfo = booksInfo?.find((bookInfo) => {
@@ -49,6 +49,7 @@ export default function BookCard({
           onToggle={handleToggleAlreadyRead}
           id={id}
           isAlreadyRead={currentBookIsAlreadyRead}
+          updateAnimationAlreadyRead={updateAnimationAlreadyRead}
         />
       </StyledButtonWrapper>
     </StyledBook>
