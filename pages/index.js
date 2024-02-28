@@ -79,6 +79,17 @@ export default function HomePage({
     ? foundBooks.length
     : filteredBookList.length;
 
+  const [animationActive, setAnimationActive] = useState(false);
+
+  function updateAnimationBookmark(id) {
+    const currentBook = booksInfo.find((book) => book.id === id);
+    if (currentBook.isBookmarked) {
+      setAnimationActive(false);
+    } else {
+      setAnimationActive(true);
+    }
+  }
+
   return (
     <>
       <Header />
@@ -161,6 +172,7 @@ export default function HomePage({
             handleToggleBookmark={handleToggleBookmark}
             handleToggleAlreadyRead={handleToggleAlreadyRead}
             handleToggleCurrentlyReading={handleToggleCurrentlyReading}
+            updateAnimationBookmark={updateAnimationBookmark}
           />
         ) : (
           <NoFilterMatchesMessage>
@@ -169,7 +181,7 @@ export default function HomePage({
           </NoFilterMatchesMessage>
         )}
       </StyledBody>
-      <Navigation />
+      <Navigation animationActive={animationActive} />
     </>
   );
 }

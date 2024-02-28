@@ -3,7 +3,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-export default function Navigation() {
+export default function Navigation({ animationActive }) {
   const router = useRouter();
 
   return (
@@ -15,11 +15,14 @@ export default function Navigation() {
         <StyledSpotlightElement $isActive={router.pathname === "/spotlight"}>
           <NavigationLink href="/spotlight">🌟</NavigationLink>
         </StyledSpotlightElement>
+
         <ChallengeElement $isActive={router.pathname === "/challenge"}>
           <NavigationLink href="/challenge">🏆</NavigationLink>
         </ChallengeElement>
         <StyledListElement $isActive={router.pathname === "/my-library"}>
-          <NavigationLink href="/my-library">My Library</NavigationLink>
+          <motion.div animate={animationActive ? { x: [0, 60, 0] } : null}>
+            <NavigationLink href="/my-library">My Library</NavigationLink>{" "}
+          </motion.div>
         </StyledListElement>
       </StyledList>
     </nav>
@@ -50,11 +53,13 @@ const StyledList = styled.ul`
   max-width: 600px;
 `;
 
-const StyledListElement = styled.li`
+const StyledListElement = styled(motion.li)`
   background-color: ${({ $isActive }) =>
     $isActive ? "darkseagreen" : "seashell"};
   width: 50%;
   padding: 7px 0px;
+  /* font-size: ${({ $animationActive }) =>
+    $animationActive ? "2rem" : "1.2rem"}; */
 `;
 
 const StyledSpotlightElement = styled.li`

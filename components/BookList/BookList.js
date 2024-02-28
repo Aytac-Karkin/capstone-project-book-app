@@ -7,6 +7,7 @@ export default function BookList({
   handleToggleAlreadyRead,
   handleToggleBookmark,
   handleToggleCurrentlyReading,
+  updateAnimationBookmark,
 }) {
   return (
     <StyledList>
@@ -18,6 +19,7 @@ export default function BookList({
             handleToggleAlreadyRead={handleToggleAlreadyRead}
             handleToggleBookmark={handleToggleBookmark}
             handleToggleCurrentlyReading={handleToggleCurrentlyReading}
+            updateAnimationBookmark={updateAnimationBookmark}
           />
         </li>
       ))}

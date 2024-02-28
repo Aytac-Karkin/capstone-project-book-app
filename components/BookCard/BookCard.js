@@ -12,6 +12,7 @@ export default function BookCard({
   handleToggleBookmark,
   handleToggleAlreadyRead,
   handleToggleCurrentlyReading,
+  updateAnimationBookmark,
 }) {
   const { title, author, genre, cover, id } = book;
   const currentBookInfo = booksInfo?.find((bookInfo) => {
@@ -37,6 +38,7 @@ export default function BookCard({
           onToggle={handleToggleBookmark}
           id={id}
           isBookmarked={currentBookIsBookmarked}
+          updateAnimationBookmark={updateAnimationBookmark}
         />
         <CurrentlyReadingButton
           onToggle={handleToggleCurrentlyReading}
