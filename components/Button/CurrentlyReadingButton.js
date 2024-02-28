@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import CurrentlyReadingIcon from "../Icons/CurrentlyReadingIcon";
 export default function CurrentlyReadingButton({
   onToggle,
   id,
@@ -18,14 +18,15 @@ export default function CurrentlyReadingButton({
           : "add to list of books I am currently reading"
       }
     >
-      📖
+      <CurrentlyReadingIcon $isActive={isCurrentlyReading} />
     </StyledButton>
   );
 }
-
 const StyledButton = styled.button`
-  background-color: ${(props) =>
-    props.$isCurrentlyReading ? "darkseagreen" : "seashell"};
-  padding: 0.3rem 0.5rem;
-  border-radius: 5px;
+  background-color: ${({ $isCurrentlyReading }) =>
+    $isCurrentlyReading ? "var(--color-green)" : "var(--color-light-yellow)"};
+  border-radius: 4px;
+  border: none;
+  width: 32px;
+  height: 32px;
 `;

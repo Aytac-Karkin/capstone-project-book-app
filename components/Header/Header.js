@@ -1,52 +1,42 @@
 import styled from "styled-components";
 import { useRouter } from "next/router";
-
+import ArrowBackIcon from "../Icons/ArrowBackIcon";
 export default function Header() {
   const router = useRouter();
-
   return (
-    <StyledContainer>
-      <StyledHeader>
-        {router.pathname !== "/" &&
-          router.pathname !== "/spotlight" &&
-          router.pathname !== "/my-library" &&
-          router.pathname !== "/challenge" && (
-            <StyledBackButton onClick={router.back}>
-              <span
-                role="image"
-                aria-label="Arrow emoji indicating the return to the previous page"
-              >
-                ⬅️
-              </span>
-            </StyledBackButton>
-          )}
-        <StyledHeadline>Shelfie</StyledHeadline>
-      </StyledHeader>
-    </StyledContainer>
+    <StyledHeader>
+      {router.pathname !== "/" &&
+        router.pathname !== "/spotlight" &&
+        router.pathname !== "/my-library" &&
+        router.pathname !== "/challenge" && (
+          <StyledBackButton onClick={router.back}>
+            <span
+              role="image"
+              aria-label="Arrow emoji indicating the return to the previous page"
+            >
+              <ArrowBackIcon />
+            </span>
+          </StyledBackButton>
+        )}
+      <StyledHeadline>Shelfie</StyledHeadline>
+    </StyledHeader>
   );
 }
-
 const StyledHeader = styled.header`
   display: flex;
   justify-content: center;
   max-width: 600px;
+  width: 90%;
 `;
 const StyledHeadline = styled.h1`
-  text-align: center;
-  margin-bottom: 15px;
+  margin: 15px auto;
 `;
-
 const StyledBackButton = styled.button`
-  background-color: white;
+  background-color: var(--color-dark-yellow);
   border: none;
   font-size: 1.5rem;
+  margin-top: 6px;
   &:hover {
     cursor: pointer;
   }
-`;
-
-const StyledContainer = styled.div`
-  width: 90%;
-  max-width: 600px;
-  margin: auto;
 `;

@@ -28,7 +28,7 @@ export default function BookCard({
         <StyledInfos>
           <h3>{title}</h3>
           <p>{author}</p>
-          <StyledGenre>{genre}</StyledGenre>
+          <span>{genre}</span>
         </StyledInfos>
       </StyledLink>
       <StyledButtonWrapper>
@@ -114,8 +114,4 @@ const StyledButtonWrapper = styled.section`
   flex-direction: column;
   //gap: 4px;
   justify-content: space-evenly;
-`;
-
-const StyledGenre = styled.span`
-  font-style: italic;
 `;

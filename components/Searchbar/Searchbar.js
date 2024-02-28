@@ -15,7 +15,7 @@ export default function SearchBar({ setSearchTerm }) {
 
 const SearchInput = styled.input`
   padding: 0.3rem;
-  font-size: 0.9rem;
+  font-size: 1rem;
   display: flex;
   margin: auto;
   width: 60%;

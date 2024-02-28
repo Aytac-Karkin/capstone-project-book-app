@@ -147,11 +147,13 @@ export default function HomePage({
             </FilterTag>
           )}
         </FilterTagSection>
-        {filters.yearStart && <span>{filterResultsCount} result(s)</span>}
         {filters.yearStart && (
-          <FilterButton type="button" onClick={handleResetFilters}>
-            Reset Filters
-          </FilterButton>
+          <StyledResults>{filterResultsCount} result(s)</StyledResults>
+        )}
+        {filters.yearStart && (
+          <ResetButton type="button" onClick={handleResetFilters}>
+            Reset
+          </ResetButton>
         )}
         {filteredBookList.length > 0 ? (
           <BookList
@@ -204,13 +206,26 @@ const FilterButton = styled.button`
   border-radius: 8px;
   border-style: none;
   padding: 7px 8px;
-  // box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.15);
   font-size: 1rem;
   margin-left: 5px;
   position: absolute;
   bottom: 0.7rem;
   right: 3.5rem;
   box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.19);
+`;
+
+const ResetButton = styled.button`
+  background-color: var(--color-green);
+  color: var(--color-light-yellow);
+  border-radius: 8px;
+  border-style: none;
+  padding: 4px;
+  box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.15);
+  margin-left: 5px;
+`;
+const StyledResults = styled.span`
+  margin-left: 8px;
+  padding: 4px;
 `;
 
 const StyledFilterForm = styled.form`
@@ -252,15 +267,16 @@ const StyledParagraph = styled.p`
 
 const ToggleFilterButton = styled.button`
   margin: auto;
+  margin-bottom: 10px;
   max-width: 600px;
   display: flex;
   justify-content: center;
-  background-color: var(--color-light-yellow);
-  // color: var(--color-green);
+  background-color: var(--color-green);
+  color: var(--color-light-yellow);
   border-radius: 8px;
   border-style: none;
-  padding: 0.2rem;
-  font-size: 0.9rem;
+  padding: 0.3rem;
+  font-size: 1rem;
   width: 45%;
   box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.15);
 `;
@@ -274,14 +290,16 @@ const NoFilterMatchesMessage = styled.p`
 
 const FilterTagSection = styled.section`
   display: flex;
-  justify-content: space-around;
-  padding: 0.5rem;
+  justify-content: space-evenly;
+  padding: 0.4rem;
+  gap: 5px;
 `;
-
 const FilterTag = styled.span`
-  background-color: rgba(239, 230, 224);
-  border-radius: 4px;
-  padding: 2px;
+  background-color: var(--color-light-yellow);
+  border-radius: 8px;
+  padding: 0.2rem;
+  font-size: 15px;
+  margin-bottom: 20px;
 `;
 
 const StyledBody = styled.div`
