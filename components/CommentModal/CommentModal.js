@@ -121,7 +121,7 @@ export default function CommentModal({ id }) {
       <StyledSection>
         <p>
           <CommentButton onClick={openAddCommentModal}>+</CommentButton>
-          add a thought
+          Add a thought!
         </p>
       </StyledSection>
 
@@ -191,14 +191,17 @@ const StyledSection = styled.section`
 const CommentButton = styled.button`
   width: 25px;
   height: 25px;
-  margin-right: 10px;
+  margin-right: 8px;
+  background-color: var(--color-light-yellow);
+  border-style: none;
+  border-radius: 8px;
 `;
 
 const ButtonWrapper = styled.section`
   display: flex;
   flex-direction: column;
   width: 50%;
-  margin: 10%;
+  margin: 20px;
 `;
 
 const Overlay = styled.div`
@@ -220,7 +223,7 @@ const CommentForm = styled.form`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: rgb(255, 245, 238);
+  background-color: var(--color-light-yellow);
   border-radius: 8px;
   padding: 20px;
 `;
@@ -240,6 +243,14 @@ const StyledComment = styled.p`
 
 const StyledButton = styled.button`
   margin: 3px;
+  padding: 4px;
+  border-radius: 8px;
+  // color: var(--color-green);
+  border: 1px solid var(--color-green);
+  //border-style: none;
+  // box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.15);
+  // background-color: var(--color-light-yellow);
+  background-color: white;
 `;
 
 const DeleteButton = styled.button`

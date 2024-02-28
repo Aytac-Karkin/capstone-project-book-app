@@ -4,7 +4,10 @@ import ArrowBackIcon from "../Icons/ArrowBackIcon";
 export default function Header() {
   const router = useRouter();
   return (
-    <StyledHeader>
+    <>
+      <StyledHeader>
+        <StyledHeadline>Shelfie</StyledHeadline>
+      </StyledHeader>
       {router.pathname !== "/" &&
         router.pathname !== "/spotlight" &&
         router.pathname !== "/my-library" &&
@@ -18,15 +21,13 @@ export default function Header() {
             </span>
           </StyledBackButton>
         )}
-      <StyledHeadline>Shelfie</StyledHeadline>
-    </StyledHeader>
+    </>
   );
 }
 const StyledHeader = styled.header`
   display: flex;
-  justify-content: center;
+  position: relative;
   max-width: 600px;
-  width: 90%;
 `;
 const StyledHeadline = styled.h1`
   margin: 15px auto;
@@ -39,4 +40,6 @@ const StyledBackButton = styled.button`
   &:hover {
     cursor: pointer;
   }
+  position: absolute;
+  top: 19px;
 `;

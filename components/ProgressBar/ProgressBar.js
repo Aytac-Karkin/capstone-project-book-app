@@ -67,22 +67,22 @@ export default function ProgressBar({ pages, id }) {
           <ProgressModalWindow
             onSubmit={(event) => handleSubmitProgress(event, id)}
           >
-            <h3>Reading Progress</h3>
+            <h4>Reading Progress</h4>
             <label htmlFor="pageCount">
-              <input
+              <StyledInput
                 type="number"
                 id="pageCount"
                 name="pageCount"
                 min={0}
                 max={pages}
                 defaultValue={currentReadingProgress?.progress}
-              ></input>
+              ></StyledInput>
             </label>
             <ButtonWrapper>
-              <button type="button" onClick={cancelUpdateProgress}>
+              <StyledButton type="submit">Save</StyledButton>
+              <StyledButton type="button" onClick={cancelUpdateProgress}>
                 Cancel
-              </button>
-              <button type="submit">Save</button>
+              </StyledButton>
             </ButtonWrapper>
           </ProgressModalWindow>
         </Overlay>
@@ -93,33 +93,38 @@ export default function ProgressBar({ pages, id }) {
 
 const ButtonWrapper = styled.section`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  // justify-content: space-between;
   margin: 10%;
-  width: 100%;
+  width: 120px;
+`;
+
+const StyledButton = styled.button`
+  margin: 3px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 4px;
+  border: 1px solid var(--color-green);
 `;
 
 const ProgressBarWrapper = styled.div`
   position: relative;
   width: 60%;
   max-width: 400px;
-  background-color: rgb(255, 255, 255);
   border-radius: 10px;
-  border: 1px solid black;
   margin: 0 auto;
-  box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.15);
+  // border: 1px solid black;
 `;
 
 const ProgressBarFill = styled.div`
   height: 20px;
-  border-radius: 10px;
-  //background-color: rgb(143, 188, 143);
-  background-color: var(--color-dark-yellow);
+  border-radius: 8px;
+  background-color: var(--color-green);
   width: ${(props) => props.$progresspercentage || 0}%;
 `;
 
 const ProgressBarText = styled.span`
-  color: rgb(0, 0, 0);
+  color: var(--color-light-yellow);
   white-space: nowrap;
   position: absolute;
   top: 50%;
@@ -127,6 +132,9 @@ const ProgressBarText = styled.span`
   transform: translate(-50%, -50%);
   width: 100%;
   text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.15);
+  background-color: rgb(0, 132, 114, 0.5);
 `;
 
 const Overlay = styled.div`
@@ -145,8 +153,17 @@ const ProgressModalWindow = styled.form`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: rgb(255, 255, 255);
+  width: 85%;
+  height: 40%;
+  background-color: var(--color-light-yellow);
   border-radius: 8px;
   padding: 20px;
-  border: 3px rgb(255, 0, 0) solid;
+`;
+
+const StyledInput = styled.input`
+  border: 1px solid var(--color-green);
+  border-radius: 8px;
+  padding: 4px;
+  width: 60px;
+  text-align: center;
 `;
