@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function AlreadyReadButton({ onToggle, id, isAlreadyRead }) {
   return (

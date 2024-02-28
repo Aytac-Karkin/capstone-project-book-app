@@ -6,6 +6,7 @@ import FilterCategory from "@/components/FilterCategory/FilterCategory";
 import { useState } from "react";
 import genres from "../lib/genres.json";
 import SearchBar from "@/components/Searchbar/Searchbar";
+import { motion } from "framer-motion";
 
 export default function HomePage({
   books,
