@@ -249,6 +249,7 @@ const StyledButton = styled.button`
   border: 1px solid var(--color-green);
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
+  font-weight: 400;
 `;
 
 const DeleteButton = styled.button`
