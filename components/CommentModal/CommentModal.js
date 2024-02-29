@@ -247,7 +247,8 @@ const StyledButton = styled.button`
   padding: 4px;
   border-radius: 8px;
   border: 1px solid var(--color-green);
-  background-color: white;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 `;
 
 const DeleteButton = styled.button`
