@@ -1,18 +1,12 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-export default function MyLibraryButton({
-  onToggle,
-  id,
-  isBookmarked,
-  updateAnimationBookmark,
-}) {
+export default function MyLibraryButton({ onToggle, id, isBookmarked }) {
   return (
     <StyledButton
       type="button"
       onClick={() => {
         onToggle(id);
-        updateAnimationBookmark(id);
       }}
       $isBookmarked={isBookmarked}
       aria-label={isBookmarked ? "remove from my-library" : "add to my-library"}

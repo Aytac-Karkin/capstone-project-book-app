@@ -4,6 +4,7 @@ import Link from "next/link";
 import AlreadyReadButton from "../Button/AlreadyReadButton";
 import CurrentlyReadingButton from "../Button/CurrentlyReadingButton";
 import MyLibraryButton from "../Button/MyLibraryButton";
+import { useEffect } from "react";
 
 export default function BookCard({
   book,
@@ -12,7 +13,7 @@ export default function BookCard({
   handleToggleAlreadyRead,
   handleToggleCurrentlyReading,
   updateAnimationBookmark,
-  updateAnimationAlreadyRead,
+  setAnimationActiveAlreadyRead,
 }) {
   const { title, author, genre, cover, id } = book;
   const currentBookInfo = booksInfo?.find((bookInfo) => {
@@ -22,6 +23,20 @@ export default function BookCard({
   const currentBookIsAlreadyRead = currentBookInfo?.isAlreadyRead;
   const currentBookIsBookmarked = currentBookInfo?.isBookmarked;
   const currentBookIsCurrentlyReading = currentBookInfo?.isCurrentlyReading;
+
+  useEffect(() => {
+    function updateAnimationAlreadyRead(id) {
+      const currentBook = booksInfo.find((book) => book.id === id);
+      console.log("book card currentbook", currentBook);
+      if (currentBook.isAlreadyRead) {
+        setAnimationActiveAlreadyRead(false);
+      } else {
+        setAnimationActiveAlreadyRead(true);
+        setTimeout(() => setAnimationActiveAlreadyRead(false), "2000");
+      }
+    }
+    updateAnimationAlreadyRead(id);
+  }, [booksInfo, id, setAnimationActiveAlreadyRead]);
 
   return (
     <StyledBook>
@@ -38,7 +53,6 @@ export default function BookCard({
           onToggle={handleToggleBookmark}
           id={id}
           isBookmarked={currentBookIsBookmarked}
-          updateAnimationBookmark={updateAnimationBookmark}
         />
         <CurrentlyReadingButton
           onToggle={handleToggleCurrentlyReading}
@@ -49,7 +63,6 @@ export default function BookCard({
           onToggle={handleToggleAlreadyRead}
           id={id}
           isAlreadyRead={currentBookIsAlreadyRead}
-          updateAnimationAlreadyRead={updateAnimationAlreadyRead}
         />
       </StyledButtonWrapper>
     </StyledBook>

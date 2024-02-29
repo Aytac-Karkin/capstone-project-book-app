@@ -3,7 +3,7 @@ import Header from "@/components/Header/Header";
 import Navigation from "@/components/Navigation/Navigation";
 import styled from "styled-components";
 import FilterCategory from "@/components/FilterCategory/FilterCategory";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import genres from "../lib/genres.json";
 import SearchBar from "@/components/Searchbar/Searchbar";
 
@@ -84,7 +84,6 @@ export default function HomePage({
 
   function updateAnimationBookmark(id) {
     const currentBook = booksInfo.find((book) => book.id === id);
-    console.log("currentBook updateAnimationBookmark", currentBook);
     if (!currentBook.isBookmarked) {
       setAnimationActiveBookmark(true);
     } else {
@@ -92,14 +91,35 @@ export default function HomePage({
     }
   }
 
-  function updateAnimationAlreadyRead(id) {
-    const currentBook = booksInfo.find((book) => book.id === id);
-    if (currentBook.isAlreadyRead) {
-      setAnimationActiveAlreadyRead(false);
-    } else {
-      setAnimationActiveAlreadyRead(true);
+  // function updateAnimationAlreadyRead(id) {
+  //   const currentBook = booksInfo.find((book) => book.id === id);
+  //   if (currentBook.isAlreadyRead) {
+  //     setAnimationActiveAlreadyRead(false);
+  //   } else {
+  //     setAnimationActiveAlreadyRead(true);
+  //   }
+  // }
+
+  useEffect(() => {
+    function updateAnimationAlreadyRead(id) {
+      const currentBook = booksInfo.find((book) => book.id === id);
+      if (currentBook.isAlreadyRead) {
+        setAnimationActiveAlreadyRead(false);
+      } else {
+        setAnimationActiveAlreadyRead(true);
+        setTimeout(() => setAnimationActiveAlreadyRead(false), "1000");
+      }
     }
-  }
+  }, [booksInfo]);
+
+  // useEffect(() => {
+  //   let timeoutId;
+  //   if (!selectedArtPiece) {
+  //     timeoutId = setTimeout(() => router.push("/404"), 3000);
+  //   }
+
+  //   return () => clearTimeout(timeoutId);
+  // }, [selectedArtPiece, router]);
 
   return (
     <>
@@ -184,7 +204,7 @@ export default function HomePage({
             handleToggleAlreadyRead={handleToggleAlreadyRead}
             handleToggleCurrentlyReading={handleToggleCurrentlyReading}
             updateAnimationBookmark={updateAnimationBookmark}
-            updateAnimationAlreadyRead={updateAnimationAlreadyRead}
+            setAnimationActiveAlreadyRead={setAnimationActiveAlreadyRead}
           />
         ) : (
           <NoFilterMatchesMessage>
