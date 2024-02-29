@@ -138,6 +138,8 @@ const StyledModalButton = styled.button`
   border-radius: 8px;
   font-size: 16px;
   padding: 4px;
+  color: rgb(0, 0, 0);
+  font-weight: 400;
 `;
 
 const StyledBox = styled.div`
@@ -150,8 +152,7 @@ const StyledBox = styled.div`
 const StyledEditButton = styled.button`
   border: none;
   background: var(--color-green);
-  height: 35px;
-  width: 35px;
+  padding: 0.2rem 0.45rem;
   border-radius: 35px;
   font-size: 25px;
   position: absolute;
@@ -232,6 +233,8 @@ const StyledSelect = styled.select`
   padding: 4px;
   background-color: rgb(255, 255, 255);
   font-size: 16px;
+  color: rgb(0, 0, 0);
+  font-weight: 400;
 `;
 
 const StyledParagraph = styled.p`

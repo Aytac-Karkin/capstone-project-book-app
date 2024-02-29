@@ -198,6 +198,8 @@ const ExitButton = styled.button`
   border-radius: 8px;
   border-style: none;
   box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.19);
+  color: rgb(0, 0, 0);
+  font-weight: 400;
 `;
 
 const FilterButton = styled.button`
@@ -212,6 +214,8 @@ const FilterButton = styled.button`
   bottom: 0.7rem;
   right: 3.5rem;
   box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.19);
+  color: var(0, 0, 0);
+  font-weight: 400;
 `;
 
 const ResetButton = styled.button`

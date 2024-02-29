@@ -105,6 +105,8 @@ const StyledButton = styled.button`
   padding: 4px;
   border: 1px solid var(--color-green);
   font-size: 16px;
+  color: rgb(0, 0, 0);
+  font-weight: 400;
 `;
 
 const ProgressBarWrapper = styled.div`
