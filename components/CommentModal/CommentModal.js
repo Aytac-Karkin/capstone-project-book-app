@@ -4,6 +4,8 @@ import useLocalStorageState from "use-local-storage-state";
 import NotesInput from "../NotesInput/NotesInput";
 import { uid } from "uid";
 import ConfirmationModalWindow from "../ConfirmationModalWindow/ConfirmationModalWindow";
+import EditIcon from "../Icons/EditIcon";
+import TrashIcon from "../Icons/TrashIcon";
 
 export default function CommentModal({ id }) {
   const [modalState, setModalState] = useState({
@@ -108,12 +110,12 @@ export default function CommentModal({ id }) {
           <StyledComment key={currentComment.uniqueId}>
             {currentComment.comment}
             <EditButton onClick={() => editComment(currentComment.uniqueId)}>
-              ✎
+              <EditIcon />
             </EditButton>
             <DeleteButton
               onClick={() => openDeleteModal(currentComment.uniqueId)}
             >
-              🗑️
+              <TrashIcon />
             </DeleteButton>
           </StyledComment>
         ))}
@@ -233,23 +235,19 @@ const CommentsList = styled.section`
 `;
 
 const StyledComment = styled.p`
-  border: 1px solid rgb(0, 0, 0);
-  background-color: rgb(255, 245, 238);
+  background-color: var(--color-light-yellow);
   border-radius: 4px;
-  padding: 3px;
+  padding: 4px;
   word-wrap: break-word;
   position: relative;
+  //box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.19);
 `;
 
 const StyledButton = styled.button`
   margin: 3px;
   padding: 4px;
   border-radius: 8px;
-  // color: var(--color-green);
   border: 1px solid var(--color-green);
-  //border-style: none;
-  // box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.15);
-  // background-color: var(--color-light-yellow);
   background-color: white;
 `;
 
@@ -258,6 +256,9 @@ const DeleteButton = styled.button`
   bottom: 1px;
   right: 2px;
   font-size: 0.8rem;
+  background-color: var(--color-green);
+  border-radius: 8px;
+  border: none;
 `;
 
 const EditButton = styled.button`
@@ -265,4 +266,7 @@ const EditButton = styled.button`
   bottom: 1px;
   right: 35px;
   font-size: 0.85rem;
+  background-color: var(--color-green);
+  border-radius: 8px;
+  border: none;
 `;

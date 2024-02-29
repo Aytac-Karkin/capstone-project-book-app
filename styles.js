@@ -29,7 +29,7 @@ export default createGlobalStyle`
     background-color: var(--color-dark-yellow);
   }
 
-  h1,h2,h3{
+  h1,h2{
     font-family: var(--serif-font-bold), serif;
 
   }

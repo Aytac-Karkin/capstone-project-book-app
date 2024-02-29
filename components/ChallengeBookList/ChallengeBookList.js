@@ -1,4 +1,5 @@
 import BookList from "../BookList/BookList";
+import styled from "styled-components";
 
 export default function ChallengeBookList({
   booksInfo,
@@ -9,7 +10,7 @@ export default function ChallengeBookList({
 }) {
   return (
     <>
-      <h3>Books you´ve already read</h3>
+      <StyledParagraph>Books you&apos;ve already read:</StyledParagraph>
       {readBooks?.length > 0 ? (
         <BookList
           books={readBooks}
@@ -19,8 +20,13 @@ export default function ChallengeBookList({
           handleToggleCurrentlyReading={handleToggleCurrentlyReading}
         />
       ) : (
-        <p>You have not read any books yet.</p>
+        <StyledParagraph>You have not read any books yet.</StyledParagraph>
       )}
     </>
   );
 }
+
+const StyledParagraph = styled.p`
+  font-size: 18px;
+  margin-left: 6px;
+`;

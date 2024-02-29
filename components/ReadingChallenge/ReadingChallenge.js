@@ -3,6 +3,8 @@ import { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import ChallengeBookList from "../ChallengeBookList/ChallengeBookList";
 import EditIcon from "../Icons/EditIcon";
+import BookMarkIcon from "../Icons/BookMarkIcon";
+import AlreadyReadIcon from "../Icons/AlreadyReadIcon";
 
 export default function ReadingChallenge({
   books,
@@ -86,10 +88,10 @@ export default function ReadingChallenge({
       {modalState.isOpen && (
         <Overlay>
           <ChallengeForm onSubmit={handleSubmit}>
-            <h3>I want to read</h3>
+            <StyledParagraph>I want to read:</StyledParagraph>
             <div>
               <label htmlFor="amount-input">
-                <input
+                <StyledInput
                   id="amount-input"
                   name="amount"
                   type="number"
@@ -99,14 +101,14 @@ export default function ReadingChallenge({
                 />
               </label>
               <label htmlFor="type-input">
-                <select
+                <StyledSelect
                   id="type-input"
                   name="type"
                   defaultValue={challenge.type}
                 >
                   <option value="books">Books</option>
                   <option value="pages">Pages</option>
-                </select>
+                </StyledSelect>
               </label>
             </div>
             <ButtonWrapper>
@@ -133,8 +135,8 @@ export default function ReadingChallenge({
 }
 
 const StyledModalButton = styled.button`
-  background-color: var(--color-light-yellow);
-  border-style: none;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid var(--color-green);
   border-radius: 8px;
   font-size: 16px;
   padding: 4px;
@@ -178,7 +180,7 @@ const ChallengeForm = styled.form`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: var(--color-dark-yellow);
+  background-color: var(--color-light-yellow);
   border-radius: 8px;
   padding: 20px;
   width: 90%;
@@ -204,14 +206,34 @@ const Container = styled.div`
 `;
 
 const Paragraph = styled.p`
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
-  /* border: 1px solid black;
-  border-radius: 8px; */
 `;
 
 const StyledBody = styled.div`
   width: 95%;
   max-width: 600px;
   margin: auto;
+`;
+
+const StyledInput = styled.input`
+  border: 1px solid var(--color-green);
+  border-radius: 8px;
+  margin-right: 3px;
+  padding: 4px;
+  width: 70px;
+  font-size: 16px;
+`;
+
+const StyledSelect = styled.select`
+  border: 1px solid var(--color-green);
+  border-radius: 8px;
+  padding: 4px;
+  background-color: rgb(255, 255, 255);
+  font-size: 16px;
+`;
+
+const StyledParagraph = styled.p`
+  font-size: 18px;
+  margin-bottom: 10px;
 `;
