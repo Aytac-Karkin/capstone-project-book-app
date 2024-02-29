@@ -14,6 +14,8 @@ export default function BookDetailsPage({
   booksInfo,
   setAnimationActiveAlreadyRead,
   setAnimationActiveBookmark,
+  animationActiveAlreadyRead,
+  animationActiveBookmark,
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -38,7 +40,10 @@ export default function BookDetailsPage({
           setAnimationActiveBookmark={setAnimationActiveBookmark}
         />
         <CommentModal id={currentBook.id} />
-        <Navigation />
+        <Navigation
+          animationActiveBookmark={animationActiveBookmark}
+          animationActiveAlreadyRead={animationActiveAlreadyRead}
+        />
       </StyledDetailedPage>
     </>
   );

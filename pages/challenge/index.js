@@ -6,6 +6,8 @@ export default function ChallengePage({
   books,
   booksInfo,
   handleToggleAlreadyRead,
+  setAnimationActiveAlreadyRead,
+  setAnimationActiveBookmark,
 }) {
   return (
     <>
@@ -14,6 +16,8 @@ export default function ChallengePage({
         books={books}
         booksInfo={booksInfo}
         handleToggleAlreadyRead={handleToggleAlreadyRead}
+        setAnimationActiveAlreadyRead={setAnimationActiveAlreadyRead}
+        setAnimationActiveBookmark={setAnimationActiveBookmark}
       />
       <Navigation />
     </>
