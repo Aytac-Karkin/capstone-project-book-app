@@ -107,10 +107,8 @@ export default function CommentModal({ id }) {
       <h4>What were your thoughts on this book?</h4>
       <CommentsList>
         {currentComments.map((currentComment) => (
-          <StyledCommentWrapper>
-            <StyledComment key={currentComment.uniqueId}>
-              {currentComment.comment}
-            </StyledComment>
+          <StyledCommentWrapper key={currentComment.uniqueId}>
+            <StyledComment>{currentComment.comment}</StyledComment>
             <StyledButtonWrapper>
               <EditButton onClick={() => editComment(currentComment.uniqueId)}>
                 <EditIcon />
