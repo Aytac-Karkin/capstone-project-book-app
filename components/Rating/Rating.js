@@ -53,6 +53,6 @@ const StyledInput = styled.input`
 
 const StyledStar = styled.span`
   cursor: pointer;
-  font-size: 22px;
+  font-size: 26px;
   padding: 2px;
 `;

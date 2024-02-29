@@ -64,7 +64,7 @@ export default function ReadingChallenge({
   return (
     <StyledBody>
       <StyledBox>
-        {challenge !== null ? (
+        {challenge.type ? (
           <Paragraph>
             You have read {progress} out of {challenge.amount} {challenge.type}.
           </Paragraph>

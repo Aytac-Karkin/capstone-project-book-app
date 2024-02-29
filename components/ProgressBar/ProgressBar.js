@@ -67,8 +67,8 @@ export default function ProgressBar({ pages, id }) {
           <ProgressModalWindow
             onSubmit={(event) => handleSubmitProgress(event, id)}
           >
-            <h4>Reading Progress</h4>
             <label htmlFor="pageCount">
+              <StyledOnPage>I am on page:</StyledOnPage>
               <StyledInput
                 type="number"
                 id="pageCount"
@@ -105,6 +105,7 @@ const StyledButton = styled.button`
   border-radius: 8px;
   padding: 4px;
   border: 1px solid var(--color-green);
+  font-size: 16px;
 `;
 
 const ProgressBarWrapper = styled.div`
@@ -134,7 +135,7 @@ const ProgressBarText = styled.span`
   text-align: center;
   border-radius: 8px;
   box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.15);
-  background-color: rgb(0, 132, 114, 0.5);
+  background-color: rgb(0, 132, 114, 0.6);
 `;
 
 const Overlay = styled.div`
@@ -160,10 +161,17 @@ const ProgressModalWindow = styled.form`
   padding: 20px;
 `;
 
+const StyledOnPage = styled.p`
+  margin-bottom: 10px;
+  margin-top: 5px;
+  font-size: 18px;
+`;
+
 const StyledInput = styled.input`
   border: 1px solid var(--color-green);
   border-radius: 8px;
   padding: 4px;
   width: 60px;
   text-align: center;
+  font-size: 16px;
 `;

@@ -26,9 +26,9 @@ export default function BookCard({
       <StyledLink href={`/book-details/${id}`}>
         <StyledImage src={cover} alt={title} width={100} height={149} />
         <StyledInfos>
-          <h3>{title}</h3>
-          <p>{author}</p>
-          <span>{genre}</span>
+          <StyledTitle>{title}</StyledTitle>
+          <StyledAuthor>{author}</StyledAuthor>
+          <p>{genre}</p>
         </StyledInfos>
       </StyledLink>
       <StyledButtonWrapper>
@@ -114,4 +114,12 @@ const StyledButtonWrapper = styled.section`
   flex-direction: column;
   //gap: 4px;
   justify-content: space-evenly;
+`;
+
+const StyledTitle = styled.h2`
+  font-size: 20px;
+`;
+
+const StyledAuthor = styled.p`
+  font-size: 17px;
 `;

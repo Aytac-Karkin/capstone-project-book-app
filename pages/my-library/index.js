@@ -46,7 +46,7 @@ export default function MyLibraryPage({
             }}
             $isActive={filter === "saved-books" ? true : false}
           >
-            ☆
+            Want to read
           </StyledFilterButton>
           <StyledFilterButton
             type="button"
@@ -56,7 +56,7 @@ export default function MyLibraryPage({
             }}
             $isActive={filter === "currently-reading-books" ? true : false}
           >
-            📖
+            Currently reading
           </StyledFilterButton>
           <StyledFilterButton
             type="button"
@@ -66,7 +66,7 @@ export default function MyLibraryPage({
             }}
             $isActive={filter === "already-read-books" ? true : false}
           >
-            ✔︎
+            Already read
           </StyledFilterButton>
         </StyledButtonWrapper>
         {filteredBooks?.length > 0 ? (
@@ -89,6 +89,8 @@ export default function MyLibraryPage({
 
 const StyledHeadline = styled.h2`
   text-align: center;
+  margin: auto;
+  margin-bottom: 20px;
 `;
 
 const StyledLibraryPage = styled.div`
@@ -102,12 +104,21 @@ const StyledParagraph = styled.p`
 `;
 
 const StyledFilterButton = styled.button`
-  background-color: ${({ $isActive }) =>
-    $isActive ? "darkseagreen" : "seashell"};
+  border-style: none;
   border-radius: 4px;
+  box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.19);
+  font-size: 16px;
+  background-color: ${({ $isActive }) =>
+    $isActive ? "var(--color-green)" : "var(--color-light-yellow)"};
+  color: ${({ $isActive }) =>
+    $isActive ? "var(--color-light-yellow)" : "rgb(0,0,0)"};
+  // font-family: var(--serif-font-bold);
+  padding: 4px;
 `;
 
 const StyledButtonWrapper = styled.section`
   display: flex;
+  justify-content: space-around;
   gap: 5px;
+  padding: 8px;
 `;
