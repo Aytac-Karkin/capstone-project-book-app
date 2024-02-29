@@ -36,7 +36,7 @@ Note: All features in Shelfie are developed with a strong emphasis on accessibil
 
 ## Technologies & Tools
 
-[React](https://react.dev/) | [Next.js](https://nextjs.org/) | [styled-components](https://styled-components.com/) | [Node.js](https://nodejs.org/en) | [Vercel](https://vercel.com/) |
+[React](https://react.dev/) | [Next.js](https://nextjs.org/) | [styled-components](https://styled-components.com/) | [Vercel](https://vercel.com/) |
 
 ## Team
 
