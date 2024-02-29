@@ -10,6 +10,8 @@ export default function MyLibraryPage({
   handleToggleBookmark,
   handleToggleAlreadyRead,
   handleToggleCurrentlyReading,
+  setAnimationActiveBookmark,
+  setAnimationActiveAlreadyRead,
 }) {
   const [filter, setFilter] = useState("saved-books");
   function handleFilter(newFilter) {
@@ -76,6 +78,8 @@ export default function MyLibraryPage({
             handleToggleBookmark={handleToggleBookmark}
             handleToggleAlreadyRead={handleToggleAlreadyRead}
             handleToggleCurrentlyReading={handleToggleCurrentlyReading}
+            setAnimationActiveBookmark={setAnimationActiveBookmark}
+            setAnimationActiveAlreadyRead={setAnimationActiveAlreadyRead}
           />
         ) : (
           <StyledParagraph>You have not added any books yet.</StyledParagraph>

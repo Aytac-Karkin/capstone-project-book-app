@@ -3,7 +3,7 @@ import Header from "@/components/Header/Header";
 import Navigation from "@/components/Navigation/Navigation";
 import styled from "styled-components";
 import FilterCategory from "@/components/FilterCategory/FilterCategory";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import genres from "../lib/genres.json";
 import SearchBar from "@/components/Searchbar/Searchbar";
 
@@ -13,6 +13,10 @@ export default function HomePage({
   handleToggleBookmark,
   handleToggleAlreadyRead,
   handleToggleCurrentlyReading,
+  animationActiveAlreadyRead,
+  animationActiveBookmark,
+  setAnimationActiveAlreadyRead,
+  setAnimationActiveBookmark,
 }) {
   const [filterModal, setFilterModal] = useState(false);
   const currentYear = new Date().getFullYear();
@@ -77,10 +81,6 @@ export default function HomePage({
   const filterResultsCount = foundBooks
     ? foundBooks.length
     : filteredBookList.length;
-
-  const [animationActiveBookmark, setAnimationActiveBookmark] = useState(false);
-  const [animationActiveAlreadyRead, setAnimationActiveAlreadyRead] =
-    useState(false);
 
   return (
     <>

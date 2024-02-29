@@ -4,7 +4,6 @@ import Link from "next/link";
 import AlreadyReadButton from "../Button/AlreadyReadButton";
 import CurrentlyReadingButton from "../Button/CurrentlyReadingButton";
 import MyLibraryButton from "../Button/MyLibraryButton";
-import { useEffect } from "react";
 
 export default function BookCard({
   book,
