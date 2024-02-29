@@ -12,19 +12,19 @@ Shelfie provides a virtual bookshelf for small and big bookworms that gives insp
 A user-friendly display showcasing a list of books, each with key details such as book title, cover, author, genre. Three buttons enable to mark books as "want to read", "currently reading" and "already read". 
 
 ✨ **Book Details:** 
-Provide the user with an in-depth look at each book with more specific information like synopsis, publication details, page count.
+Provide the user with an in-depth look at each book with more specific information like synopsis, publication details and page count.
 
 📋 **Reading List:** 
 Easily add and remove books to a reading list, ensuring they are conveniently saved for future reference. Within the reading list switch between books marked as "want to read", "currently reading" and "already read".
 
-📝 **Add Personal Notes and Rating:**:
-Enables adding own notes or annotations to books to enriching the users reading experience with personal insights and reminders. Also enables to add a rating for books that have already been read.
+📝 **Add Personal Notes and Rating:**
+Enables adding own notes or annotations to books in order to enrich the users reading experience with personal insights and reminders. Also enables the user to add a rating for books that they have already been read.
 
 🔍 **Filter Function & Searchbar:**
 Explore books with ease by filtering based on various criteria including genre, publication year and page count. Quickly locate specific books within the book list using author name, title or year in the search bar. 
 
 📊 **Reading Progress:** 
-Enables users to track their reading progress for each book they're currently reading. Users can update their progress by adding the pages already read. The app visually represents reading progress through intuitive progress bars.
+Enables users to track their reading progress for each book they're currently reading. Users can update their progress by adding the pages they have already read. The app visually represents reading progress through intuitive progress bars.
 
 🏆 **Reading Goals:** 
 Enables users to set reading goals by choosing how many books or pages one wants to read.
@@ -36,13 +36,13 @@ Note: All features in Shelfie are developed with a strong emphasis on accessibil
 
 ## Technologies & Tools
 
-[React](https://react.dev/) | [Next.js](https://nextjs.org/) | [styled-components](https://styled-components.com/) | [Vercel](https://vercel.com/) |
+[React](https://react.dev/) | [Next.js](https://nextjs.org/) | [styled-components](https://styled-components.com/) | [Vercel](https://vercel.com/) | [Framer Motion](https://www.framer.com/motion/)
 
 ## Team
 
 - [Stella Kakarali](https://github.com/StellaKakarali)
 - [Aytac Karkin](https://github.com/Aytac-Karkin)
-- [Miriam](https://github.com/Miriam-Voelkl)
+- [Miriam Völkl](https://github.com/Miriam-Voelkl)
 - [Anja Klaßen](https://github.com/Anja-Klassen)
 
 ## Development
@@ -50,10 +50,6 @@ Note: All features in Shelfie are developed with a strong emphasis on accessibil
 ## Local Development
 
 To work locally, please install the dependencies using `npm i` first.
-
-Add local environment variables for Cloudinary, OpenCage and the MongoDB connection string.
-To do so create `.env.local` file in the project's root.
-Check the `env.example` file, copy paste the variables into the `.env.local` and complete it with the corresponding values
 
 Run `npm run dev` to start a development server and open the displayed URL in a browser.
 
