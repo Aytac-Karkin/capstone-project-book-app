@@ -214,7 +214,7 @@ const FilterButton = styled.button`
   bottom: 0.7rem;
   right: 3.5rem;
   box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.19);
-  color: var(0, 0, 0);
+  color: rgb(0, 0, 0);
   font-weight: 400;
 `;
 
