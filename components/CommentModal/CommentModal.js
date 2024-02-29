@@ -6,6 +6,7 @@ import { uid } from "uid";
 import ConfirmationModalWindow from "../ConfirmationModalWindow/ConfirmationModalWindow";
 import EditIcon from "../Icons/EditIcon";
 import TrashIcon from "../Icons/TrashIcon";
+import PlusIcon from "../Icons/PlusIcon";
 
 export default function CommentModal({ id }) {
   const [modalState, setModalState] = useState({
@@ -123,10 +124,10 @@ export default function CommentModal({ id }) {
         ))}
       </CommentsList>
       <StyledSection>
-        <p>
-          <CommentButton onClick={openAddCommentModal}>+</CommentButton>
-          Add a thought!
-        </p>
+        <CommentButton onClick={openAddCommentModal}>
+          <PlusIcon />
+        </CommentButton>
+        <StyledAddThought>Add a thought!</StyledAddThought>
       </StyledSection>
 
       {modalState.isOpen && (
@@ -193,13 +194,18 @@ const StyledSection = styled.section`
 `;
 
 const CommentButton = styled.button`
-  width: 25px;
-  height: 25px;
   margin-right: 8px;
   background-color: var(--color-light-yellow);
   border-style: none;
   border-radius: 8px;
   box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.19);
+  padding: 0.25rem 0.3rem 0.125rem 0.35rem;
+  margin-top: 0.2rem;
+`;
+
+const StyledAddThought = styled.p`
+  margin: 0;
+  margin-top: 0.4rem;
 `;
 
 const ButtonWrapper = styled.section`
@@ -257,7 +263,7 @@ const DeleteButton = styled.button`
   background-color: var(--color-green);
   border-radius: 8px;
   border: none;
-  padding: 2px 4px;
+  padding: 0.25rem 0.3rem 0.125rem 0.35rem;
 `;
 
 const EditButton = styled.button`
@@ -265,7 +271,7 @@ const EditButton = styled.button`
   background-color: var(--color-green);
   border-radius: 8px;
   border: none;
-  padding: 2px 4px;
+  padding: 0.25rem 0.3rem 0.125rem 0.35rem;
 `;
 
 const StyledCommentWrapper = styled.div`
