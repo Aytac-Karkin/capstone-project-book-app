@@ -23,6 +23,5 @@ const StyledButton = styled.button`
     $isAlreadyRead ? "var(--color-green)" : "var(--color-light-yellow)"};
   border-radius: 4px;
   border: none;
-  width: 32px;
-  height: 32px;
+  padding: 0.4rem;
 `;
