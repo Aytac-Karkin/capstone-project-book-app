@@ -82,45 +82,6 @@ export default function HomePage({
   const [animationActiveAlreadyRead, setAnimationActiveAlreadyRead] =
     useState(false);
 
-  function updateAnimationBookmark(id) {
-    const currentBook = booksInfo.find((book) => book.id === id);
-    if (!currentBook.isBookmarked) {
-      setAnimationActiveBookmark(true);
-    } else {
-      setAnimationActiveBookmark(false);
-    }
-  }
-
-  // function updateAnimationAlreadyRead(id) {
-  //   const currentBook = booksInfo.find((book) => book.id === id);
-  //   if (currentBook.isAlreadyRead) {
-  //     setAnimationActiveAlreadyRead(false);
-  //   } else {
-  //     setAnimationActiveAlreadyRead(true);
-  //   }
-  // }
-
-  useEffect(() => {
-    function updateAnimationAlreadyRead(id) {
-      const currentBook = booksInfo.find((book) => book.id === id);
-      if (currentBook.isAlreadyRead) {
-        setAnimationActiveAlreadyRead(false);
-      } else {
-        setAnimationActiveAlreadyRead(true);
-        setTimeout(() => setAnimationActiveAlreadyRead(false), "1000");
-      }
-    }
-  }, [booksInfo]);
-
-  // useEffect(() => {
-  //   let timeoutId;
-  //   if (!selectedArtPiece) {
-  //     timeoutId = setTimeout(() => router.push("/404"), 3000);
-  //   }
-
-  //   return () => clearTimeout(timeoutId);
-  // }, [selectedArtPiece, router]);
-
   return (
     <>
       <Header />
@@ -203,7 +164,7 @@ export default function HomePage({
             handleToggleBookmark={handleToggleBookmark}
             handleToggleAlreadyRead={handleToggleAlreadyRead}
             handleToggleCurrentlyReading={handleToggleCurrentlyReading}
-            updateAnimationBookmark={updateAnimationBookmark}
+            setAnimationActiveBookmark={setAnimationActiveBookmark}
             setAnimationActiveAlreadyRead={setAnimationActiveAlreadyRead}
           />
         ) : (

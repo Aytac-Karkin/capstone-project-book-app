@@ -12,7 +12,7 @@ export default function BookCard({
   handleToggleBookmark,
   handleToggleAlreadyRead,
   handleToggleCurrentlyReading,
-  updateAnimationBookmark,
+  setAnimationActiveBookmark,
   setAnimationActiveAlreadyRead,
 }) {
   const { title, author, genre, cover, id } = book;
@@ -23,20 +23,6 @@ export default function BookCard({
   const currentBookIsAlreadyRead = currentBookInfo?.isAlreadyRead;
   const currentBookIsBookmarked = currentBookInfo?.isBookmarked;
   const currentBookIsCurrentlyReading = currentBookInfo?.isCurrentlyReading;
-
-  useEffect(() => {
-    function updateAnimationAlreadyRead(id) {
-      const currentBook = booksInfo.find((book) => book.id === id);
-      console.log("book card currentbook", currentBook);
-      if (currentBook.isAlreadyRead) {
-        setAnimationActiveAlreadyRead(false);
-      } else {
-        setAnimationActiveAlreadyRead(true);
-        setTimeout(() => setAnimationActiveAlreadyRead(false), "2000");
-      }
-    }
-    updateAnimationAlreadyRead(id);
-  }, [booksInfo, id, setAnimationActiveAlreadyRead]);
 
   return (
     <StyledBook>
@@ -53,6 +39,8 @@ export default function BookCard({
           onToggle={handleToggleBookmark}
           id={id}
           isBookmarked={currentBookIsBookmarked}
+          setAnimationActiveBookmark={setAnimationActiveBookmark}
+          booksInfo={booksInfo}
         />
         <CurrentlyReadingButton
           onToggle={handleToggleCurrentlyReading}
@@ -63,6 +51,8 @@ export default function BookCard({
           onToggle={handleToggleAlreadyRead}
           id={id}
           isAlreadyRead={currentBookIsAlreadyRead}
+          setAnimationActiveAlreadyRead={setAnimationActiveAlreadyRead}
+          booksInfo={booksInfo}
         />
       </StyledButtonWrapper>
     </StyledBook>

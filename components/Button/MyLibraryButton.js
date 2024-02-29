@@ -1,7 +1,27 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
-export default function MyLibraryButton({ onToggle, id, isBookmarked }) {
+export default function MyLibraryButton({
+  onToggle,
+  id,
+  isBookmarked,
+  setAnimationActiveBookmark,
+  booksInfo,
+}) {
+  useEffect(() => {
+    function updateAnimationBookmark(id) {
+      const currentBook = booksInfo.find((book) => book.id === id);
+      if (currentBook.isBookmarked) {
+        setAnimationActiveBookmark(true);
+        setTimeout(() => setAnimationActiveBookmark(false), "1500");
+      } else {
+        setAnimationActiveBookmark(false);
+      }
+    }
+    updateAnimationBookmark(id);
+  }, [isBookmarked]);
+
   return (
     <StyledButton
       type="button"
