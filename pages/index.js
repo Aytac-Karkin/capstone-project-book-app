@@ -13,6 +13,10 @@ export default function HomePage({
   handleToggleBookmark,
   handleToggleAlreadyRead,
   handleToggleCurrentlyReading,
+  animationActiveAlreadyRead,
+  animationActiveBookmark,
+  setAnimationActiveAlreadyRead,
+  setAnimationActiveBookmark,
 }) {
   const [filterModal, setFilterModal] = useState(false);
   const currentYear = new Date().getFullYear();
@@ -160,6 +164,8 @@ export default function HomePage({
             handleToggleBookmark={handleToggleBookmark}
             handleToggleAlreadyRead={handleToggleAlreadyRead}
             handleToggleCurrentlyReading={handleToggleCurrentlyReading}
+            setAnimationActiveBookmark={setAnimationActiveBookmark}
+            setAnimationActiveAlreadyRead={setAnimationActiveAlreadyRead}
           />
         ) : (
           <NoFilterMatchesMessage>
@@ -168,7 +174,10 @@ export default function HomePage({
           </NoFilterMatchesMessage>
         )}
       </StyledBody>
-      <Navigation />
+      <Navigation
+        animationActiveBookmark={animationActiveBookmark}
+        animationActiveAlreadyRead={animationActiveAlreadyRead}
+      />
     </>
   );
 }

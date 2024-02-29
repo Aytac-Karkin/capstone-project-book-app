@@ -1,6 +1,9 @@
 import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
+import AlreadyReadButton from "../Button/AlreadyReadButton";
+import CurrentlyReadingButton from "../Button/CurrentlyReadingButton";
+import MyLibraryButton from "../Button/MyLibraryButton";
 
 export default function BookCard({
   book,
@@ -8,6 +11,8 @@ export default function BookCard({
   handleToggleBookmark,
   handleToggleAlreadyRead,
   handleToggleCurrentlyReading,
+  setAnimationActiveBookmark,
+  setAnimationActiveAlreadyRead,
 }) {
   const { title, author, genre, cover, id } = book;
   const currentBookInfo = booksInfo?.find((bookInfo) => {
@@ -29,39 +34,25 @@ export default function BookCard({
         </StyledInfos>
       </StyledLink>
       <StyledButtonWrapper>
-        <StyledButton
-          aria-label={
-            currentBookIsBookmarked
-              ? "remove from my-library"
-              : "add to my-library"
-          }
-          $isActive={currentBookIsBookmarked}
-          onClick={() => handleToggleBookmark(id)}
-        >
-          ☆
-        </StyledButton>
-        <StyledButton
-          aria-label={
-            currentBookIsCurrentlyReading
-              ? "remove from list of books I am currently reading"
-              : "add to list of books I am currently reading"
-          }
-          $isActive={currentBookIsCurrentlyReading}
-          onClick={() => handleToggleCurrentlyReading(id)}
-        >
-          📖
-        </StyledButton>
-        <StyledButton
-          aria-label={
-            currentBookIsAlreadyRead
-              ? "remove from list of books I have already read"
-              : "add to list of books I have already read"
-          }
-          $isActive={currentBookIsAlreadyRead}
-          onClick={() => handleToggleAlreadyRead(id)}
-        >
-          ✔️
-        </StyledButton>
+        <MyLibraryButton
+          onToggle={handleToggleBookmark}
+          id={id}
+          isBookmarked={currentBookIsBookmarked}
+          setAnimationActiveBookmark={setAnimationActiveBookmark}
+          booksInfo={booksInfo}
+        />
+        <CurrentlyReadingButton
+          onToggle={handleToggleCurrentlyReading}
+          id={id}
+          isCurrentlyReading={currentBookIsCurrentlyReading}
+        />
+        <AlreadyReadButton
+          onToggle={handleToggleAlreadyRead}
+          id={id}
+          isAlreadyRead={currentBookIsAlreadyRead}
+          setAnimationActiveAlreadyRead={setAnimationActiveAlreadyRead}
+          booksInfo={booksInfo}
+        />
       </StyledButtonWrapper>
     </StyledBook>
   );
@@ -92,12 +83,6 @@ const StyledInfos = styled.article`
 
 const StyledImage = styled(Image)`
   margin: auto 2px;
-`;
-
-const StyledButton = styled.button`
-  background-color: ${({ $isActive }) =>
-    $isActive ? "darkseagreen" : "seashell"};
-  border-radius: 4px;
 `;
 
 const StyledButtonWrapper = styled.section`

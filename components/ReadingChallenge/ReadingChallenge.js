@@ -7,6 +7,8 @@ export default function ReadingChallenge({
   books,
   booksInfo,
   handleToggleAlreadyRead,
+  setAnimationActiveAlreadyRead,
+  setAnimationActiveBookmark,
 }) {
   const [modalState, setModalState] = useState({
     isOpen: false,
@@ -74,6 +76,8 @@ export default function ReadingChallenge({
         readBooks={readBooks}
         booksInfo={booksInfo}
         handleToggleAlreadyRead={handleToggleAlreadyRead}
+        setAnimationActiveAlreadyRead={setAnimationActiveAlreadyRead}
+        setAnimationActiveBookmark={setAnimationActiveBookmark}
       />
 
       {modalState.isOpen && (

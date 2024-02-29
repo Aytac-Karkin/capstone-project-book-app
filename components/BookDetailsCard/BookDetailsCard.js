@@ -14,6 +14,8 @@ export default function BookDetailsCard({
   handleToggleBookmark,
   handleToggleCurrentlyReading,
   pathName,
+  setAnimationActiveAlreadyRead,
+  setAnimationActiveBookmark,
 }) {
   const { cover, title, id, author, genre, publishYear, pages, description } =
     book;
@@ -33,6 +35,8 @@ export default function BookDetailsCard({
             onToggle={handleToggleBookmark}
             id={id}
             isBookmarked={currentBookInfo?.isBookmarked}
+            booksInfo={booksInfo}
+            setAnimationActiveBookmark={setAnimationActiveBookmark}
           />
           <CurrentlyReadingButton
             onToggle={handleToggleCurrentlyReading}
@@ -43,6 +47,8 @@ export default function BookDetailsCard({
             onToggle={handleToggleAlreadyRead}
             id={id}
             isAlreadyRead={currentBookInfo?.isAlreadyRead}
+            setAnimationActiveAlreadyRead={setAnimationActiveAlreadyRead}
+            booksInfo={booksInfo}
           />
         </StyledButtonWrapper>
       )}

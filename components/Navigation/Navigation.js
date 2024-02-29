@@ -1,9 +1,14 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export default function Navigation() {
+export default function Navigation({
+  animationActiveBookmark,
+  animationActiveAlreadyRead,
+}) {
   const router = useRouter();
+
   return (
     <nav>
       <StyledList>
@@ -13,11 +18,50 @@ export default function Navigation() {
         <StyledSpotlightElement $isActive={router.pathname === "/spotlight"}>
           <NavigationLink href="/spotlight">🌟</NavigationLink>
         </StyledSpotlightElement>
+
         <ChallengeElement $isActive={router.pathname === "/challenge"}>
-          <NavigationLink href="/challenge">🏆</NavigationLink>
+          <motion.div
+            initial={animationActiveAlreadyRead ? { rotate: 0 } : null}
+            animate={
+              animationActiveAlreadyRead
+                ? { rotate: [0, 10, -10, 10, -10, 0] }
+                : null
+            }
+            transition={
+              animationActiveAlreadyRead
+                ? {
+                    duration: 0.5,
+                    ease: "easeInOut",
+                    repeatType: "loop",
+                    repeatDelay: 0,
+                  }
+                : null
+            }
+          >
+            <NavigationLink href="/challenge">🏆</NavigationLink>
+          </motion.div>
         </ChallengeElement>
         <StyledListElement $isActive={router.pathname === "/my-library"}>
-          <NavigationLink href="/my-library">My Library</NavigationLink>
+          <motion.div
+            initial={animationActiveBookmark ? { rotate: 0 } : null}
+            animate={
+              animationActiveBookmark
+                ? { rotate: [0, 10, -10, 10, -10, 0] }
+                : null
+            }
+            transition={
+              animationActiveBookmark
+                ? {
+                    duration: 0.5,
+                    ease: "easeInOut",
+                    repeatType: "loop",
+                    repeatDelay: 0,
+                  }
+                : null
+            }
+          >
+            <NavigationLink href="/my-library">My Library</NavigationLink>{" "}
+          </motion.div>
         </StyledListElement>
       </StyledList>
     </nav>
@@ -48,11 +92,13 @@ const StyledList = styled.ul`
   max-width: 600px;
 `;
 
-const StyledListElement = styled.li`
+const StyledListElement = styled(motion.li)`
   background-color: ${({ $isActive }) =>
     $isActive ? "darkseagreen" : "seashell"};
   width: 50%;
   padding: 7px 0px;
+  /* font-size: ${({ $animationActiveBookmark }) =>
+    $animationActiveBookmark ? "2rem" : "1.2rem"}; */
 `;
 
 const StyledSpotlightElement = styled.li`
