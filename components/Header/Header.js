@@ -28,6 +28,7 @@ const StyledHeader = styled.header`
   display: flex;
   position: relative;
   max-width: 600px;
+  margin: auto;
 `;
 const StyledHeadline = styled.h1`
   margin: 15px auto;

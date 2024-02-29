@@ -94,7 +94,6 @@ export default function ProgressBar({ pages, id }) {
 const ButtonWrapper = styled.section`
   display: flex;
   flex-direction: column;
-  // justify-content: space-between;
   margin: 10%;
   width: 120px;
 `;
@@ -114,7 +113,6 @@ const ProgressBarWrapper = styled.div`
   max-width: 400px;
   border-radius: 10px;
   margin: 0 auto;
-  // border: 1px solid black;
 `;
 
 const ProgressBarFill = styled.div`

@@ -112,7 +112,6 @@ const StyledFilterButton = styled.button`
     $isActive ? "var(--color-green)" : "var(--color-light-yellow)"};
   color: ${({ $isActive }) =>
     $isActive ? "var(--color-light-yellow)" : "rgb(0,0,0)"};
-  // font-family: var(--serif-font-bold);
   padding: 4px;
 `;
 

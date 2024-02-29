@@ -35,7 +35,6 @@ const ConfirmationModal = styled.section`
   justify-content: center;
   width: 80%;
   height: 40%;
-  // margin: 40px;
   background-color: var(--color-light-yellow);
   border-radius: 8px;
   padding: 20px;

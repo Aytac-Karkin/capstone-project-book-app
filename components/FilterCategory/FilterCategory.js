@@ -22,7 +22,6 @@ export default function FilterCategory({ filterNames, category }) {
             id={filterName}
             name={category}
             value={filterName}
-            //checked={selectedFilter === filterName}
           />
           {filterName}
         </StyledLabel>

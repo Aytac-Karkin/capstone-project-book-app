@@ -107,17 +107,21 @@ export default function CommentModal({ id }) {
       <h4>What were your thoughts on this book?</h4>
       <CommentsList>
         {currentComments.map((currentComment) => (
-          <StyledComment key={currentComment.uniqueId}>
-            {currentComment.comment}
-            <EditButton onClick={() => editComment(currentComment.uniqueId)}>
-              <EditIcon />
-            </EditButton>
-            <DeleteButton
-              onClick={() => openDeleteModal(currentComment.uniqueId)}
-            >
-              <TrashIcon />
-            </DeleteButton>
-          </StyledComment>
+          <StyledCommentWrapper>
+            <StyledComment key={currentComment.uniqueId}>
+              {currentComment.comment}
+            </StyledComment>
+            <StyledButtonWrapper>
+              <EditButton onClick={() => editComment(currentComment.uniqueId)}>
+                <EditIcon />
+              </EditButton>
+              <DeleteButton
+                onClick={() => openDeleteModal(currentComment.uniqueId)}
+              >
+                <TrashIcon />
+              </DeleteButton>
+            </StyledButtonWrapper>
+          </StyledCommentWrapper>
         ))}
       </CommentsList>
       <StyledSection>
@@ -197,6 +201,7 @@ const CommentButton = styled.button`
   background-color: var(--color-light-yellow);
   border-style: none;
   border-radius: 8px;
+  box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.19);
 `;
 
 const ButtonWrapper = styled.section`
@@ -235,12 +240,8 @@ const CommentsList = styled.section`
 `;
 
 const StyledComment = styled.p`
-  background-color: var(--color-light-yellow);
-  border-radius: 4px;
-  padding: 4px;
   word-wrap: break-word;
-  position: relative;
-  //box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.19);
+  margin: 8px 0px;
 `;
 
 const StyledButton = styled.button`
@@ -252,21 +253,32 @@ const StyledButton = styled.button`
 `;
 
 const DeleteButton = styled.button`
-  position: absolute;
-  bottom: 1px;
-  right: 2px;
   font-size: 0.8rem;
   background-color: var(--color-green);
   border-radius: 8px;
   border: none;
+  padding: 2px 4px;
 `;
 
 const EditButton = styled.button`
-  position: absolute;
-  bottom: 1px;
-  right: 35px;
   font-size: 0.85rem;
   background-color: var(--color-green);
   border-radius: 8px;
   border: none;
+  padding: 2px 4px;
+`;
+
+const StyledCommentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-light-yellow);
+  box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.19);
+  border-radius: 8px;
+  padding: 0 10px 5px 10px;
+  margin: 10px 0;
+`;
+
+const StyledButtonWrapper = styled.div`
+  display: flex;
+  gap: 5px;
 `;

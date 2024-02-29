@@ -3,8 +3,6 @@ import { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import ChallengeBookList from "../ChallengeBookList/ChallengeBookList";
 import EditIcon from "../Icons/EditIcon";
-import BookMarkIcon from "../Icons/BookMarkIcon";
-import AlreadyReadIcon from "../Icons/AlreadyReadIcon";
 
 export default function ReadingChallenge({
   books,
@@ -125,8 +123,8 @@ export default function ReadingChallenge({
       {modalState.isSaved && (
         <Overlay onClick={closeModal}>
           <Container>
-            <h4>Congratulations 🎉</h4>
-            <p>You succesfully created a new challenge</p>
+            <h4>Congratulations!</h4>
+            <p>You successfully created a new challenge!</p>
           </Container>
         </Overlay>
       )}
@@ -184,6 +182,7 @@ const ChallengeForm = styled.form`
   border-radius: 8px;
   padding: 20px;
   width: 90%;
+  max-width: 600px;
 `;
 
 const ButtonWrapper = styled.section`
@@ -199,10 +198,12 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: rgb(255, 245, 238);
+  background-color: var(--color-light-yellow);
   border-radius: 8px;
   padding: 20px;
-  width: 90%;
+  width: 80%;
+  text-align: center;
+  max-width: 600px;
 `;
 
 const Paragraph = styled.p`

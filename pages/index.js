@@ -219,9 +219,10 @@ const ResetButton = styled.button`
   color: var(--color-light-yellow);
   border-radius: 8px;
   border-style: none;
-  padding: 4px;
+  padding: 5px 10px;
   box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.15);
   margin-left: 5px;
+  font-size: 14px;
 `;
 const StyledResults = styled.span`
   margin-left: 8px;
@@ -268,7 +269,6 @@ const StyledParagraph = styled.p`
 const ToggleFilterButton = styled.button`
   margin: auto;
   margin-bottom: 10px;
-  // max-width: 600px;
   display: flex;
   justify-content: center;
   background-color: var(--color-green);
@@ -277,7 +277,6 @@ const ToggleFilterButton = styled.button`
   border-style: none;
   padding: 8px 20px;
   font-size: 1rem;
-  // width: 45%;
   box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.15);
 `;
 

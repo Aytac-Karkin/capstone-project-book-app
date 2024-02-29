@@ -42,10 +42,8 @@ const StyledInput = styled.textarea`
   &::placeholder {
     font-family: Arial, Helvetica, sans-serif;
   }
-  // background-color: var(--color-light-yellow);
   border-radius: 8px;
   border: 1px solid var(--color-green);
-  // box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.15);
 `;
 
 const StyledCount = styled.p`

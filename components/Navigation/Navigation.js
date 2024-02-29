@@ -66,20 +66,3 @@ const StyledListElement = styled.li`
   width: 50%;
   padding: 7px 0px;
 `;
-
-const StyledSpotlightElement = styled.li`
-  background-color: ${({ $isActive }) =>
-    $isActive ? "darkseagreen" : "seashell"};
-  width: 20%;
-  padding: 7px 0px;
-  border-right: 1px solid gainsboro;
-  border-left: 1px solid gainsboro;
-`;
-
-const ChallengeElement = styled.li`
-  background-color: ${({ $isActive }) =>
-    $isActive ? "darkseagreen" : "seashell"};
-  width: 20%;
-  padding: 7px 0px;
-  border-right: 1px solid gainsboro;
-`;

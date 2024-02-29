@@ -10,7 +10,9 @@ export default function ChallengeBookList({
 }) {
   return (
     <>
-      <StyledParagraph>Books you&apos;ve already read:</StyledParagraph>
+      <StyledHeadline>
+        Books you&apos;ve read for your challenge:
+      </StyledHeadline>
       {readBooks?.length > 0 ? (
         <BookList
           books={readBooks}
@@ -27,6 +29,14 @@ export default function ChallengeBookList({
 }
 
 const StyledParagraph = styled.p`
-  font-size: 18px;
+  font-size: 16px;
   margin-left: 6px;
+  text-align: center;
+`;
+
+const StyledHeadline = styled.h2`
+  font-family: var(--sans-serif-font);
+  font-size: 18px;
+  text-align: center;
+  margin-top: 30px;
 `;
