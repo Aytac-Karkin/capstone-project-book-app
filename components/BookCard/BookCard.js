@@ -1,9 +1,10 @@
 import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
-import AlreadyReadButton from "../Button/AlreadyReadButton";
-import CurrentlyReadingButton from "../Button/CurrentlyReadingButton";
 import MyLibraryButton from "../Button/MyLibraryButton";
+import CurrentlyReadingButton from "../Button/CurrentlyReadingButton";
+import AlreadyReadButton from "../Button/AlreadyReadButton";
+
 
 export default function BookCard({
   book,
@@ -28,9 +29,9 @@ export default function BookCard({
       <StyledLink href={`/book-details/${id}`}>
         <StyledImage src={cover} alt={title} width={100} height={149} />
         <StyledInfos>
-          <h4>{title}</h4>
-          <p>{author}</p>
-          <StyledGenre>{genre}</StyledGenre>
+          <StyledTitle>{title}</StyledTitle>
+          <StyledAuthor>{author}</StyledAuthor>
+          <p>{genre}</p>
         </StyledInfos>
       </StyledLink>
       <StyledButtonWrapper>
@@ -63,10 +64,11 @@ const StyledBook = styled.div`
   display: flex;
   justify-content: space-around;
   gap: 5px;
-  border: 2px solid black;
   border-radius: 8px;
-  padding: 5px;
-  box-shadow: 0 3px 3px 2px rgba(0, 0, 0, 0.19);
+  padding: 8px;
+  box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.15);
+  background-color: var(--color-light-yellow);
+  padding-right: 10px;
 `;
 
 const StyledLink = styled(Link)`
@@ -83,14 +85,21 @@ const StyledInfos = styled.article`
 
 const StyledImage = styled(Image)`
   margin: auto 2px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.15);
+
 `;
 
 const StyledButtonWrapper = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  justify-content: space-evenly;
 `;
 
-const StyledGenre = styled.span`
-  font-style: italic;
+const StyledTitle = styled.h2`
+  font-size: 20px;
+`;
+
+const StyledAuthor = styled.p`
+  font-size: 17px;
 `;

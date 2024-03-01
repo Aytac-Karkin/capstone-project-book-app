@@ -1,6 +1,10 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import styled from "styled-components";
+import ChallengeIcon from "../Icons/ChallengeIcon";
+import HomeIcon from "../Icons/HomeIcon";
+import SpotlightIcon from "../Icons/SpotlightIcon";
+import LibraryIcon from "../Icons/LibraryIcon";
 import { motion } from "framer-motion";
 
 export default function Navigation({
@@ -13,14 +17,17 @@ export default function Navigation({
     <nav>
       <StyledList>
         <StyledListElement $isActive={router.pathname === "/"}>
-          <NavigationLink href="/">Home</NavigationLink>
+          <NavigationLink href="/">
+            <HomeIcon $isActive={router.pathname === "/"} />
+          </NavigationLink>
         </StyledListElement>
-        <StyledSpotlightElement $isActive={router.pathname === "/spotlight"}>
-          <NavigationLink href="/spotlight">🌟</NavigationLink>
-        </StyledSpotlightElement>
-
-        <ChallengeElement $isActive={router.pathname === "/challenge"}>
-          <motion.div
+        <StyledListElement $isActive={router.pathname === "/spotlight"}>
+          <NavigationLink href="/spotlight">
+            <SpotlightIcon $isActive={router.pathname === "/spotlight"} />
+          </NavigationLink>
+        </StyledListElement>
+        <StyledListElement $isActive={router.pathname === "/challenge"}>
+           <motion.div
             initial={animationActiveAlreadyRead ? { rotate: 0 } : null}
             animate={
               animationActiveAlreadyRead
@@ -38,9 +45,11 @@ export default function Navigation({
                 : null
             }
           >
-            <NavigationLink href="/challenge">🏆</NavigationLink>
+          <NavigationLink href="/challenge">
+            <ChallengeIcon $isActive={router.pathname === "/challenge"} />
+          </NavigationLink>
           </motion.div>
-        </ChallengeElement>
+        </StyledListElement>
         <StyledListElement $isActive={router.pathname === "/my-library"}>
           <motion.div
             initial={animationActiveBookmark ? { rotate: 0 } : null}
@@ -60,7 +69,9 @@ export default function Navigation({
                 : null
             }
           >
-            <NavigationLink href="/my-library">My Library</NavigationLink>{" "}
+          <NavigationLink href="/my-library">
+            <LibraryIcon $isActive={router.pathname === "/my-library"} />
+          </NavigationLink>
           </motion.div>
         </StyledListElement>
       </StyledList>
@@ -79,9 +90,8 @@ const StyledList = styled.ul`
   list-style: none;
   display: flex;
   justify-content: space-around;
-
   padding-left: 0;
-  border-top: 2px solid black;
+  border-top: 2px solid var(--color-green);
   margin-top: 20px;
   font-size: 1.2rem;
   margin: 0 auto;
@@ -94,26 +104,7 @@ const StyledList = styled.ul`
 
 const StyledListElement = styled(motion.li)`
   background-color: ${({ $isActive }) =>
-    $isActive ? "darkseagreen" : "seashell"};
+    $isActive ? "var(--color-green)" : "var(--color-light-yellow)"};
   width: 50%;
   padding: 7px 0px;
-  /* font-size: ${({ $animationActiveBookmark }) =>
-    $animationActiveBookmark ? "2rem" : "1.2rem"}; */
-`;
-
-const StyledSpotlightElement = styled.li`
-  background-color: ${({ $isActive }) =>
-    $isActive ? "darkseagreen" : "seashell"};
-  width: 20%;
-  padding: 7px 0px;
-  border-right: 1px solid gainsboro;
-  border-left: 1px solid gainsboro;
-`;
-
-const ChallengeElement = styled.li`
-  background-color: ${({ $isActive }) =>
-    $isActive ? "darkseagreen" : "seashell"};
-  width: 20%;
-  padding: 7px 0px;
-  border-right: 1px solid gainsboro;
 `;

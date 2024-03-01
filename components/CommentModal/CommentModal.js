@@ -4,6 +4,9 @@ import useLocalStorageState from "use-local-storage-state";
 import NotesInput from "../NotesInput/NotesInput";
 import { uid } from "uid";
 import ConfirmationModalWindow from "../ConfirmationModalWindow/ConfirmationModalWindow";
+import EditIcon from "../Icons/EditIcon";
+import TrashIcon from "../Icons/TrashIcon";
+import PlusIcon from "../Icons/PlusIcon";
 
 export default function CommentModal({ id }) {
   const [modalState, setModalState] = useState({
@@ -105,24 +108,26 @@ export default function CommentModal({ id }) {
       <h4>What were your thoughts on this book?</h4>
       <CommentsList>
         {currentComments.map((currentComment) => (
-          <StyledComment key={currentComment.uniqueId}>
-            {currentComment.comment}
-            <EditButton onClick={() => editComment(currentComment.uniqueId)}>
-              ✎
-            </EditButton>
-            <DeleteButton
-              onClick={() => openDeleteModal(currentComment.uniqueId)}
-            >
-              🗑️
-            </DeleteButton>
-          </StyledComment>
+          <StyledCommentWrapper key={currentComment.uniqueId}>
+            <StyledComment>{currentComment.comment}</StyledComment>
+            <StyledButtonWrapper>
+              <EditButton onClick={() => editComment(currentComment.uniqueId)}>
+                <EditIcon />
+              </EditButton>
+              <DeleteButton
+                onClick={() => openDeleteModal(currentComment.uniqueId)}
+              >
+                <TrashIcon />
+              </DeleteButton>
+            </StyledButtonWrapper>
+          </StyledCommentWrapper>
         ))}
       </CommentsList>
       <StyledSection>
-        <p>
-          <CommentButton onClick={openAddCommentModal}>+</CommentButton>
-          add a thought
-        </p>
+        <CommentButton onClick={openAddCommentModal}>
+          <PlusIcon />
+        </CommentButton>
+        <StyledAddThought>Add a thought!</StyledAddThought>
       </StyledSection>
 
       {modalState.isOpen && (
@@ -189,16 +194,25 @@ const StyledSection = styled.section`
 `;
 
 const CommentButton = styled.button`
-  width: 25px;
-  height: 25px;
-  margin-right: 10px;
+  margin-right: 8px;
+  background-color: var(--color-light-yellow);
+  border-style: none;
+  border-radius: 8px;
+  box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.19);
+  padding: 0.25rem 0.3rem 0.125rem 0.35rem;
+  margin-top: 0.2rem;
+`;
+
+const StyledAddThought = styled.p`
+  margin: 0;
+  margin-top: 0.4rem;
 `;
 
 const ButtonWrapper = styled.section`
   display: flex;
   flex-direction: column;
   width: 50%;
-  margin: 10%;
+  margin: 20px;
 `;
 
 const Overlay = styled.div`
@@ -220,7 +234,7 @@ const CommentForm = styled.form`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: rgb(255, 245, 238);
+  background-color: var(--color-light-yellow);
   border-radius: 8px;
   padding: 20px;
 `;
@@ -230,28 +244,47 @@ const CommentsList = styled.section`
 `;
 
 const StyledComment = styled.p`
-  border: 1px solid rgb(0, 0, 0);
-  background-color: rgb(255, 245, 238);
-  border-radius: 4px;
-  padding: 3px;
   word-wrap: break-word;
-  position: relative;
+  margin: 8px 0px;
 `;
 
 const StyledButton = styled.button`
   margin: 3px;
+  padding: 4px;
+  border-radius: 8px;
+  border: 1px solid var(--color-green);
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  font-weight: 400;
 `;
 
 const DeleteButton = styled.button`
-  position: absolute;
-  bottom: 1px;
-  right: 2px;
   font-size: 0.8rem;
+  background-color: var(--color-green);
+  border-radius: 8px;
+  border: none;
+  padding: 0.25rem 0.3rem 0.125rem 0.35rem;
 `;
 
 const EditButton = styled.button`
-  position: absolute;
-  bottom: 1px;
-  right: 35px;
   font-size: 0.85rem;
+  background-color: var(--color-green);
+  border-radius: 8px;
+  border: none;
+  padding: 0.25rem 0.3rem 0.125rem 0.35rem;
+`;
+
+const StyledCommentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-light-yellow);
+  box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.19);
+  border-radius: 8px;
+  padding: 0 10px 5px 10px;
+  margin: 10px 0;
+`;
+
+const StyledButtonWrapper = styled.div`
+  display: flex;
+  gap: 5px;
 `;

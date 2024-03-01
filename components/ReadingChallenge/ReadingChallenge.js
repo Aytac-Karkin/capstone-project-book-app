@@ -2,11 +2,14 @@ import styled from "styled-components";
 import { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import ChallengeBookList from "../ChallengeBookList/ChallengeBookList";
+import EditIcon from "../Icons/EditIcon";
 
 export default function ReadingChallenge({
   books,
   booksInfo,
   handleToggleAlreadyRead,
+  handleToggleBookmark,
+  handleToggleCurrentlyReading,
   setAnimationActiveAlreadyRead,
   setAnimationActiveBookmark,
 }) {
@@ -38,14 +41,16 @@ export default function ReadingChallenge({
   });
 
   function updateProgress() {
-    if (challenge.type === "books") {
+    if (readBooks.length > 0 && challenge.type === "books") {
       setProgress(readBooks.length);
-    } else if (challenge.type === "pages") {
-      const pagesArray = readBooks.map((readBook) => {
+    } else if (readBooks.length > 0 && challenge.type === "pages") {
+      const pagesArray = readBooks?.map((readBook) => {
         return readBook.pages;
       });
-      const pagesSum = pagesArray.reduce((a, b) => a + b);
+      const pagesSum = pagesArray?.reduce((a, b) => a + b);
       setProgress(pagesSum);
+    } else {
+      setProgress(0);
     }
   }
   updateProgress();
@@ -61,21 +66,23 @@ export default function ReadingChallenge({
   return (
     <StyledBody>
       <StyledBox>
-        {challenge !== null ? (
+        {challenge.type ? (
           <Paragraph>
-            You have read {progress} out of {challenge.amount} {challenge.type}
+            You have read {progress} out of {challenge.amount} {challenge.type}.
           </Paragraph>
         ) : (
-          <Paragraph>You have not created a challenge yet</Paragraph>
+          <Paragraph>You have not created a challenge yet.</Paragraph>
         )}
-        <StyledButton onClick={openModal}>
-          {challenge !== null ? "🖊️" : "+"}
-        </StyledButton>
+        <StyledEditButton onClick={openModal}>
+          {challenge !== null ? <EditIcon /> : "+"}
+        </StyledEditButton>
       </StyledBox>
       <ChallengeBookList
         readBooks={readBooks}
         booksInfo={booksInfo}
         handleToggleAlreadyRead={handleToggleAlreadyRead}
+        handleToggleBookmark={handleToggleBookmark}
+        handleToggleCurrentlyReading={handleToggleCurrentlyReading}
         setAnimationActiveAlreadyRead={setAnimationActiveAlreadyRead}
         setAnimationActiveBookmark={setAnimationActiveBookmark}
       />
@@ -83,23 +90,35 @@ export default function ReadingChallenge({
       {modalState.isOpen && (
         <Overlay>
           <ChallengeForm onSubmit={handleSubmit}>
-            <h4>I want to read</h4>
+            <StyledParagraph>I want to read:</StyledParagraph>
             <div>
-              <input
-                name="amount"
-                type="number"
-                min="0"
-                step="1"
-                defaultValue={challenge.amount}
-              />
-              <select name="type" defaultValue={challenge.type}>
-                <option value="books">Books</option>
-                <option value="pages">Pages</option>
-              </select>
+              <label htmlFor="amount-input">
+                <StyledInput
+                  id="amount-input"
+                  name="amount"
+                  type="number"
+                  min="0"
+                  step="1"
+                  defaultValue={challenge.amount}
+                />
+              </label>
+              <label htmlFor="type-input">
+                <StyledSelect
+                  id="type-input"
+                  name="type"
+                  defaultValue={challenge.type}
+                >
+                  <option value="books">Books</option>
+                  <option value="pages">Pages</option>
+                </StyledSelect>
+              </label>
             </div>
             <ButtonWrapper>
-              <button type="submit"> Save Challenge</button>
-              <button onClick={closeModal}>Cancel</button>
+              <StyledModalButton type="submit">
+                {" "}
+                Save Challenge
+              </StyledModalButton>
+              <StyledModalButton onClick={closeModal}>Cancel</StyledModalButton>
             </ButtonWrapper>
           </ChallengeForm>
         </Overlay>
@@ -108,8 +127,8 @@ export default function ReadingChallenge({
       {modalState.isSaved && (
         <Overlay onClick={closeModal}>
           <Container>
-            <h4>Congratulations 🎉</h4>
-            <p>You succesfully created a new challenge</p>
+            <h4>Congratulations!</h4>
+            <p>You successfully created a new challenge!</p>
           </Container>
         </Overlay>
       )}
@@ -117,20 +136,28 @@ export default function ReadingChallenge({
   );
 }
 
+const StyledModalButton = styled.button`
+  background-color: rgb(255, 255, 255);
+  border: 1px solid var(--color-green);
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 4px;
+  color: rgb(0, 0, 0);
+  font-weight: 400;
+`;
+
 const StyledBox = styled.div`
-  border: 1px solid black;
   border-radius: 8px;
   display: flex;
   justify-content: space-evenly;
   position: relative;
+  background-color: var(--color-light-yellow);
 `;
-const StyledButton = styled.button`
+const StyledEditButton = styled.button`
   border: none;
-  background: seashell;
-  height: 35px;
-  width: 35px;
+  background: var(--color-green);
+  padding: 0.2rem 0.45rem;
   border-radius: 35px;
-  border: 1px solid black;
   font-size: 25px;
   position: absolute;
   bottom: -20px;
@@ -156,10 +183,11 @@ const ChallengeForm = styled.form`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: rgb(255, 245, 238);
+  background-color: var(--color-light-yellow);
   border-radius: 8px;
   padding: 20px;
   width: 90%;
+  max-width: 600px;
 `;
 
 const ButtonWrapper = styled.section`
@@ -167,6 +195,7 @@ const ButtonWrapper = styled.section`
   flex-direction: column;
   width: 50%;
   margin: 10%;
+  gap: 5px;
 `;
 
 const Container = styled.div`
@@ -174,21 +203,45 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: rgb(255, 245, 238);
+  background-color: var(--color-light-yellow);
   border-radius: 8px;
   padding: 20px;
-  width: 90%;
+  width: 80%;
+  text-align: center;
+  max-width: 600px;
 `;
 
 const Paragraph = styled.p`
-  font-size: 25px;
+  font-size: 18px;
   text-align: center;
-  /* border: 1px solid black;
-  border-radius: 8px; */
 `;
 
 const StyledBody = styled.div`
   width: 95%;
   max-width: 600px;
   margin: auto;
+`;
+
+const StyledInput = styled.input`
+  border: 1px solid var(--color-green);
+  border-radius: 8px;
+  margin-right: 3px;
+  padding: 4px;
+  width: 70px;
+  font-size: 16px;
+`;
+
+const StyledSelect = styled.select`
+  border: 1px solid var(--color-green);
+  border-radius: 8px;
+  padding: 4px;
+  background-color: rgb(255, 255, 255);
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  font-weight: 400;
+`;
+
+const StyledParagraph = styled.p`
+  font-size: 18px;
+  margin-bottom: 10px;
 `;

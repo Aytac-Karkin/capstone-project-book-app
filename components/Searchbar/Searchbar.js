@@ -7,7 +7,7 @@ export default function SearchBar({ setSearchTerm }) {
       type="text"
       id="searchTerm"
       name="searchTerm"
-      placeholder="🔍 search... "
+      placeholder="Search... "
       aria-label="searchbar"
     />
   );
@@ -15,8 +15,11 @@ export default function SearchBar({ setSearchTerm }) {
 
 const SearchInput = styled.input`
   padding: 0.3rem;
-  font-size: 0.9rem;
+  font-size: 1rem;
   display: flex;
   margin: auto;
-  margin-bottom: 0.5rem;
+  width: 60%;
+  border-radius: 8px;
+  border-style: none;
+  margin-bottom: 25px;
 `;

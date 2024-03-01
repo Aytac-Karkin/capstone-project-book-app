@@ -31,13 +31,13 @@ const StyledParagraph = styled.p`
 `;
 
 const StyledButton = styled.button`
-  color: orange;
+  color: var(--color-green);
   cursor: pointer;
   margin-left: 5px;
   &:hover {
     color: green;
   }
   border: none;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--color-light-yellow);
   font-size: 1rem;
 `;

@@ -6,6 +6,8 @@ export default function ChallengePage({
   books,
   booksInfo,
   handleToggleAlreadyRead,
+  handleToggleBookmark,
+  handleToggleCurrentlyReading,
   setAnimationActiveAlreadyRead,
   setAnimationActiveBookmark,
 }) {
@@ -16,6 +18,8 @@ export default function ChallengePage({
         books={books}
         booksInfo={booksInfo}
         handleToggleAlreadyRead={handleToggleAlreadyRead}
+        handleToggleBookmark={handleToggleBookmark}
+        handleToggleCurrentlyReading={handleToggleCurrentlyReading}
         setAnimationActiveAlreadyRead={setAnimationActiveAlreadyRead}
         setAnimationActiveBookmark={setAnimationActiveBookmark}
       />

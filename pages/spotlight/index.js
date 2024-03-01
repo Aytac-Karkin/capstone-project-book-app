@@ -2,6 +2,7 @@ import Header from "@/components/Header/Header";
 import styled from "styled-components";
 import Navigation from "@/components/Navigation/Navigation";
 import BookDetailsCard from "@/components/BookDetailsCard/BookDetailsCard";
+import SpotlightFilledIcon from "@/components/Icons/SpotlightFilledIcon";
 
 export default function Spotlight({ books }) {
   const currentBook = books[Math.floor(Math.random() * books.length)];
@@ -9,7 +10,9 @@ export default function Spotlight({ books }) {
     <>
       <StyledDetailedPage>
         <Header />
-        <StyledBookStar>Book ✨ Star</StyledBookStar>
+        <StyledBookStar>
+          Book <SpotlightFilledIcon /> Star
+        </StyledBookStar>
         <BookDetailsCard book={currentBook} />
         <Navigation />
       </StyledDetailedPage>
@@ -27,9 +30,8 @@ const StyledDetailedPage = styled.div`
 
 const StyledBookStar = styled.h2`
   text-align: center;
-  border: 1px solid black;
   border-radius: 5px;
   width: 200px;
   margin: auto;
-  background-color: mintcream;
+  background-color: var(--color-dark-yellow);
 `;

@@ -34,13 +34,16 @@ export default function NotesInput({ commentToBeEdited }) {
 
 const StyledInput = styled.textarea`
   width: 80%;
-  height: 50px;
-  margin: 15%;
+  height: 80px;
+  margin: 40px;
   margin-bottom: 0;
+  padding: 5px;
   font-family: Arial, Helvetica, sans-serif;
   &::placeholder {
     font-family: Arial, Helvetica, sans-serif;
   }
+  border-radius: 8px;
+  border: 1px solid var(--color-green);
 `;
 
 const StyledCount = styled.p`

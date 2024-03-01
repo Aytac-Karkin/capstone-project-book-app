@@ -4,7 +4,7 @@ export default function ConfirmationModalWindow({ onCancel, onConfirm, text }) {
   return (
     <Overlay>
       <ConfirmationModal>
-        <h5>Are you sure you want to {text}?</h5>
+        <h4>Are you sure you want to {text}?</h4>
         <ButtonWrapper>
           <StyledButton onClick={onCancel}>No!</StyledButton>
           <StyledButton onClick={onConfirm}>Yes</StyledButton>
@@ -33,19 +33,27 @@ const ConfirmationModal = styled.section`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: rgb(255, 255, 255);
+  width: 80%;
+  height: 40%;
+  background-color: var(--color-light-yellow);
   border-radius: 8px;
   padding: 20px;
-  border: 3px rgb(255, 0, 0) solid;
+  border: 2px rgb(255, 0, 0) solid;
+  width: 90;
+  text-align: center;
 `;
 
 const ButtonWrapper = styled.section`
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 100px;
   margin: 10%;
 `;
 
 const StyledButton = styled.button`
   margin: 3px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 4px;
+  border: 1px solid black;
 `;

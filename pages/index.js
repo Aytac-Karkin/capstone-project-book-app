@@ -94,23 +94,23 @@ export default function HomePage({
           <Overlay>
             <StyledFilterForm onSubmit={handleFilterSubmit}>
               <ExitButton type="button" onClick={handleToggleFilterModal}>
-                ❌
+                X
               </ExitButton>
               <FilterWrapper>
                 <StyledFilterCategoryWrapper>
-                  <h3>Genre</h3>
+                  <FilterHeadline>Genre</FilterHeadline>
                   <FilterCategory filterNames={genres} category={"genre"} />
                 </StyledFilterCategoryWrapper>
                 <StyledRightSide>
                   <StyledFilterCategoryWrapper>
-                    <h3>Book Length</h3>
+                    <FilterHeadline>Book Length</FilterHeadline>
                     <FilterCategory
                       filterNames={["short", "medium", "long"]}
                       category={"bookLength"}
                     />
                   </StyledFilterCategoryWrapper>
                   <StyledFilterCategoryWrapper>
-                    <h3>Publishing Year</h3>
+                    <FilterHeadline>Publishing Year</FilterHeadline>
                     <label htmlFor="starting-year">
                       <StyledParagraph>From:</StyledParagraph>
                       <StyledYearInput
@@ -151,11 +151,13 @@ export default function HomePage({
             </FilterTag>
           )}
         </FilterTagSection>
-        {filters.yearStart && <span>{filterResultsCount} result(s)</span>}
         {filters.yearStart && (
-          <FilterButton type="button" onClick={handleResetFilters}>
-            Reset Filters
-          </FilterButton>
+          <StyledResults>{filterResultsCount} result(s)</StyledResults>
+        )}
+        {filters.yearStart && (
+          <ResetButton type="button" onClick={handleResetFilters}>
+            Reset
+          </ResetButton>
         )}
         {filteredBookList.length > 0 ? (
           <BookList
@@ -182,6 +184,11 @@ export default function HomePage({
   );
 }
 
+const FilterHeadline = styled.h3`
+  margin-bottom: 0;
+  margin-top: 0;
+`;
+
 const StyledFilterCategoryWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -191,35 +198,69 @@ const FilterWrapper = styled.section`
 `;
 
 const ExitButton = styled.button`
-  background-color: rgba(255, 255, 255);
+  background-color: var(--color-light-yellow);
+  width: 32px;
+  height: 32px;
   position: absolute;
-  top: 0.7rem;
+  bottom: 0.7rem;
   right: 0.7rem;
-  border-radius: 5px;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.19);
+  color: rgb(0, 0, 0);
+  font-weight: 400;
 `;
 
 const FilterButton = styled.button`
   margin-top: 1rem;
-  background-color: rgba(255, 255, 255);
-  border-radius: 5px;
-  font-size: 0.9rem;
+  background-color: var(--color-light-yellow);
+  border-radius: 8px;
+  border-style: none;
+  padding: 7px 8px;
+  font-size: 1rem;
   margin-left: 5px;
+  position: absolute;
+  bottom: 0.7rem;
+  right: 3.5rem;
+  box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.19);
+  color: rgb(0, 0, 0);
+  font-weight: 400;
+`;
+
+const ResetButton = styled.button`
+  background-color: var(--color-green);
+  color: var(--color-light-yellow);
+  border-radius: 8px;
+  border-style: none;
+  padding: 5px 10px;
+  box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.15);
+  margin-left: 5px;
+  font-size: 14px;
+`;
+const StyledResults = styled.span`
+  margin-left: 8px;
+  padding: 4px;
 `;
 
 const StyledFilterForm = styled.form`
-  background-color: rgba(255, 245, 238);
+  background-color: var(--color-dark-yellow);
   border-radius: 8px;
-  padding: 20px;
+  padding: 10px 20px;
   position: relative;
 `;
 
 const StyledRightSide = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 20px;
 `;
 
 const StyledYearInput = styled.input`
-  width: 5em;
+  width: 6em;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 4px 4px 4px 8px;
+  font-size: 16px;
 `;
 
 const Overlay = styled.div`
@@ -234,17 +275,22 @@ const Overlay = styled.div`
 `;
 
 const StyledParagraph = styled.p`
-  margin-bottom: 0;
+  margin-bottom: 3px;
   margin-top: 0.2rem;
 `;
 
 const ToggleFilterButton = styled.button`
   margin: auto;
-  max-width: 600px;
+  margin-bottom: 10px;
   display: flex;
-  background-color: rgba(255, 245, 238);
-  border-radius: 4px;
+  justify-content: center;
+  background-color: var(--color-green);
+  color: var(--color-light-yellow);
+  border-radius: 8px;
+  border-style: none;
+  padding: 8px 20px;
   font-size: 1rem;
+  box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.15);
 `;
 
 const NoFilterMatchesMessage = styled.p`
@@ -256,14 +302,17 @@ const NoFilterMatchesMessage = styled.p`
 
 const FilterTagSection = styled.section`
   display: flex;
-  justify-content: space-around;
-  padding: 0.5rem;
+  justify-content: space-evenly;
+  padding: 0.4rem;
+  gap: 5px;
 `;
-
 const FilterTag = styled.span`
-  background-color: rgba(239, 230, 224);
-  border-radius: 4px;
-  padding: 2px;
+  background-color: var(--color-light-yellow);
+  border-radius: 8px;
+  padding: 4px;
+  font-size: 15px;
+  margin-bottom: 20px;
+  text-align: center;
 `;
 
 const StyledBody = styled.div`

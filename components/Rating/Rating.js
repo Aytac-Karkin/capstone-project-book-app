@@ -33,8 +33,7 @@ export default function Rating({ id }) {
             />
             <StyledStar
               style={{
-                color:
-                  currentRating <= (hover || rating) ? "#ffc107" : "#e4e5e9",
+                color: currentRating <= (hover || rating) ? "#ffc107" : "white",
               }}
               onMouseEnter={() => setHover(currentRating)}
               onMouseLeave={() => setHover(null)}
@@ -54,6 +53,6 @@ const StyledInput = styled.input`
 
 const StyledStar = styled.span`
   cursor: pointer;
-  font-size: 22px;
+  font-size: 26px;
   padding: 2px;
 `;
