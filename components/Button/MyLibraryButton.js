@@ -13,7 +13,7 @@ export default function MyLibraryButton({
   useEffect(() => {
     function updateAnimationBookmark(id) {
       const currentBook = booksInfo.find((book) => book.id === id);
-      if (currentBook.isBookmarked) {
+      if (currentBook?.isBookmarked) {
         setAnimationActiveBookmark(true);
         setTimeout(() => setAnimationActiveBookmark(false), "1500");
       } else {

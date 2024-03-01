@@ -13,7 +13,7 @@ export default function AlreadyReadButton({
   useEffect(() => {
     function updateAnimationAlreadyRead(id) {
       const currentBook = booksInfo.find((book) => book.id === id);
-      if (currentBook.isAlreadyRead) {
+      if (currentBook?.isAlreadyRead) {
         setAnimationActiveAlreadyRead(true);
         setTimeout(() => setAnimationActiveAlreadyRead(false), "1500");
       } else {
