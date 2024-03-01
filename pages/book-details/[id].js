@@ -11,6 +11,10 @@ export default function BookDetailsPage({
   handleToggleCurrentlyReading,
   books,
   booksInfo,
+  setAnimationActiveAlreadyRead,
+  setAnimationActiveBookmark,
+  animationActiveAlreadyRead,
+  animationActiveBookmark,
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -31,9 +35,14 @@ export default function BookDetailsPage({
           handleToggleCurrentlyReading={handleToggleCurrentlyReading}
           handleToggleAlreadyRead={handleToggleAlreadyRead}
           pathName={pathName}
+          setAnimationActiveAlreadyRead={setAnimationActiveAlreadyRead}
+          setAnimationActiveBookmark={setAnimationActiveBookmark}
         />
         <CommentModal id={currentBook.id} />
-        <Navigation />
+        <Navigation
+          animationActiveBookmark={animationActiveBookmark}
+          animationActiveAlreadyRead={animationActiveAlreadyRead}
+        />
       </StyledDetailedPage>
     </>
   );

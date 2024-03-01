@@ -7,6 +7,8 @@ export default function ChallengeBookList({
   readBooks,
   handleToggleBookmark,
   handleToggleCurrentlyReading,
+  setAnimationActiveAlreadyRead,
+  setAnimationActiveBookmark,
 }) {
   return (
     <>
@@ -20,6 +22,8 @@ export default function ChallengeBookList({
           handleToggleAlreadyRead={handleToggleAlreadyRead}
           handleToggleBookmark={handleToggleBookmark}
           handleToggleCurrentlyReading={handleToggleCurrentlyReading}
+          setAnimationActiveAlreadyRead={setAnimationActiveAlreadyRead}
+          setAnimationActiveBookmark={setAnimationActiveBookmark}
         />
       ) : (
         <StyledParagraph>You have not read any books yet.</StyledParagraph>

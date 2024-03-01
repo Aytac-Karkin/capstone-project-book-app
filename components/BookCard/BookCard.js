@@ -1,12 +1,10 @@
 import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
-import CurrentlyReadingIcon from "../Icons/CurrentlyReadingIcon";
-import BookmarkIcon from "../Icons/BookMarkIcon";
-import AlreadyReadIcon from "../Icons/AlreadyReadIcon";
 import MyLibraryButton from "../Button/MyLibraryButton";
 import CurrentlyReadingButton from "../Button/CurrentlyReadingButton";
 import AlreadyReadButton from "../Button/AlreadyReadButton";
+
 
 export default function BookCard({
   book,
@@ -14,6 +12,8 @@ export default function BookCard({
   handleToggleBookmark,
   handleToggleAlreadyRead,
   handleToggleCurrentlyReading,
+  setAnimationActiveBookmark,
+  setAnimationActiveAlreadyRead,
 }) {
   const { title, author, genre, cover, id } = book;
   const currentBookInfo = booksInfo?.find((bookInfo) => {
@@ -39,6 +39,7 @@ export default function BookCard({
           onToggle={handleToggleBookmark}
           id={id}
           isBookmarked={currentBookIsBookmarked}
+          setAnimationActiveBookmark={setAnimationActiveBookmark}
           booksInfo={booksInfo}
         />
         <CurrentlyReadingButton
@@ -50,6 +51,7 @@ export default function BookCard({
           onToggle={handleToggleAlreadyRead}
           id={id}
           isAlreadyRead={currentBookIsAlreadyRead}
+          setAnimationActiveAlreadyRead={setAnimationActiveAlreadyRead}
           booksInfo={booksInfo}
         />
       </StyledButtonWrapper>
@@ -85,6 +87,7 @@ const StyledImage = styled(Image)`
   margin: auto 2px;
   border-radius: 8px;
   box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.15);
+
 `;
 
 const StyledButtonWrapper = styled.section`

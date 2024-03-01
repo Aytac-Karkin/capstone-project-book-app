@@ -1,11 +1,19 @@
 import GlobalStyle from "../styles";
 import books from "../lib/books.json";
 import useLocalStorageState from "use-local-storage-state";
+import { useState } from "react";
+
+const initialBooksInfo = books.map((book) => {
+  return { id: book.id, isBookmarked: false, isAlreadyRead: false };
+});
 
 export default function App({ Component, pageProps }) {
   const [booksInfo, setBooksInfo] = useLocalStorageState("books-info", {
-    defaultValue: [],
+    defaultValue: initialBooksInfo,
   });
+  const [animationActiveBookmark, setAnimationActiveBookmark] = useState(false);
+  const [animationActiveAlreadyRead, setAnimationActiveAlreadyRead] =
+    useState(false);
 
   function handleToggleBookmark(id) {
     const currentBook = booksInfo.find((book) => book.id === id);
@@ -62,6 +70,10 @@ export default function App({ Component, pageProps }) {
         handleToggleAlreadyRead={handleToggleAlreadyRead}
         handleToggleCurrentlyReading={handleToggleCurrentlyReading}
         booksInfo={booksInfo}
+        animationActiveAlreadyRead={animationActiveAlreadyRead}
+        animationActiveBookmark={animationActiveBookmark}
+        setAnimationActiveAlreadyRead={setAnimationActiveAlreadyRead}
+        setAnimationActiveBookmark={setAnimationActiveBookmark}
       />
     </>
   );
